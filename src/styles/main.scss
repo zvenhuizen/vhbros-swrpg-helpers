@@ -1,0 +1,13 @@
+/* ==== MAIN SCSS ===== */
+// We can import files from one SCSS file to another
+// This will act as the place to import them all
+// Order matters, as last imported styles take precedence
+// if you have any conflicts
+// This way we only have to import one file in our .js
+// it keeps the code cleaner
+
+@import 'reset';
+@import 'variables';
+@import 'App';
+@import 'index';
+@import 'header';
