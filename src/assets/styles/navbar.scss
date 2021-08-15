@@ -1,0 +1,24 @@
+@import 'variables';
+
+.navbar {
+    align-items: center;
+    display: flex;
+    .nav-links {
+        align-items: center;
+        display: flex;
+        .nav-item {
+            font-size: 0.9em;
+            letter-spacing: 2px;
+            margin-left: 20px;
+            text-transform: uppercase;
+            a {
+                color: $white;
+                text-decoration: none;
+                &:hover {
+                    color: $white-fade;
+                    border-bottom: 2px dotted $white-fade;
+                }
+            }
+        }
+    }
+}
