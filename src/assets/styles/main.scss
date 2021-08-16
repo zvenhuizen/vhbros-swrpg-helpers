@@ -1,0 +1,8 @@
+@import 'reset';
+@import 'variables';
+@import 'header';
+@import 'navbar';
+
+body {
+    font-family: $primary;
+}
