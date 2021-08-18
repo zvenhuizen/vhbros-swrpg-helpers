@@ -1,5 +1,6 @@
 import Header from './Header.js';
 import React from 'react';
+import DiceInput from '../probability/DiceInput'
 
 class App extends React.Component {
   constructor(props) {
@@ -26,6 +27,8 @@ class App extends React.Component {
       <div className="App">
 
         <Header style={this.state.style} headerClick={this.handleClick}/>
+        <br />
+        <DiceInput />
         
       </div>
     );
