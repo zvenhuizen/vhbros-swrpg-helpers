@@ -1,5 +1,8 @@
 //Import ProbabilityCalculator from ./Calculator.js
 import React from 'react';
+import rollDice from '../helpers/rollDice';
+import outputResults from '../helpers/outputResults';
+import cancelResults from '../helpers/cancelResults';
 
 class DiceInput extends React.Component {
     constructor(props) {
@@ -19,8 +22,13 @@ class DiceInput extends React.Component {
 
     handleSubmit(event) {
         //The following needs to be changed to handle the roll event
-        alert('A roll was submitted: ' + this.state.value); //On clicking 'roll' button, alert a roll has been made
         event.preventDefault();
+        
+        const roll = rollDice(this.state.value);
+
+        console.log(roll);
+        outputResults(cancelResults(rollDice(this.state.value)));
+
     }
 
     render() {
