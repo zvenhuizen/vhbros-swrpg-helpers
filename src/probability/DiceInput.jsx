@@ -28,7 +28,13 @@ class DiceInput extends React.Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <legend>Dice combination:</legend>
-                    <input type="text" value={this.state.value} onChange={this.handleChange}/>
+                    <input type="text" value={this.state.value} onChange={this.handleChange}/> 
+                    {/* ===== KEITH COMMENTS ===== */}
+                    {/* I think I would change the code below to use a generic button and add an onClick event handler instead */}
+                    {/* The reason being that buttons are more versatile and you don't have to override the default behavior. */ }
+                    {/* Your way clearly works, so its up to you, but I provided the button code below if you didn't know the HTML for a button. */}
+                    {/* The className's I simply made up and would use them for styling purposed only. */}
+                    {/* <button className='btn btn-submit' onClick={this.handleRoll}>Roll</button> */}
                     <input type="submit" value="Roll" />
                 </form>
             </div>
