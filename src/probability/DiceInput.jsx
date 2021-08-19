@@ -1,23 +1,40 @@
-//Import ProbabilityCalculator from ./Calculator.js
-import React from 'react';
+import React , {Component} from 'react';
+import {
+    minMaxLength,
+    validInput,
+} from './FormErrors'
 
-class DiceInput extends React.Component {
+class DiceInput extends Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {
+            value: ''
+        }
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleUserInput = this.handleUserInput.bind(this);
+        this.handleRollClick = this.handleRollClick.bind(this);
     }
 
-    handleChange(event) {
-        /*The following needs to be updated to automatically render a
-        new probability % in the other component. To do this I will need
-        to import the probability calculator from Keith's file.*/
-        this.setState({value: event.target.value}); //On each keystroke, update the input box.
-    }
+    handleUserInput = (e) => {
+        const {name, value}= e.target;
+        let currentFormErrors = this.state.currentFormErrors;
 
-    handleSubmit(event) {
+        switch (name) {
+            case 'dice':
+                if(minMaxLength(value, 1, 24)) {
+                    currentFormErrors[name]=`There must be between 1 and 24 characters`;
+                } else if(!value || validInput(value)) {
+                    currentFormErrors[name]=`Text entered is invalid`;
+                } else {
+                    delete currentFormErrors[name];
+                }
+                break;
+            default:
+                break;
+        }
+    } //On each keystroke
+
+    handleRollClick(event) {
         //The following needs to be changed to handle the roll event
         alert('A roll was submitted: ' + this.state.value); //On clicking 'roll' button, alert a roll has been made
         event.preventDefault();
@@ -26,19 +43,33 @@ class DiceInput extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
-                    <legend>Dice combination:</legend>
-                    <input type="text" value={this.state.value} onChange={this.handleChange}/> 
-                    {/* ===== KEITH COMMENTS ===== */}
-                    {/* I think I would change the code below to use a generic button and add an onClick event handler instead */}
-                    {/* The reason being that buttons are more versatile and you don't have to override the default behavior. */ }
-                    {/* Your way clearly works, so its up to you, but I provided the button code below if you didn't know the HTML for a button. */}
-                    {/* The className's I simply made up and would use them for styling purposed only. */}
-                    {/* <button className='btn btn-submit' onClick={this.handleRoll}>Roll</button> */}
-                    <input type="submit" value="Roll" />
-                </form>
+                <legend>Dice combination:</legend>
+                <input 
+                  className={this.state.currentFormErrors && this.state.currentFormErrors.dice
+                    ? 'form-control error'
+                    : 'form-control'
+                  }
+                  type="text" 
+                  noValidate 
+                  onBlur={this.handleUserInput}
+                />
+                <button
+                  className='btn btn-submit'
+                  disabled={Object.entries(this.state.currentFormErrors || {}).length > 0}
+                  onClick={this.handleRollClick}>
+                    Roll
+                </button>
+                <ul>
+                    {Object.entries(this.state.currentFormErrors || {}).map(([prop, value]) => {
+                        return (
+                            <li className='error-message' key={prop}>
+                                {value}
+                            </li>
+                        );
+                    })}
+                </ul>
             </div>
-        );
+        )
     }
 }
 
