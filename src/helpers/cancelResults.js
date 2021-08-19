@@ -1,14 +1,12 @@
 const cancelResults = (roll) => {
 
-    let suc = 0;
-    let fai = 0;
-    let adv = 0;
-    let thr = 0;
+    let sucfai = 0;
+    let advthr = 0;
     let tri = 0;
     let des = 0;
     let lsp = 0;
     let dsp = 0;
-    const results = roll[1];
+    let results = roll[1];
 
     for(var i = 0; i < results.length; i++) {
         
@@ -18,22 +16,24 @@ const cancelResults = (roll) => {
         for(var j = 0; j < result.length; j++) {
             switch(result[j]) {
                 case 's':
-                    suc = suc + 1;
+                    sucfai = sucfai + 1;
                     break;
                 case 'a':
-                    adv = adv + 1;
+                    advthr = advthr + 1;
                     break;
                 case 'r':
                     tri = tri + 1;
+                    sucfai = sucfai + 1;
                     break;
                 case 'f':
-                    fai = fai + 1;
+                    sucfai = sucfai - 1;
                     break;
                 case 't':
-                    thr = thr + 1;
+                    advthr = advthr - 1;
                     break;
                 case 'd':
                     des = des + 1;
+                    sucfai = sucfai - 1;
                     break;
                 case 'n':
                     dsp = dsp + 1;
@@ -49,14 +49,14 @@ const cancelResults = (roll) => {
 
     }
 
-    return {
-        sucfai: (suc+tri) - (fai+des),
-        advthr: adv - thr,
-        tri: tri,
-        des: des,
-        lsp: lsp,
-        dsp: dsp
+    results = [];
+    for(var sf = 0; sf < Math.abs(sucfai); i++){
+        if(sucfai > 0)
+            results.push('s');
+        if(sucfai < 0)
+            results.push('f');
     }
+    return results;
 }
 
 export default cancelResults;
