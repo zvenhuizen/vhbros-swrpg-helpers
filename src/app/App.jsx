@@ -42,9 +42,9 @@ class App extends React.Component {
     return(
       <div className="App">
 
-        <Header style={this.state.style} headerClick={this.handleClick}/>
+        <Header style={this.state.style} />
         <br />
-        <DiceInput validateInput={this.handleDiceInput}/>
+        <DiceInput />
         {/* Add value(or whatever you want to name it) prop to DiceInput and set it equal to diceInputValue of this.state */}
         {/* Add rollDiceClick(or whatever you want to name it) prop to DiceInput and set it equal to handler function */}
         {/* Add diceInputChange(or whatever you want to name it) prop to DiceInput and set it equal to handler function */}

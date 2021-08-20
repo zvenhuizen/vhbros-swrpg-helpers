@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-    minMaxLength,
+    validLength,
     validInput,
-} from '../helpers/FormErrors'
+} from '../helpers/validateInput'
 
 class DiceInput extends React.Component {
     constructor(props) {
@@ -14,22 +14,22 @@ class DiceInput extends React.Component {
         this.validateInput = this.validateInput.bind(this);
     }
 
-    validateInput (event) {
+    validateInput(event) {
         let errors = [];
         let inputIsValid = true;
         
-        if(validInput(event.target.value)) {
+        if(!validInput(event.target.value)) {
             inputIsValid = false;
             errors.push("Invalid characters")
         }
-        else if(minMaxLength(event.target.value, 1, 24)) {
+        else if(validLength(event.target.value)) {
             inputIsValid = false;
             errors.push("Max of 24 characters");
         }
         else {
             inputIsValid = true;
         }
-        this.state = {errors};
+        this.setState({errors});
         return inputIsValid;
     }
 
@@ -37,14 +37,9 @@ class DiceInput extends React.Component {
         return (
             <div>
                 <legend>Dice combination:</legend>
-                <input type="text" onChange={(event) => this.props.validateInput(event)} />
+                <input type="text" onChange={(event) => this.validateInput(event)} />
                 {this.state.errors.map((error, index) => (<p key={index}>{error}</p>))}
-                <button
-                  className='btn btn-submit'
-                  disabled={Object.entries(this.state.errors || {}).length > 0}
-                  onClick={this.props.rollDiceClick}>
-                    Roll
-                </button>
+                <button className='btn btn-submit' onClick={this.props.rollDiceClick}>Roll</button>
             </div>
         )
     }
