@@ -1,12 +1,15 @@
 const Result = (props) => {
 
     let image = null;
-    if (props.type === 'symbol') {
+    if (props.resultType === 'symbol') {
         image = require('../assets/images/symbols/' + props.result + '.png').default;
+    }
+    else if(props.resultType ==='dice') {
+        image = require('../assets/images/dice/' + props.result + '.png').default;
     }
 
     return (
-        <img className='symbol-result' src={image} alt='' height='16' />
+        <img className={`${props.resultType}-result`} src={image} alt='' />
     )
 }
 

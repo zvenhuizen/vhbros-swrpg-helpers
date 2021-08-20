@@ -1,15 +1,16 @@
 import React from 'react';
 import Header from './Header';
 import RollResults from '../probability/RollResults';
+import DiceResults from '../probability/DiceResults';
 import DiceInput from '../probability/DiceInput';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      diceResult: {dice: 'yygggbbbbppk', result: ['sa', 'sa', 'a', 'a', 'ss', 'sa', 'sa', 'sa', 'a', 'tf', 'f', '']},
+      diceResult: ['r', 'ss', 'sa', 'd', 'ff', 't', 'll'],
       rollResult: ['s', 'a', 'r', 'f', 't', 'd', 'l', 'n'],
-      rolledDice: 'yygggbbbbppk',
+      rolledDice: 'ygbrpkw',
       rollOdds: '',
       successOdds: ''
     }
@@ -21,6 +22,7 @@ class App extends React.Component {
 
         <Header style={this.state.style} headerClick={this.handleClick}/>
         <br />
+        <DiceResults results={this.state.diceResult} dice={this.state.rolledDice}/>
         <RollResults results={this.state.rollResult} />
         <DiceInput />
         
