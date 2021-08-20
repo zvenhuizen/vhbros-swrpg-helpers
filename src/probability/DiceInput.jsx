@@ -1,73 +1,50 @@
-import React , {Component} from 'react';
+import React from 'react';
 import {
     minMaxLength,
     validInput,
-} from './FormErrors'
+} from '../helpers/FormErrors'
 
-class DiceInput extends Component {
+class DiceInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: ''
+            errors: []
         }
 
-        this.handleUserInput = this.handleUserInput.bind(this);
-        this.handleRollClick = this.handleRollClick.bind(this);
+        this.validateInput = this.validateInput.bind(this);
     }
 
-    handleUserInput = (e) => {
-        const {name, value}= e.target;
-        let currentFormErrors = this.state.currentFormErrors;
-
-        switch (name) {
-            case 'dice':
-                if(minMaxLength(value, 1, 24)) {
-                    currentFormErrors[name]=`There must be between 1 and 24 characters`;
-                } else if(!value || validInput(value)) {
-                    currentFormErrors[name]=`Text entered is invalid`;
-                } else {
-                    delete currentFormErrors[name];
-                }
-                break;
-            default:
-                break;
+    validateInput (event) {
+        let errors = [];
+        let inputIsValid = true;
+        
+        if(validInput(event.target.value)) {
+            inputIsValid = false;
+            errors.push("Invalid characters")
         }
-    } //On each keystroke
-
-    handleRollClick(event) {
-        //The following needs to be changed to handle the roll event
-        alert('A roll was submitted: ' + this.state.value); //On clicking 'roll' button, alert a roll has been made
-        event.preventDefault();
+        else if(minMaxLength(event.target.value, 1, 24)) {
+            inputIsValid = false;
+            errors.push("Max of 24 characters");
+        }
+        else {
+            inputIsValid = true;
+        }
+        this.state = {errors};
+        return inputIsValid;
     }
 
     render() {
         return (
             <div>
                 <legend>Dice combination:</legend>
-                <input 
-                  className={this.state.currentFormErrors && this.state.currentFormErrors.dice
-                    ? 'form-control error'
-                    : 'form-control'
-                  }
-                  type="text" 
-                  noValidate 
-                  onBlur={this.handleUserInput}
-                />
+                <input type="text" onChange={(event) => this.props.validateInput(event)} />
+                {this.state.errors.map((error, index) => (<p key={index}>{error}</p>))}
                 <button
                   className='btn btn-submit'
-                  disabled={Object.entries(this.state.currentFormErrors || {}).length > 0}
-                  onClick={this.handleRollClick}>
+                  disabled={Object.entries(this.state.errors || {}).length > 0}
+                  onClick={this.props.rollDiceClick}>
                     Roll
                 </button>
-                <ul>
-                    {Object.entries(this.state.currentFormErrors || {}).map(([prop, value]) => {
-                        return (
-                            <li className='error-message' key={prop}>
-                                {value}
-                            </li>
-                        );
-                    })}
-                </ul>
             </div>
         )
     }

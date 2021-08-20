@@ -8,27 +8,27 @@ class App extends React.Component {
     this.state = {
       style: {
         backgroundColor: '#232323'
-      } 
-    }
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick() {
-    const red = Math.floor(Math.random() * 99);
-    const green = Math.floor(Math.random() * 99);
-    const blue = Math.floor(Math.random() * 99);
-    this.setState({
-      style: {
-        backgroundColor: `#${red}${green}${blue}`
       }
-    })
+    }
+    this.handleRollClick = this.handleRollClick.bind(this);
+    this.handleDiceInput = this.handleDiceInput.bind(this);
   }
+
+  handleRollClick() {
+    //Insert code to roll dice
+  }
+
+  handleDiceInput() {
+    //Insert code to update state with successProbability
+  }
+
   render() {
     return(
       <div className="App">
 
         <Header style={this.state.style} headerClick={this.handleClick}/>
         <br />
-        <DiceInput />
+        <DiceInput validateInput={this.handleDiceInput}/>
         
       </div>
     );
