@@ -3,15 +3,17 @@ import Header from './Header';
 import RollResults from '../probability/RollResults';
 import DiceResults from '../probability/DiceResults';
 import DiceInput from '../probability/DiceInput';
+import cancelResults from '../helpers/cancelResults';
+import rollDice from '../helpers/rollDice';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       diceInputValue: '',
-      diceResult: ['r', 'ss', 'sa', 'd', 'ff', 't', 'll'],
+      diceResult: [],
       rollResult: ['s', 'a', 'r', 'f', 't', 'd', 'l', 'n'],
-      rolledDice: 'ygbrpkw',
+      rolledDice: '',
       rollOdds: '',
       successOdds: ''
     }
@@ -27,11 +29,14 @@ class App extends React.Component {
   handleRollClick(event) {
     // I wonder if you should validLength() first to make sure there is at least one die to roll?
     
+    this.setState({diceResult: rollDice(this.state.diceInputValue)});
+
     // I think event.target.value on an onClick won't return what you want
     // I think you want to set rolledDice: this.state.diceInputValue
     // state will have the most up to date version of what's in the input
-    this.setState({rolledDice: event.target.value});
+    this.setState({rolledDice: this.state.diceInputValue});
     this.setState({diceInputValue: ''});
+    
   }
 
   render() {
@@ -40,7 +45,7 @@ class App extends React.Component {
       <div className="App">
 
         <Header style={this.state.style} />
-        <DiceResults results={this.state.diceResult} dice={this.state.rolledDice}/>
+        <DiceResults results={this.state.diceResult} rolledDice={this.state.rolledDice} dice={this.state.diceInputValue}/>
         <RollResults results={this.state.rollResult} />
         <DiceInput 
           value={this.state.diceInputValue}
