@@ -26,7 +26,6 @@ export function validInput(string) {
     return valid;
 }
 
-// I don't think you're done writing this yet, but if you are, I know why it isn't working...
 export function validLength(string) {
     let valid = false;
     if (string.length >= 0 && string.length <= 24) {

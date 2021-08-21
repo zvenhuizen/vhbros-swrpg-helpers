@@ -20,20 +20,21 @@ export default class DiceInput extends React.Component {
 
         if(!validInput(event.target.value)) {
             inputIsValid = false;
-             errors.push("Invalid characters");
+            // I changed this to show what character was typed...
+            errors.push(`INVALID CHARACTER: '${event.target.value.toLowerCase().slice(-1)}' is not allowed`);
           }
         
-          if(!validLength(event.target.value)) {
-            inputIsValid = false;
-            errors.push("Must have between 1 and 24 characters");
-          }
+        if(!validLength(event.target.value)) {
+          inputIsValid = false;
+          errors.push("Must have between 1 and 24 characters");
+        }
         
-          if(!inputIsValid) {
-            this.setState({errors: errors});
-          }
-          else {
-            this.props.diceInputChange(event);
-          }
+        if(!inputIsValid) {
+          this.setState({errors: errors});
+        }
+        else {
+          this.props.diceInputChange(event);
+        }
     }
 
     render() {

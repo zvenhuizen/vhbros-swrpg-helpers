@@ -7,10 +7,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       diceInputValue: '',
-      rolledDice: '',
-      style: {
-        backgroundColor: '#232323'
-      }
+      rolledDice: ''
     }
 
     this.handleDiceInput = this.handleDiceInput.bind(this);
@@ -22,6 +19,11 @@ class App extends React.Component {
   }
 
   handleRollClick(event) {
+    // I wonder if you should validLength() first to make sure there is at least one die to roll?
+    
+    // I think event.target.value on an onClick won't return what you want
+    // I think you want to set rolledDice: this.state.diceInputValue
+    // state will have the most up to date version of what's in the input
     this.setState({rolledDice: event.target.value});
     this.setState({diceInputValue: ''});
   }
