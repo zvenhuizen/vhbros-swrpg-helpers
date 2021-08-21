@@ -35,6 +35,7 @@ export default class DiceInput extends React.Component {
         else {
           this.props.diceInputChange(event);
         }
+
     }
 
     render() {

@@ -1,13 +1,19 @@
-import Header from './Header.js';
 import React from 'react';
-import DiceInput from '../probability/DiceInput'
+import Header from './Header';
+import RollResults from '../probability/RollResults';
+import DiceResults from '../probability/DiceResults';
+import DiceInput from '../probability/DiceInput';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       diceInputValue: '',
-      rolledDice: ''
+      diceResult: ['r', 'ss', 'sa', 'd', 'ff', 't', 'll'],
+      rollResult: ['s', 'a', 'r', 'f', 't', 'd', 'l', 'n'],
+      rolledDice: 'ygbrpkw',
+      rollOdds: '',
+      successOdds: ''
     }
 
     this.handleDiceInput = this.handleDiceInput.bind(this);
@@ -27,7 +33,6 @@ class App extends React.Component {
     this.setState({rolledDice: event.target.value});
     this.setState({diceInputValue: ''});
   }
-  
 
   render() {
 
@@ -35,7 +40,8 @@ class App extends React.Component {
       <div className="App">
 
         <Header style={this.state.style} />
-        <br />
+        <DiceResults results={this.state.diceResult} dice={this.state.rolledDice}/>
+        <RollResults results={this.state.rollResult} />
         <DiceInput 
           value={this.state.diceInputValue}
           diceInputChange={this.handleDiceInput}
