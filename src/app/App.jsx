@@ -55,13 +55,17 @@ class App extends React.Component {
       <div className="App">
 
         <Header style={this.state.style} />
-        <DiceResults results={this.state.diceResult} rolledDice={this.state.rolledDice} dice={this.state.diceInputValue}/>
-        <RollResults results={this.state.rollResult} />
+
         <DiceInput 
           value={this.state.diceInputValue}
           diceInputChange={this.handleDiceInput}
           rollDiceClick={this.handleRollClick}
         />
+        
+        <div className='results-container'>
+          <DiceResults results={this.state.diceResult} rolledDice={this.state.rolledDice} dice={this.state.diceInputValue}/>
+          <RollResults results={this.state.rollResult} />
+        </div>
         
       </div>
     );

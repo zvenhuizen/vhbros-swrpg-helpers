@@ -8,11 +8,11 @@ export function validInput(string) {
         case 'p':
         case 'b':
         case 'k':
-        case 't':
         case 'w':
         case '':
-            valid = true;
-            break;
+          valid = true;
+          break;
+//        case 't':
 //        case 's':
 //        case 'v':
 //        case '!':

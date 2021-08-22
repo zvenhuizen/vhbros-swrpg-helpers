@@ -13,6 +13,7 @@ const DiceResults = (props) => {
     return (
         <div className='dice-results' id='dice-results'>
 
+            <p className='result-header'>DICE</p>
             <div className='result'>{result}</div>
 
         </div>

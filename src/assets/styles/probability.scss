@@ -1,17 +1,105 @@
-.roll-results, .dice-results {
-    height: 32px;
+@import 'variables';
+
+.input-errors {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 1px auto;
+    width: 50%;
+    margin-bottom: 10px;
+    padding: 3px;
+    padding-left: 24px;
+    height: 24px;
+}
+
+.dice-input-container {
+    margin: auto;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-left: 5px solid $black;
+    border-right: 5px solid $black;
+    box-sizing: border-box;
+    border-radius: 5px;
     width: 50%;
     padding: 8px;
 }
 
-.dice-results {
-    height: 64px;
+.dice-input {
+    background-color: rgba(0,0,0,0);
+    color: #efefef;
+    outline-color: none;
+    border-color: none;
+    border: none;
+    border-radius: 0;
+    height: 48px;
+    font-size: 24px;
+    padding: 12px 8px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 75%;
+    &:focus {
+        border: none;
+        outline: none;
+        box-shadow: 0px 0px 3px 3px $tealDark;
+    }
+    &::placeholder {
+        color: #999;
+        opacity: .7;
+    }
+}
+
+.btn-submit {
+    background: none;
+    width: 20%;
+    height: 48px;
+    padding: 12px 8px;
+    font-size: 24px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+    margin-left: 5%;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: $white;
+    box-shadow: 0px 0px 3px 3px $tealDark;
+    &:hover {
+        background-color: $tealDark;
+        cursor: pointer;
+    }
+}
+
+.results-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.roll-results, .dice-results {
+    min-height: 88px;
+    width: 50%;
+    padding: 8px;
+    border-left: 5px solid $black;
+    border-right: 5px solid $black;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.result-header {
+    color: #999;
+    opacity: 0.7;
+    font-size: 24px;
+    padding-bottom: 8px;
+    display: inline-block;
 }
 
 .result {
     .symbol-result {
-        height: 24px;
-        margin: 1px;
+        height: 32px;
+        margin: 2px;
     }
 
     .dice-result, .rollingDice-result {

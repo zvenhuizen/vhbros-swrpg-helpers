@@ -12,6 +12,7 @@ export default class DiceInput extends React.Component {
         }
 
         this.validateInput = this.validateInput.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     validateInput(event) {
@@ -36,17 +37,32 @@ export default class DiceInput extends React.Component {
 
     }
 
+    handleKeyPress(event) {
+        console.log("IN KEYPRESS");
+        console.log(event);
+        
+      if (event.charCode === 13) {
+        this.props.rollDiceClick();
+      }
+
+    };
+
     render() {
         return (
             <div>
-                <legend>Dice combination:</legend>
-                <input 
-                  type="text"
-                  onChange={(event) => this.validateInput(event)}
-                  value={this.props.value}
-                />
-                <button className='btn btn-submit' onClick={this.props.rollDiceClick}>Roll</button>
-                {this.state.errors.map((error,index) => (<p key={index}>{error}</p>))}
+                <p className='input-errors'>{this.state.errors.map((error,index) => (<span key={index} className="alert alert-danger">{error}</span>))}</p>
+                <div className='dice-input-container'>
+                    <input 
+                    className='dice-input'
+                    type="text"
+                    onChange={(event) => this.validateInput(event)}
+                    value={this.props.value}
+                    placeholder='Enter Your Dice' // Placeholder Text for an Input Field
+                    autofocus='autofocus' // Have the browser automatically start with the ability to type in the input
+                    onKeyPress={this.handleKeyPress} // Listen for an enter key to roll the dice
+                    />
+                    <button className='btn btn-submit' onClick={this.props.rollDiceClick}>Roll</button>
+                </div>
             </div>
         )
     }

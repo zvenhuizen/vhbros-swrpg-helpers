@@ -6,6 +6,7 @@ const RollResults = (props) => {
     return (
         <div className='roll-results' id='roll-results'>
 
+            <p className='result-header'>RESULTS</p>
             <div className='result'>{results}</div>
 
         </div>
