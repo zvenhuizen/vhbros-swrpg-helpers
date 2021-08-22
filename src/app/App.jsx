@@ -12,7 +12,7 @@ class App extends React.Component {
     this.state = {
       diceInputValue: '',
       diceResult: [],
-      rollResult: ['s', 'a', 'r', 'f', 't', 'd', 'l', 'n'],
+      rollResult: [],
       rolledDice: '',
       rollOdds: '',
       successOdds: ''
@@ -23,13 +23,23 @@ class App extends React.Component {
   }
 
   handleDiceInput(event) {
-    this.setState({diceInputValue: event.target.value});
+    this.setState({
+      diceInputValue: event.target.value,
+      diceResult: [],
+      rollResult: [],
+      rolledDice: '',
+      rollOdds: ''
+    });
   }
 
   handleRollClick(event) {
     // I wonder if you should validLength() first to make sure there is at least one die to roll?
+
+    const diceResult = rollDice(this.state.diceInputValue);
+    const rollResult = cancelResults(diceResult);
     
-    this.setState({diceResult: rollDice(this.state.diceInputValue)});
+    this.setState({diceResult: diceResult});
+    this.setState({rollResult: rollResult});
 
     // I think event.target.value on an onClick won't return what you want
     // I think you want to set rolledDice: this.state.diceInputValue

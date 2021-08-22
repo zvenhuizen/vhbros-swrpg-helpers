@@ -48,7 +48,8 @@ export default class DiceInput extends React.Component {
                   value={this.props.value}
                 />
                 <button className='btn btn-submit' onClick={this.props.rollDiceClick} >Roll</button>
-                {this.state.errors.map(error => (<p>{error}</p>))}
+                {/* added a key to p to make react happy about each child having a unique key */}
+                {this.state.errors.map((error,index) => (<p key={index}>{error}</p>))}
             </div>
         )
     }
