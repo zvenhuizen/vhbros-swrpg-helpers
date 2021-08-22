@@ -20,7 +20,6 @@ export default class DiceInput extends React.Component {
 
         if(!validInput(event.target.value)) {
             inputIsValid = false;
-            // I changed this to show what character was typed...
             errors.push(`INVALID CHARACTER: '${event.target.value.toLowerCase().slice(-1)}' is not allowed`);
           }
         
@@ -29,12 +28,11 @@ export default class DiceInput extends React.Component {
           errors.push("Must have between 1 and 24 characters");
         }
         
-        if(!inputIsValid) {
-          this.setState({errors: errors});
-        }
-        else {
+        if(inputIsValid) {
           this.props.diceInputChange(event);
         }
+
+        this.setState({errors: errors});
 
     }
 
@@ -47,8 +45,7 @@ export default class DiceInput extends React.Component {
                   onChange={(event) => this.validateInput(event)}
                   value={this.props.value}
                 />
-                <button className='btn btn-submit' onClick={this.props.rollDiceClick} >Roll</button>
-                {/* added a key to p to make react happy about each child having a unique key */}
+                <button className='btn btn-submit' onClick={this.props.rollDiceClick}>Roll</button>
                 {this.state.errors.map((error,index) => (<p key={index}>{error}</p>))}
             </div>
         )
