@@ -7,22 +7,13 @@ const cancelResults = (roll) => {
     let lsp = 0;
     let dsp = 0;
 
-    console.log("INSIDE CANEL RESULTS");
-    console.log("ROLL:")
-    console.log(roll);
-
     for(var i = 0; i < roll.length; i++) {
         
         const result = roll[i].split(''); //split the result into an array of single letters
 
-        console.log("INSIDE FIRST CANCEL RESULTS FIRST LOOP");
-        console.log(roll[i].split(''));
-
         // add all results together
         for(var j = 0; j < result.length; j++) {
 
-            console.log("INSIDE SECOND CANCEL RESULTS LOOP");
-            console.log(result[j]);
             switch(result[j]) {
                 case 's':
                     sucfai = sucfai + 1;

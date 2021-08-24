@@ -7,7 +7,7 @@ const RollResults = (props) => {
         <div className='roll-results' id='roll-results'>
 
             <p className='result-header'>RESULTS</p>
-            <div className='result'>{results}</div>
+            <div className='result'>{results.length > 0 ? results : "All Dice Have Cancelled."}</div>
 
         </div>
     )

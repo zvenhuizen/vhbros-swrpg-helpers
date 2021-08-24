@@ -38,8 +38,6 @@ export default class DiceInput extends React.Component {
     }
 
     handleKeyPress(event) {
-        console.log("IN KEYPRESS");
-        console.log(event);
         
       if (event.charCode === 13) {
         this.props.rollDiceClick();
@@ -58,7 +56,7 @@ export default class DiceInput extends React.Component {
                     onChange={(event) => this.validateInput(event)}
                     value={this.props.value}
                     placeholder='Enter Your Dice' // Placeholder Text for an Input Field
-                    autofocus='autofocus' // Have the browser automatically start with the ability to type in the input
+                    autoFocus // Have the browser automatically start with the ability to type in the input
                     onKeyPress={this.handleKeyPress} // Listen for an enter key to roll the dice
                     />
                     <button className='btn btn-submit' onClick={this.props.rollDiceClick}>Roll</button>

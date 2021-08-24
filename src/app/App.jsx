@@ -5,6 +5,7 @@ import DiceResults from '../probability/DiceResults';
 import DiceInput from '../probability/DiceInput';
 import cancelResults from '../helpers/cancelResults';
 import rollDice from '../helpers/rollDice';
+import calculateProbability from '../helpers/calculateProbability';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class App extends React.Component {
       rollResult: [],
       rolledDice: '',
       rollOdds: '',
-      successOdds: ''
+      successOdds: '--.--'
     }
 
     this.handleDiceInput = this.handleDiceInput.bind(this);
@@ -23,12 +24,25 @@ class App extends React.Component {
   }
 
   handleDiceInput(event) {
+
+    let sucPct = '--.--';
+    let probabilities, sucDec;
+    if(event.target.value !== '') {
+      probabilities = calculateProbability(event.target.value);
+      if (probabilities[0]) {
+        sucDec = probabilities[0].reduce((a, b) => a + b, 0) - probabilities[0][0];
+        sucPct = (sucDec * 100).toFixed(2);
+      }
+    }
+
+
     this.setState({
       diceInputValue: event.target.value,
       diceResult: [],
       rollResult: [],
       rolledDice: '',
-      rollOdds: ''
+      rollOdds: '',
+      successOdds: sucPct
     });
   }
 
@@ -37,16 +51,18 @@ class App extends React.Component {
 
     const diceResult = rollDice(this.state.diceInputValue);
     const rollResult = cancelResults(diceResult);
-    
-    this.setState({diceResult: diceResult});
-    this.setState({rollResult: rollResult});
+    const probabilities = calculateProbability(this.state.diceInputValue);
+    const sucDec = probabilities[0].reduce((a, b) => a + b, 0) - probabilities[0][0];
+    const sucPct = (sucDec * 100).toFixed(2);
+  
+    this.setState({
+      diceResult: diceResult,
+      rollResult: rollResult,
+      rolledDice: this.state.diceInputValue,
+      diceInputValue: '',
+      successOdds: sucPct
+    })
 
-    // I think event.target.value on an onClick won't return what you want
-    // I think you want to set rolledDice: this.state.diceInputValue
-    // state will have the most up to date version of what's in the input
-    this.setState({rolledDice: this.state.diceInputValue});
-    this.setState({diceInputValue: ''});
-    
   }
 
   render() {
@@ -63,7 +79,7 @@ class App extends React.Component {
         />
         
         <div className='results-container'>
-          <DiceResults results={this.state.diceResult} rolledDice={this.state.rolledDice} dice={this.state.diceInputValue}/>
+          <DiceResults results={this.state.diceResult} rolledDice={this.state.rolledDice} dice={this.state.diceInputValue} successChance={this.state.successOdds} />
           <RollResults results={this.state.rollResult} />
         </div>
         
