@@ -51,6 +51,8 @@ class App extends React.Component {
 
     const diceResult = rollDice(this.state.diceInputValue);
     const rollResult = cancelResults(diceResult);
+    console.log("ROLL RESULT");
+    console.log(rollResult);
     const probabilities = calculateProbability(this.state.diceInputValue);
     const sucDec = probabilities[0].reduce((a, b) => a + b, 0) - probabilities[0][0];
     const sucPct = (sucDec * 100).toFixed(2);

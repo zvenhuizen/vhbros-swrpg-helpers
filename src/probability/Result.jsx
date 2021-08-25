@@ -1,8 +1,9 @@
 const Result = (props) => {
 
     let image = null;
+    console.log(props.result);
     if (props.resultType === 'symbol') {
-        image = require('../assets/images/symbols/' + props.result + '.png').default;
+        image = require('../assets/images/symbols/' + props.result[1] + '.png').default;
     }
     else if(props.resultType ==='dice') {
         image = require('../assets/images/dice/' + props.result + '.png').default;
@@ -12,7 +13,7 @@ const Result = (props) => {
     }
 
     return (
-        <img className={`${props.resultType}-result`} src={image} alt='' />
+        <p className='result-data'>{props.resultType === 'symbol' && <span className='result-count'> {props.result[0]}</span>} <img className={`${props.resultType}-result`} src={image} alt='' /></p>
     )
 }
 
