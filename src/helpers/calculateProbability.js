@@ -24,24 +24,24 @@ const calculateProbability = (dice) => {
 
 function createDiceMatrix(dice, typeOf, forcePips='all') {
 
-    let white = [0, .66667, .33333]; // set forceDice to all Pips
+    let white = [0, 8/12, 4/12]; // set forceDice to all Pips
 
     if (forcePips !== 'all') {
 
         forcePips === 'lsp' ?
-            white = [.58333, .16667, .25] : // set forceDice to just ls pips
+            white = [7/12, 2/12, 3/12] : // set forceDice to just ls pips
             forcePips === 'dsp' ? 
-                white = [.41667, .5, .08333] : // set forceDIce to just ds pips
+                white = [5/12, 6/12, 1/12] : // set forceDIce to just ds pips
                 white = [0, 0, 0] // set forceDice to no pips
     }
 
     let diceWeights = {
-        "b": [.66667,.33333,0], //blue
-        "k": [.66667,.33333,0], //black
-        "g": [.5,.375,.125], //green
-        "p": [.625,.25,.125], //purple
-        "y": [.33333,.5,.16667], //yellow
-        "r": [.41667,.41667,.16667], //red
+        "b": [4/6,2/6,0], //blue
+        "k": [4/6,2/6,0], //black
+        "g": [4/8,3/8,1/8], //green
+        "p": [5/8,2/8,1/8], //purple
+        "y": [4/12,6/12,2/12], //yellow
+        "r": [5/12,5/12,2/12], //red
         "w": white
     }
 

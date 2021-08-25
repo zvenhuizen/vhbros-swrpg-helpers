@@ -51,8 +51,6 @@ class App extends React.Component {
 
     const diceResult = rollDice(this.state.diceInputValue);
     const rollResult = cancelResults(diceResult);
-    console.log("ROLL RESULT");
-    console.log(rollResult);
     const probabilities = calculateProbability(this.state.diceInputValue);
     const sucDec = probabilities[0].reduce((a, b) => a + b, 0) - probabilities[0][0];
     const sucPct = (sucDec * 100).toFixed(2);
@@ -82,7 +80,7 @@ class App extends React.Component {
         
         <div className='results-container'>
           <DiceResults results={this.state.diceResult} rolledDice={this.state.rolledDice} dice={this.state.diceInputValue} successChance={this.state.successOdds} />
-          <RollResults results={this.state.rollResult} />
+          <RollResults results={this.state.rollResult} rolledDice={this.state.rolledDice}/>
         </div>
         
       </div>
