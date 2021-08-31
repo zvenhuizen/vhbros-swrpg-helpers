@@ -5,6 +5,7 @@ import DiceResults from '../probability/DiceResults';
 import DiceInput from '../probability/DiceInput';
 import cancelResults from '../helpers/cancelResults';
 import rollDice from '../helpers/rollDice';
+import Discord from '../discord/Discord';
 
 class App extends React.Component {
   constructor(props) {
@@ -66,6 +67,8 @@ class App extends React.Component {
           <DiceResults results={this.state.diceResult} rolledDice={this.state.rolledDice} dice={this.state.diceInputValue}/>
           <RollResults results={this.state.rollResult} />
         </div>
+
+        <Discord />
         
       </div>
     );
