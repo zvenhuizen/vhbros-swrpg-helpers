@@ -4,9 +4,6 @@ class Discord extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: "Game Master",
-            username: "venhuizenbrothers@gmail.com",
-            pass: 'lukecage2'
         }
         this.postMessageToDiscord = this.postMessageToDiscord.bind(this);
     }
