@@ -1,16 +1,17 @@
 import React from 'react';
 import Header from './Header';
-import RollResults from '../probability/RollResults';
-import DiceResults from '../probability/DiceResults';
-import DiceInput from '../probability/DiceInput';
+import RollResults from '../probability/rollResults';
+import DiceResults from '../probability/diceResults';
+import DiceInput from '../probability/diceInput';
 import cancelResults from '../helpers/cancelResults';
 import rollDice from '../helpers/rollDice';
-import calculateProbability from '../helpers/calculateProbability';
-import successOdds from '../probability/SuccessOdds';
+import calculateSuccessProb from '../helpers/calculateSuccessProbability';
+import successOdds from '../probability/successOdds';
 import rollOdds from '../probability/rollOdds';
 import {
   validLength
  } from '../helpers/validateInput'
+import calculateAdvantageProb from '../helpers/calculateAdvantageProbability';
 
 class App extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class App extends React.Component {
     let sucPct = '--.--';
 
     if(event.target.value !== '') {
-      sucPct = successOdds(calculateProbability(event.target.value));
+      sucPct = successOdds(calculateSuccessProb(event.target.value));
       }
 
     this.setState({
@@ -48,13 +49,17 @@ class App extends React.Component {
 
   handleRollClick(event) {
     // Validate length to ensure there is at least 1 die to roll
+    let sucPct = '--.--'
+    let advPct = '--.--'
     let oddsPct = '--.--'
 
     if(validLength(event.target.value)) {
       const diceResult = rollDice(this.state.diceInputValue);
       const rollResult = cancelResults(diceResult);
       
-      oddsPct = rollOdds(calculateProbability(this.state.diceInputValue),cancelResults(diceResult))
+      sucPct = rollOdds(calculateSuccessProb(this.state.diceInputValue), cancelResults(diceResult), 'success')
+      advPct = rollOdds(calculateAdvantageProb(this.state.diceInputValue), cancelResults(diceResult), 'advantage')
+      oddsPct = (sucPct * advPct * 100).toFixed(2)
     
       this.setState({
         diceResult: diceResult,

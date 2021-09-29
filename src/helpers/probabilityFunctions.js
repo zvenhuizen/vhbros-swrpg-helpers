@@ -1,38 +1,7 @@
-const calculateProbability = (dice) => {
-
-    let successMatrices = createDiceMatrix(dice, 'success'); // Add All Positive Dice Odds to Matrix Array
-
-    let failureMatrices = createDiceMatrix(dice, 'failure'); // Add All Negative Dice Odds to Matrix Array
-
-    while (successMatrices.length > 1) {
-
-        successMatrices.push(multiplyMatrices(successMatrices[0], successMatrices[1])); // Multiply the first two arrays together and add the result to the end of the matrix
-        successMatrices.shift(); // remove the first array
-        successMatrices.shift(); // remove the second array
-    }
-
-    while (failureMatrices.length > 1) {
-
-        failureMatrices.push(multiplyMatrices(failureMatrices[0], failureMatrices[1])); // Multiply the first two arrays together and add the result to the end of the matrix
-        failureMatrices.shift(); // remove the first array
-        failureMatrices.shift(); // remove the second array
-    }
-
-    if(successMatrices.length < 1) {
-        successMatrices = [1]
-    }
-
-    if(failureMatrices.length < 1) {
-        failureMatrices = [1]
-    }
-    return [successMatrices[0], failureMatrices[0]]; // Return the only remaining array in matrices as the success/failure odds
-
-}
-
-function createDiceMatrix(dice, typeOf, forcePips='all') {
+export function createDiceMatrix(dice, typeOf, forcePips='all') {
 
     let white = [0, 8/12, 4/12]; // set forceDice to all Pips
-
+    let diceWeights;
     if (forcePips !== 'all') {
 
         forcePips === 'lsp' ?
@@ -42,14 +11,26 @@ function createDiceMatrix(dice, typeOf, forcePips='all') {
                 white = [0, 0, 0] // set forceDice to no pips
     }
 
-    let diceWeights = {
-        "b": [4/6,2/6,0], //blue
-        "k": [4/6,2/6,0], //black
-        "g": [4/8,3/8,1/8], //green
-        "p": [5/8,2/8,1/8], //purple
-        "y": [4/12,6/12,2/12], //yellow
-        "r": [5/12,5/12,2/12], //red
-        "w": white
+    if (typeOf === 'success' || typeOf === 'failure') {
+        diceWeights = {
+            "b": [4/6,2/6,0], //blue
+            "k": [4/6,2/6,0], //black
+            "g": [4/8,3/8,1/8], //green
+            "p": [5/8,2/8,1/8], //purple
+            "y": [4/12,6/12,2/12], //yellow
+            "r": [5/12,5/12,2/12], //red
+            "w": white
+        }
+    }
+    else {
+        diceWeights = {
+            "b": [3/6,1/6,2/6], //blue
+            "k": [4/6,2/6,0], //black
+            "g": [4/8,3/8,1/8], //green
+            "p": [3/8,4/8,1/8], //purple
+            "y": [6/12,4/12,2/12], //yellow
+            "r": [6/12,4/12,2/12], //red
+        }
     }
 
     let diceArray = dice.split(''); // split dice string into iteratable array
@@ -81,13 +62,34 @@ function createDiceMatrix(dice, typeOf, forcePips='all') {
                     break;
             }
         }
-
+        else if(typeOf === 'advantage') {
+            switch(diceArray[i]) {
+                case 'y':
+                case 'g':
+                case 'b':
+                    matrices.push(diceWeights[diceArray[i]]) // add die advantage odds to matrix array
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if(typeOf === 'threat') {
+            switch(diceArray[i]) {
+                case 'r':
+                case 'p':
+                case 'k':
+                    matrices.push(diceWeights[diceArray[i]]) // add die failure odds to matrix array
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     return matrices // return matrix of success/failure odds for all rolled dice
 }
 
-function multiplyMatrices(m1, m2) {
+export function multiplyMatrices(m1, m2) {
 
     let multipliedMatrix = []; // set up a new matrix to hold the arrays of multiplied values
 
@@ -107,7 +109,7 @@ function multiplyMatrices(m1, m2) {
     return addedMatrix[0]; // return a single new array of multiplied and added arrays
 }
 
-function addMatrices(m) {
+export function addMatrices(m) {
 
     let nonEmpty = removeEmpty(m); // change empty places out for 0 to allow for addition
 
@@ -131,7 +133,7 @@ function addMatrices(m) {
     
 }
 
-function removeEmpty(m) {
+export function removeEmpty(m) {
 
     for(var i = 0; i < m.length; i++) {
 
@@ -149,7 +151,7 @@ function removeEmpty(m) {
 
 }
 
-function padArrays(m) {
+export function padArrays(m) {
     
     let maxLength = m[0].length // set maxLength = to the length of the first array
 
@@ -174,5 +176,3 @@ function padArrays(m) {
 
     return m; // return the matrix with all arrays being the same length
 }
-
-export default calculateProbability;
