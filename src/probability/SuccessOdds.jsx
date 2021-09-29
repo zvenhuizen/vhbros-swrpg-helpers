@@ -1,4 +1,4 @@
-const successOdds = (bigMatrix) => {
+const successOdds = (probMatrix) => {
 
     let sucDec, fOdds;
     let sucPct = '--.--';
@@ -6,21 +6,21 @@ const successOdds = (bigMatrix) => {
     let failureMatrix = [];
     let oddsMatrix = [];
 
-    if(bigMatrix[0].length === undefined) { 
+    if(probMatrix[0].length === undefined) { 
         //if there are no success-driven dice entered, 0% of success.
 
         sucPct = '00.00';
-    } else if(bigMatrix[1].length === undefined) { 
+    } else if(probMatrix[1].length === undefined) { 
         //if there are no failure-driven dice entered, success is 1 minus % chance of rolling 0 success
         //chance of rolling 0 success is index [0] of the successMatrix
     
-        successMatrix = bigMatrix[0];
+        successMatrix = probMatrix[0];
         sucPct = ((1 - successMatrix[0]) * 100).toFixed(2);
     } else {
         //if there are both success-driven and failure-drive dice entered, calculate odds of success
 
-        successMatrix = bigMatrix[0];
-        failureMatrix = bigMatrix[1];
+        successMatrix = probMatrix[0];
+        failureMatrix = probMatrix[1];
 
         let initialLength = successMatrix.length
         for(var s = 1; s < initialLength; s++) {
