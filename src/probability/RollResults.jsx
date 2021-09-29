@@ -6,7 +6,7 @@ const RollResults = (props) => {
     return (
         <div className='roll-results' id='roll-results'>
 
-            <p className='result-header'>RESULTS <span className='successChance'>{props.oddsChance}% ODDS OF THAT # OF SUC/FAI</span></p>
+            <p className='result-header'>RESULTS </p>
             <div className='result'>{(props.rolledDice !== '' && results.length === 0) ? <span className='cancelled-result'>All Dice Have Cancelled</span> : results}</div>
 
         </div>

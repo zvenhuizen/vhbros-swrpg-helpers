@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import RollResults from '../probability/rollResults';
 import DiceResults from '../probability/diceResults';
+import OddsResults from '../probability/oddsResults';
 import DiceInput from '../probability/diceInput';
 import cancelResults from '../helpers/cancelResults';
 import rollDice from '../helpers/rollDice';
@@ -21,6 +22,8 @@ class App extends React.Component {
       diceResult: [],
       rollResult: [],
       rolledDice: '',
+      sucOdds: '--.--',
+      advOdds: '--.--',
       rollOdds: '--.--',
       successOdds: '--.--'
     }
@@ -42,6 +45,8 @@ class App extends React.Component {
       diceResult: [],
       rollResult: [],
       rolledDice: '',
+      sucOdds: '--.--',
+      advOdds: '--.--',
       rollOdds: '--.--',
       successOdds: sucPct
     });
@@ -65,6 +70,8 @@ class App extends React.Component {
         diceResult: diceResult,
         rollResult: rollResult,
         rolledDice: this.state.diceInputValue,
+        sucOdds: sucPct,
+        advOdds: advPct,
         rollOdds: oddsPct,
         diceInputValue: ''
       })
@@ -81,7 +88,8 @@ class App extends React.Component {
         
         <div className='results-container'>
           <DiceResults results={this.state.diceResult} rolledDice={this.state.rolledDice} dice={this.state.diceInputValue} successChance={this.state.successOdds} />
-          <RollResults results={this.state.rollResult} rolledDice={this.state.rolledDice} oddsChance={this.state.rollOdds}/>
+          <RollResults results={this.state.rollResult} rolledDice={this.state.rolledDice}/>
+          <OddsResults successChance={this.state.sucOdds} advantageChance={this.state.advOdds} oddsChance={this.state.rollOdds}/>
         </div>
       </div>
     );
