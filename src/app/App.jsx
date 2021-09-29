@@ -6,6 +6,10 @@ import DiceInput from '../probability/DiceInput';
 import cancelResults from '../helpers/cancelResults';
 import rollDice from '../helpers/rollDice';
 import calculateProbability from '../helpers/calculateProbability';
+import successOdds from '../probability/SuccessOdds';
+import {
+  validLength
+ } from '../helpers/validateInput'
 
 class App extends React.Component {
   constructor(props) {
@@ -26,15 +30,10 @@ class App extends React.Component {
   handleDiceInput(event) {
 
     let sucPct = '--.--';
-    let probabilities, sucDec;
-    if(event.target.value !== '') {
-      probabilities = calculateProbability(event.target.value);
-      if (probabilities[0]) {
-        sucDec = probabilities[0].reduce((a, b) => a + b, 0) - probabilities[0][0];
-        sucPct = (sucDec * 100).toFixed(2);
-      }
-    }
 
+    if(event.target.value !== '') {
+      sucPct = successOdds(calculateProbability(event.target.value));
+      }
 
     this.setState({
       diceInputValue: event.target.value,
@@ -47,22 +46,18 @@ class App extends React.Component {
   }
 
   handleRollClick(event) {
-    // I wonder if you should validLength() first to make sure there is at least one die to roll?
-
-    const diceResult = rollDice(this.state.diceInputValue);
-    const rollResult = cancelResults(diceResult);
-    const probabilities = calculateProbability(this.state.diceInputValue);
-    const sucDec = probabilities[0].reduce((a, b) => a + b, 0) - probabilities[0][0];
-    const sucPct = (sucDec * 100).toFixed(2);
-  
-    this.setState({
-      diceResult: diceResult,
-      rollResult: rollResult,
-      rolledDice: this.state.diceInputValue,
-      diceInputValue: '',
-      successOdds: sucPct
-    })
-
+    // Validate length to ensure there is at least 1 die to roll
+    if(validLength(event.target.value)) {
+      const diceResult = rollDice(this.state.diceInputValue);
+      const rollResult = cancelResults(diceResult);
+    
+      this.setState({
+        diceResult: diceResult,
+        rollResult: rollResult,
+        rolledDice: this.state.diceInputValue,
+        diceInputValue: ''
+      })
+    }
   }
 
   render() {

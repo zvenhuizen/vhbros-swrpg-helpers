@@ -17,19 +17,15 @@ const calculateProbability = (dice) => {
         failureMatrices.shift(); // remove the first array
         failureMatrices.shift(); // remove the second array
     }
-    
-    //Calculate the total odds of success
-    for(var s = 1; s < successMatrices.length; s++) {
 
-        let sMatrix = successMatrices.splice(0, s); //create new matrix to be added be removing first 's' indices from successMatrices
-
-        let sOdds = sMatrix.reduce((result, number)=> result + number); //sum total odds of success in new matrix
-
-        cumulativeOdds = cumulativeOdds + (sOdds * failureMatrices[s-1]); //multiply the total odds of success by odds of one less failure and add it to the cumulative odds
+    if(successMatrices.length < 1) {
+        successMatrices = [1]
     }
 
-    return cumulativeOdds;
-    //return [successMatrices[0], failureMatrices[0]]; // Return the only remaining array in matrices as the success/failure odds
+    if(failureMatrices.length < 1) {
+        failureMatrices = [1]
+    }
+    return [successMatrices[0], failureMatrices[0]]; // Return the only remaining array in matrices as the success/failure odds
 
 }
 
@@ -79,7 +75,7 @@ function createDiceMatrix(dice, typeOf, forcePips='all') {
                 case 'r':
                 case 'p':
                 case 'k':
-                    matrices.push(diceWeights[diceArray[i]]) // add die success odds to matrix array
+                    matrices.push(diceWeights[diceArray[i]]) // add die failure odds to matrix array
                     break;
                 default:
                     break;
