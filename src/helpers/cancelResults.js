@@ -82,7 +82,7 @@ const cancelResults = (roll) => {
     if(dsp > 0) {
         results.push([dsp, 'n']);
     }
-
+    
     return results;
 }
 
