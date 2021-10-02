@@ -39,8 +39,9 @@ export default class DiceInput extends React.Component {
 
     handleKeyPress(event) {
         
+      // check if keyCode matches Enter
       if (event.charCode === 13) {
-        this.props.rollDiceClick();
+        this.props.rollDiceClick(); //activate the rollDiceClick event handler
       }
 
     };

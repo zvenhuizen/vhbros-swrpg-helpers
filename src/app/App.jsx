@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from './Header';
-import RollResults from '../probability/rollResults';
-import DiceResults from '../probability/diceResults';
-import OddsResults from '../probability/oddsResults';
-import DiceInput from '../probability/diceInput';
+import RollResults from '../probability/RollResults';
+import DiceResults from '../probability/DiceResults';
+import OddsResults from '../probability/OddsResults';
+import DiceInput from '../probability/DiceInput';
 import cancelResults from '../helpers/cancelResults';
 import rollDice from '../helpers/rollDice';
 import calculateSuccessProb from '../helpers/calculateSuccessProbability';
-import successOdds from '../probability/successOdds';
+import successOdds from '../probability/SuccessOdds';
 import rollOdds from '../probability/rollOdds';
 import {
   validLength
@@ -54,17 +54,16 @@ class App extends React.Component {
 
   handleRollClick(event) {
     // Validate length to ensure there is at least 1 die to roll
-    let sucPct = '--.--'
-    let advPct = '--.--'
-    let oddsPct = '--.--'
+    let sucPct = '--.--';
+    let advPct = '--.--';
+    let oddsPct = '--.--';
 
-    if(validLength(event.target.value)) {
+    if(validLength(this.state.diceInputValue)) {
       const diceResult = rollDice(this.state.diceInputValue);
       const rollResult = cancelResults(diceResult);
-      
-      sucPct = rollOdds(calculateSuccessProb(this.state.diceInputValue), cancelResults(diceResult), 'success')
-      advPct = rollOdds(calculateAdvantageProb(this.state.diceInputValue), cancelResults(diceResult), 'advantage')
-      oddsPct = (sucPct * advPct * 100).toFixed(2)
+      sucPct = rollOdds(calculateSuccessProb(this.state.diceInputValue), cancelResults(diceResult), 'success');
+      advPct = rollOdds(calculateAdvantageProb(this.state.diceInputValue), cancelResults(diceResult), 'advantage');
+      oddsPct = (sucPct * advPct * 100).toFixed(2);
     
       this.setState({
         diceResult: diceResult,
