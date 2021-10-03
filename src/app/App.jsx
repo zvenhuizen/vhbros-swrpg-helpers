@@ -73,12 +73,11 @@ class App extends React.Component {
         sucOdds: sucPct,
         advOdds: advPct,
         rollOdds: oddsPct,
-        diceInputValue: ''
+        diceInputValue: '',
       })
     } else {
-      if(!validLength(this.state.diceInputValue,1,24)) {
-        errors.push("Cannot roll 0 dice");
-      }
+      errors.push("Cannot roll 0 dice");
+      
       this.setState({
         successOdds: '--.--',
         diceResult: [],
