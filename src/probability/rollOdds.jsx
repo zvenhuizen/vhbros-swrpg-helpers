@@ -1,36 +1,48 @@
 const rollOdds = (probMatrix, resultsMatrix, typeOf) => {
+    console.log(probMatrix)
+    console.log(resultsMatrix)
     console.log(typeOf)
 
     let oddsMatrix = [];
     let iterations, i, currentResult, probability, posneg;
     let qty = 0;
+    let resArray1 = resultsMatrix[0]
+    let resValue = resArray1[1]
     let result = [];
     
-    if(typeOf === 'success') {
+    console.log(resValue)
+    if(typeOf === 'success' && resValue !== 'a') {
         result = resultsMatrix[0];
-    
-        if(result !== undefined) {
-            posneg = result[1]; //find whether the net roll was 's' or 'f'
-        } else { 
-            posneg = ''
-        }
-    }
-    else if(typeOf === 'advantage') {
+    } else if(typeOf === 'advantage' && resValue !== 'a') {
         result = resultsMatrix[1];
+    } else if(typeOf === 'success') {
+        result = undefined;
+    } else if(typeOf ==='advantage') {
+        result = resultsMatrix[0];
+    }
     
-        if(result !== undefined) {
-            posneg = result[1]; //find whether the net roll was 'a' or 't'
-        } else { 
-            posneg = ''
-        }
+    if(result !== undefined) {
+        posneg = result[1]; //find whether the net roll was 's' or 'f'
+    } else { 
+        posneg = ''
     }
     console.log(result)
     console.log(posneg)
 
-    let positiveMatrix = probMatrix[0];
+    let positiveMatrix = []
+    if(probMatrix[0] === 1) {
+        positiveMatrix = [1];
+    } else {
+        positiveMatrix = probMatrix[0];
+    }
     console.log(positiveMatrix)
 
-    let negativeMatrix = probMatrix[1];
+    let negativeMatrix = [];
+    if(probMatrix[1] === 1) {
+        negativeMatrix = [1];
+    } else {
+        negativeMatrix = probMatrix[1];
+    }
     console.log(negativeMatrix)
 
     //calculate total possible successes/advantage and total possible failures/threats
@@ -79,6 +91,7 @@ const rollOdds = (probMatrix, resultsMatrix, typeOf) => {
             break;
         default:
             iterations = possiblePos + 1
+            console.log(iterations)
 
             for(i = 1; i <= iterations; i++) {
                 qty = 0
@@ -94,6 +107,11 @@ const rollOdds = (probMatrix, resultsMatrix, typeOf) => {
             break;
     }
     console.log(oddsMatrix)
+
+    for(i = 0; i < oddsMatrix.length; i++)
+        if(!oddsMatrix[i]) {
+            oddsMatrix[i] = 0
+        }
 
     let finalOdds = oddsMatrix.reduce((a,b) => a + b,0);
 

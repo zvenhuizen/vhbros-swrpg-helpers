@@ -9,9 +9,7 @@ import rollDice from '../helpers/rollDice';
 import calculateSuccessProb from '../helpers/calculateSuccessProbability';
 import successOdds from '../probability/SuccessOdds';
 import rollOdds from '../probability/rollOdds';
-import {
-  validLength
- } from '../helpers/validateInput'
+import {validLength} from '../helpers/validateInput'
 import calculateAdvantageProb from '../helpers/calculateAdvantageProbability';
 
 class App extends React.Component {
@@ -64,9 +62,9 @@ class App extends React.Component {
     if(validLength(this.state.diceInputValue,1,24)) {
       const diceResult = rollDice(this.state.diceInputValue);
       const rollResult = cancelResults(diceResult);
-      sucPct = rollOdds(calculateSuccessProb(this.state.diceInputValue), cancelResults(diceResult), 'success');
-      advPct = rollOdds(calculateAdvantageProb(this.state.diceInputValue), cancelResults(diceResult), 'advantage');
-      oddsPct = (sucPct * advPct * 100).toFixed(2);
+      sucPct = (rollOdds(calculateSuccessProb(this.state.diceInputValue), cancelResults(diceResult), 'success')*100).toFixed(2);
+      advPct = (rollOdds(calculateAdvantageProb(this.state.diceInputValue), cancelResults(diceResult), 'advantage')*100).toFixed(2);
+      oddsPct = ((sucPct/100) * (advPct/100) * 100).toFixed(2);
     
       this.setState({
         diceResult: diceResult,
