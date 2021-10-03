@@ -25,7 +25,8 @@ class App extends React.Component {
       sucOdds: '--.--',
       advOdds: '--.--',
       rollOdds: '--.--',
-      successOdds: '--.--'
+      successOdds: '--.--',
+      errors: []
     }
 
     this.handleDiceInput = this.handleDiceInput.bind(this);
@@ -44,6 +45,7 @@ class App extends React.Component {
       diceInputValue: event.target.value,
       diceResult: [],
       rollResult: [],
+      errors: [],
       rolledDice: '',
       sucOdds: '--.--',
       advOdds: '--.--',
@@ -57,8 +59,9 @@ class App extends React.Component {
     let sucPct = '--.--';
     let advPct = '--.--';
     let oddsPct = '--.--';
+    let errors = [];
 
-    if(validLength(this.state.diceInputValue)) {
+    if(validLength(this.state.diceInputValue,1,24)) {
       const diceResult = rollDice(this.state.diceInputValue);
       const rollResult = cancelResults(diceResult);
       sucPct = rollOdds(calculateSuccessProb(this.state.diceInputValue), cancelResults(diceResult), 'success');
@@ -74,6 +77,20 @@ class App extends React.Component {
         rollOdds: oddsPct,
         diceInputValue: ''
       })
+    } else {
+      if(!validLength(this.state.diceInputValue,1,24)) {
+        errors.push("Cannot roll 0 dice");
+      }
+      this.setState({
+        successOdds: '--.--',
+        diceResult: [],
+        rollResult: [],
+        rolledDice: '',
+        sucOdds: '--.--',
+        advOdds: '--.--',
+        rollOdds: '--.--',
+        errors: errors
+      })
     }
   }
 
@@ -83,6 +100,7 @@ class App extends React.Component {
       <div className="App">
 
         <Header style={this.state.style} />
+        <p className='input-errors'>{this.state.errors.map((error,index) => (<span key={index} className="alert alert-danger">{error}</span>))}</p>
         <DiceInput value={this.state.diceInputValue} diceInputChange={this.handleDiceInput} rollDiceClick={this.handleRollClick}/>
         
         <div className='results-container'>

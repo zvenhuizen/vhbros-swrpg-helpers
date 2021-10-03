@@ -24,7 +24,7 @@ export default class DiceInput extends React.Component {
             errors.push(`INVALID CHARACTER: '${event.target.value.toLowerCase().slice(-1)}' is not allowed`);
           }
         
-        if(!validLength(event.target.value)) {
+        if(!validLength(event.target.value,0,24)) {
           inputIsValid = false;
           errors.push("Must have between 1 and 24 characters");
         }

@@ -26,9 +26,9 @@ export function validInput(string) {
     return valid;
 }
 
-export function validLength(string) {
+export function validLength(string,min,max) {
     let valid = false;
-    if (string.length >= 0 && string.length <= 24) {
+    if (string.length >= min && string.length <= max) {
         valid = true;
     }
     return valid;
