@@ -103,6 +103,7 @@
 
 .result {
     display: flex;
+    flex-wrap: wrap;
     .result-data {
         display: flex;
         .result-count {
