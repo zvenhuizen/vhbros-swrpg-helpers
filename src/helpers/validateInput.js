@@ -10,6 +10,14 @@ export function validInput(string) {
         case 'k':
         case 'w':
         case '':
+        case 'a':
+        case 's':
+        case 't':
+        case 'f':
+        case 'o':
+        case 'd':
+        case 'l':
+        case 'n':
           valid = true;
           break;
 //        case 't':
