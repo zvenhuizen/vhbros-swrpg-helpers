@@ -10,7 +10,7 @@ const cancelResults = (roll) => {
     for(var i = 0; i < roll.length; i++) {
         
         const result = roll[i].split(''); //split the result into an array of single letters
-
+        
         // add all results together
         for(var j = 0; j < result.length; j++) {
 
@@ -82,7 +82,7 @@ const cancelResults = (roll) => {
     if(dsp > 0) {
         results.push([dsp, 'n']);
     }
-    
+
     return results;
 }
 

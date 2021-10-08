@@ -3,7 +3,7 @@ import {dice} from './Dice';
 const parseDice = (roll) => {
 
     let rollArray = roll.split(''); //split string into an array at every letter
-    console.log(rollArray)
+    
     // create a new array with an object for each die rolled
     let diceArray = rollArray.map(die => {
 

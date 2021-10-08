@@ -1,15 +1,20 @@
 const rollOdds = (probMatrix, resultsMatrix, typeOf) => {
-    console.log(resultsMatrix)
+
     let oddsMatrix = [];
     let iterations, i, currentResult, probability, posneg;
     let qty = 0;
-    let resArray1 = resultsMatrix[0]
-    let resValue = resArray1[1]
     let result = [];
+    let resultsArray = [];
+    let resultsValue = '';
 
-    if(typeOf === 'success' && resValue !== 'a') {
+    if (resultsMatrix.length > 0) {
+        resultsArray = resultsMatrix[0];
+        resultsValue = resultsArray[1];
+    }
+
+    if(typeOf === 'success' && resultsValue !== 'a') {
         result = resultsMatrix[0];
-    } else if(typeOf === 'advantage' && resValue !== 'a') {
+    } else if(typeOf === 'advantage' && resultsValue !== 'a') {
         result = resultsMatrix[1];
     } else if(typeOf === 'success') {
         result = undefined;
@@ -18,7 +23,7 @@ const rollOdds = (probMatrix, resultsMatrix, typeOf) => {
     }
     
     if(result !== undefined) {
-        posneg = result[1]; //find whether the net roll was 's' or 'f'
+        posneg = result[1]; //find whether the net roll was 's/a' or 'f/t'
     } else { 
         posneg = ''
     }

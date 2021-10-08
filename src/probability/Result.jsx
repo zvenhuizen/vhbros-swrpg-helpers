@@ -1,8 +1,7 @@
 const Result = (props) => {
 
     let image = null;
-    console.log(props.resultType)
-    console.log(props.result)
+    
     if (props.resultType === 'symbol') {
         image = require('../assets/images/symbols/' + props.result[1] + '.png').default;
     }
