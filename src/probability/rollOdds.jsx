@@ -1,16 +1,12 @@
 const rollOdds = (probMatrix, resultsMatrix, typeOf) => {
-    console.log(probMatrix)
     console.log(resultsMatrix)
-    console.log(typeOf)
-
     let oddsMatrix = [];
     let iterations, i, currentResult, probability, posneg;
     let qty = 0;
     let resArray1 = resultsMatrix[0]
     let resValue = resArray1[1]
     let result = [];
-    
-    console.log(resValue)
+
     if(typeOf === 'success' && resValue !== 'a') {
         result = resultsMatrix[0];
     } else if(typeOf === 'advantage' && resValue !== 'a') {
@@ -26,8 +22,6 @@ const rollOdds = (probMatrix, resultsMatrix, typeOf) => {
     } else { 
         posneg = ''
     }
-    console.log(result)
-    console.log(posneg)
 
     let positiveMatrix = []
     if(probMatrix[0] === 1) {
@@ -35,7 +29,6 @@ const rollOdds = (probMatrix, resultsMatrix, typeOf) => {
     } else {
         positiveMatrix = probMatrix[0];
     }
-    console.log(positiveMatrix)
 
     let negativeMatrix = [];
     if(probMatrix[1] === 1) {
@@ -43,13 +36,10 @@ const rollOdds = (probMatrix, resultsMatrix, typeOf) => {
     } else {
         negativeMatrix = probMatrix[1];
     }
-    console.log(negativeMatrix)
 
     //calculate total possible successes/advantage and total possible failures/threats
     let possiblePos = positiveMatrix.length - 1
     let possibleNeg = negativeMatrix.length - 1
-    console.log(possiblePos)
-    console.log(possibleNeg)
 
     switch(posneg) {
         case 's':
@@ -60,14 +50,11 @@ const rollOdds = (probMatrix, resultsMatrix, typeOf) => {
             qty = result[0]; //find net qty of 's/a' or 'f/t' rolled
 
             iterations = (possibleNeg + 1) - (Math.max(0,qty - (possiblePos - possibleNeg)))
-            console.log(iterations)
 
             for(i = 1; i <= iterations; i++) {
                 currentResult = (qty - 1) + i
-                console.log(currentResult)
 
                 probability = positiveMatrix[currentResult] * negativeMatrix[currentResult - qty]
-                console.log(probability)
 
                 oddsMatrix.push(probability)
             }
@@ -77,36 +64,29 @@ const rollOdds = (probMatrix, resultsMatrix, typeOf) => {
             qty = result[0]; //find net qty of 's/a' or 'f/t' rolled
 
             iterations = (possiblePos + 1) - (Math.max(0,qty - (possibleNeg - possiblePos)))
-            console.log(iterations)
 
             for(i = 1; i <= iterations; i++) {
                 currentResult = (qty - 1) + i
-                console.log(currentResult)
 
                 probability = negativeMatrix[currentResult] * positiveMatrix[currentResult - qty]
-                console.log(probability)
 
                 oddsMatrix.push(probability)
             }
             break;
         default:
             iterations = possiblePos + 1
-            console.log(iterations)
 
             for(i = 1; i <= iterations; i++) {
                 qty = 0
 
                 currentResult = (qty - 1) + i
-                console.log(currentResult)
 
                 probability = positiveMatrix[currentResult] * negativeMatrix[currentResult]
-                console.log(probability)
 
                 oddsMatrix.push(probability)
             }
             break;
     }
-    console.log(oddsMatrix)
 
     for(i = 0; i < oddsMatrix.length; i++)
         if(!oddsMatrix[i]) {
