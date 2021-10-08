@@ -1,16 +1,26 @@
 export function createDiceMatrix(dice, typeOf, forcePips='all') {
 
     let white = [0, 8/12, 4/12]; // set forceDice to all Pips
+    let lsp = [0,1,0];
+    let dsp = [0,1,0];
     let diceWeights;
+
     if (forcePips !== 'all') {
 
-        forcePips === 'lsp' ?
-            white = [7/12, 2/12, 3/12] : // set forceDice to just ls pips
-            forcePips === 'dsp' ? 
-                white = [5/12, 6/12, 1/12] : // set forceDIce to just ds pips
-                white = [0, 0, 0] // set forceDice to no pips
+        if(forcePips === 'lsp') {
+            white = [7/12, 2/12, 3/12];
+            dsp = [0,0,0];
+        } else if (forcePips ==='dsp') { // set forceDice to just ls pips
+            white = [5/12, 6/12, 1/12];
+            lsp = [0,0,0];
+        } else {// set forceDIce to just ds pips
+            white = [0, 0, 0];
+            lsp = [0,0,0];
+            dsp = [0,0,0]
+        } // set forceDice to no pips
     }
 
+    //handle whether I am passing success/failure or advantage/threat arrays
     if (typeOf === 'success' || typeOf === 'failure') {
         diceWeights = {
             "b": [4/6,2/6,0], //blue
@@ -19,7 +29,13 @@ export function createDiceMatrix(dice, typeOf, forcePips='all') {
             "p": [5/8,2/8,1/8], //purple
             "y": [4/12,6/12,2/12], //yellow
             "r": [5/12,5/12,2/12], //red
-            "w": white
+            "w": white,
+            "s": [0,1,0], //success
+            "f": [0,1,0], //failure
+            "t": [0,1,0], //triumph
+            "d": [0,1,0], //despair
+            "l": lsp, //light side pip
+            "n": dsp, //dark side pip
         }
     }
     else {
@@ -30,6 +46,8 @@ export function createDiceMatrix(dice, typeOf, forcePips='all') {
             "p": [3/8,4/8,1/8], //purple
             "y": [6/12,4/12,2/12], //yellow
             "r": [6/12,4/12,2/12], //red
+            "a": [0,1,0], //advantage
+            "o": [0,1,0] //threat
         }
     }
 
@@ -45,6 +63,10 @@ export function createDiceMatrix(dice, typeOf, forcePips='all') {
                 case 'g':
                 case 'b':
                 case 'w':
+                case 's':
+                case 't':
+                case 'l':
+                case 'n':
                     matrices.push(diceWeights[diceArray[i]]) // add die success odds to matrix array
                     break;
                 default:
@@ -56,6 +78,8 @@ export function createDiceMatrix(dice, typeOf, forcePips='all') {
                 case 'r':
                 case 'p':
                 case 'k':
+                case 'f':
+                case 'd':
                     matrices.push(diceWeights[diceArray[i]]) // add die failure odds to matrix array
                     break;
                 default:
@@ -67,6 +91,7 @@ export function createDiceMatrix(dice, typeOf, forcePips='all') {
                 case 'y':
                 case 'g':
                 case 'b':
+                case 'a':
                     matrices.push(diceWeights[diceArray[i]]) // add die advantage odds to matrix array
                     break;
                 default:
@@ -78,6 +103,7 @@ export function createDiceMatrix(dice, typeOf, forcePips='all') {
                 case 'r':
                 case 'p':
                 case 'k':
+                case 'o':
                     matrices.push(diceWeights[diceArray[i]]) // add die failure odds to matrix array
                     break;
                 default:
