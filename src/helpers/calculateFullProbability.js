@@ -7,8 +7,9 @@ import { netRoll } from './netRolls';
 //e.g. roll = 'bb'. diceCombos.blue = [1,1,2,3,4,6]. The first few combinations will be:
 //'11', '11', '12' etc until you have all possible combinations in an array.
 export function combinations(dice,typeOf) {
+
     let myArray = dice.split(''); //split dice rolled into array
-    
+
     //create a new array with elements being the arrays of each side
     let diceArray = myArray.map(sides => {
         
@@ -39,6 +40,10 @@ export function combinations(dice,typeOf) {
         }
     })
 
+    diceArray = diceArray.filter(function (e) {
+        return e != null;
+    });
+
     let result = combine(diceArray);
 
     return result;
@@ -46,7 +51,7 @@ export function combinations(dice,typeOf) {
 
 //recursive solution to find all possible combinations of any number of arrays
 //called in combinations()
-function combine([head, ...[headTail, ...tailTail]]) {
+const combine = ([head, ...[headTail, ...tailTail]]) => {
     if (!headTail) return head
   
     const combined = headTail.reduce((acc, x) => {
@@ -57,7 +62,7 @@ function combine([head, ...[headTail, ...tailTail]]) {
 }
 
 export function fullProbability(perms,posProbs,negProbs,roll,suc,adv,tri,fai,thr,des,ls,ds) {
-
+    console.log(perms,posProbs, negProbs,roll)
     let success = 0 - (suc + tri);
     let failure = 0 - (fai + des);
     let advantage = 0 - adv;
@@ -109,21 +114,25 @@ export function fullProbability(perms,posProbs,negProbs,roll,suc,adv,tri,fai,thr
 
     let positiveArray = [success,advantage,triumph];
     let negativeArray = [failure,threat,despair];
-    let posResult = 0;
-    let negResult = 0;
-
+    let posResult = 1;
+    let negResult = 1;
+    console.log(positiveArray,negativeArray)
     for(var a = 0; a < netRoll.length; a++) {
 
-        if(positiveArray.toString() === netRoll[a].toString()) {
-            posResult = posProbs[a];
-        };
-        if(negativeArray.toString() === netRoll[a].toString()) {
-            negResult = negProbs[a];
-        };
+        if(posProbs.length > 0) {
+            if(positiveArray.toString() === netRoll[a].toString()) {
+                posResult = posProbs[a];
+            }
+        }
+        if(negProbs.length > 0) {
+            if(negativeArray.toString() === netRoll[a].toString()) {
+                negResult = negProbs[a];
+            }
+        }
     }
 
     let forceArray = [lsp,dsp];
-    let forceResult = 0;
+    let forceResult = 1;
 
     if(forceArray.toString() === forceCombos.one.result.toString()) {
         forceResult = forceCombos.one.qty;
@@ -134,14 +143,16 @@ export function fullProbability(perms,posProbs,negProbs,roll,suc,adv,tri,fai,thr
     } else if(forceArray.toString() === forceCombos.four.result.toString()) {
         forceResult = forceCombos.four.qty;
     };
+    console.log(posResult,negResult,forceResult)
 
     let positivePossibilities = perms[0];
     let negativePossibilities = perms[1];
     let forcePossibilities = perms[2];
+    console.log(positivePossibilities,negativePossibilities,forcePossibilities)
 
     let finalProbability = (posResult / positivePossibilities) * (negResult / negativePossibilities) * (forceResult / forcePossibilities)
 
-    return finalProbability;
+    return (finalProbability * 100).toFixed(2);
 }
 
 //get total # of possible combinations of positive dice, negative dice & force dice rolled
