@@ -11,6 +11,8 @@ import successOdds from '../probability/SuccessOdds';
 import rollOdds from '../probability/rollOdds';
 import {validLength} from '../helpers/validateInput'
 import calculateAdvantageProb from '../helpers/calculateAdvantageProbability';
+import combinations from '../helpers/diceCombinations';
+import addArrays from '../helpers/addArrays';
 
 class App extends React.Component {
   constructor(props) {
@@ -105,6 +107,7 @@ class App extends React.Component {
           <RollResults results={this.state.rollResult} rolledDice={this.state.rolledDice}/>
           <OddsResults successChance={this.state.sucOdds} advantageChance={this.state.advOdds} oddsChance={this.state.rollOdds}/>
         </div>
+        <p>Combo 1 = {addArrays(combinations(this.state.rolledDice))}</p>
       </div>
     );
   }
