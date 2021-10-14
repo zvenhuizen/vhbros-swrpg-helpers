@@ -1,3 +1,4 @@
+
 export function createDiceMatrix(dice, typeOf, forcePips='all') {
 
     let white = [0, 8/12, 4/12]; // set forceDice to all Pips
