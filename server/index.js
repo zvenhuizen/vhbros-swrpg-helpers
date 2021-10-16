@@ -7,8 +7,8 @@ const mssql = require('mssql');
 //configuration for database
 const config = {
     host: 'localhost',
-    user: 'zvenhuizen',
-    password: 'Zakl071020214$',
+    user: 'root',
+    password: 'password',
     database: 'swrpg'
 }
 const db = new mssql.ConnectionPool(config); //connect to database from config
