@@ -13,7 +13,7 @@ const DiceResults = (props) => {
     return (
         <div className='dice-results' id='dice-results'>
 
-            <p className='result-header'>DICE</p>
+            <p className='result-header'>DICE <span className='successChance'>{props.successChance}% CHANCE OF SUCCESS</span></p>
             <div className='result'>{result}</div>
 
         </div>

@@ -11,6 +11,8 @@ export default class DiceInput extends React.Component {
             errors: []
         }
 
+        this.textInput = React.createRef();
+        this.buttonHandler = this.buttonHandler.bind(this);
         this.validateInput = this.validateInput.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
     }
@@ -24,7 +26,7 @@ export default class DiceInput extends React.Component {
             errors.push(`INVALID CHARACTER: '${event.target.value.toLowerCase().slice(-1)}' is not allowed`);
           }
         
-        if(!validLength(event.target.value)) {
+        if(!validLength(event.target.value,0,24)) {
           inputIsValid = false;
           errors.push("Must have between 1 and 24 characters");
         }
@@ -38,14 +40,19 @@ export default class DiceInput extends React.Component {
     }
 
     handleKeyPress(event) {
-        console.log("IN KEYPRESS");
-        console.log(event);
         
+      // check if keyCode matches Enter
       if (event.charCode === 13) {
-        this.props.rollDiceClick();
+        this.props.rollDiceClick(); //activate the rollDiceClick event handler
+        this.textInput.current.focus();
       }
 
     };
+
+    buttonHandler() {
+      this.textInput.current.focus();
+      this.props.rollDiceClick();
+    }
 
     render() {
         return (
@@ -58,10 +65,11 @@ export default class DiceInput extends React.Component {
                     onChange={(event) => this.validateInput(event)}
                     value={this.props.value}
                     placeholder='Enter Your Dice' // Placeholder Text for an Input Field
-                    autofocus='autofocus' // Have the browser automatically start with the ability to type in the input
+                    autoFocus // Have the browser automatically start with the ability to type in the input
                     onKeyPress={this.handleKeyPress} // Listen for an enter key to roll the dice
+                    ref={this.textInput}
                     />
-                    <button className='btn btn-submit' onClick={this.props.rollDiceClick}>Roll</button>
+                    <button className='btn btn-submit' onClick={this.buttonHandler}>Roll</button>
                 </div>
             </div>
         )

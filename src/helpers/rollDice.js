@@ -2,14 +2,10 @@ import parseDice from './parseDice';
 
 const rollDice = (dice) => {
 
-    console.log("Inside rollDice");
-    console.log("Dice = " + dice);
     const diceArray = parseDice(dice); // get dice objects for roll
-
+    
     // roll each die
     const results = diceArray.map((die) => {
-
-        console.log(die);
 
         const keys = Object.keys(die); //Get Keys (Sides of Dice)
         const roll = Math.floor(Math.random() * keys.length) // Roll number from 0- # of Sides of Dice - 1
@@ -17,8 +13,7 @@ const rollDice = (dice) => {
 
         return result.face;
     })
-
-    console.log(results);
+    
     return results;
 
 }

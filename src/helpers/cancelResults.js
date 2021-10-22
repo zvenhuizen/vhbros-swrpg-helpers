@@ -7,22 +7,13 @@ const cancelResults = (roll) => {
     let lsp = 0;
     let dsp = 0;
 
-    console.log("INSIDE CANEL RESULTS");
-    console.log("ROLL:")
-    console.log(roll);
-
     for(var i = 0; i < roll.length; i++) {
         
         const result = roll[i].split(''); //split the result into an array of single letters
-
-        console.log("INSIDE FIRST CANCEL RESULTS FIRST LOOP");
-        console.log(roll[i].split(''));
-
+        
         // add all results together
         for(var j = 0; j < result.length; j++) {
 
-            console.log("INSIDE SECOND CANCEL RESULTS LOOP");
-            console.log(result[j]);
             switch(result[j]) {
                 case 's':
                     sucfai = sucfai + 1;
@@ -59,40 +50,37 @@ const cancelResults = (roll) => {
     }
 
     let results = [];
-    for(var sf = 0; sf < Math.abs(sucfai); sf++){
-        if(sucfai > 0) {
-            results.push('s');
-        }
 
-        if(sucfai < 0) {
-            results.push('f');
-        }
+    if(sucfai > 0) {
+        results.push([sucfai, 's']);
     }
 
-    for(var at = 0; at < Math.abs(advthr); at++){
-        if(advthr > 0) {
-            results.push('a');
-        }
-
-        if(advthr < 0) {
-            results.push('t');
-        }
+    if(sucfai < 0) {
+        results.push([-1 * sucfai, 'f']);
     }
 
-    for(var r = 0; r < tri; r++) {
-        results.push('r');
+    if(advthr > 0) {
+        results.push([advthr, 'a']);
     }
 
-    for(var d = 0; d < des; d++) {
-        results.push('d');
+    if(advthr < 0) {
+        results.push([-1 * advthr, 't']);
     }
 
-    for(var l = 0; l < lsp; l++) {
-        results.push('l');
+    if(tri > 0) {
+        results.push([tri, 'r']);
     }
 
-    for(var n = 0; n < dsp; n++) {
-        results.push('n');
+    if(des > 0) {
+        results.push([des, 'd']);
+    }
+
+    if(lsp > 0) {
+        results.push([lsp, 'l']);
+    }
+
+    if(dsp > 0) {
+        results.push([dsp, 'n']);
     }
 
     return results;

@@ -10,6 +10,14 @@ export function validInput(string) {
         case 'k':
         case 'w':
         case '':
+        case 'a':
+        case 's':
+        case 't':
+        case 'f':
+        case 'o':
+        case 'd':
+        case 'l':
+        case 'n':
           valid = true;
           break;
 //        case 't':
@@ -26,9 +34,9 @@ export function validInput(string) {
     return valid;
 }
 
-export function validLength(string) {
+export function validLength(string,min,max) {
     let valid = false;
-    if (string.length >= 0 && string.length <= 24) {
+    if (string.length >= min && string.length <= max) {
         valid = true;
     }
     return valid;
