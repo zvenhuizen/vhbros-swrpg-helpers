@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './Header';
 import RollResults from '../probability/RollResults';
 import DiceResults from '../probability/DiceResults';
@@ -13,6 +13,7 @@ import {
   rollProbabilities,
   permutations,
   combinations } from '../helpers/calculateFullProbability';
+import getDiceSplit from '../helpers/diceType';
 
 class App extends React.Component {
   constructor(props) {
@@ -57,7 +58,10 @@ class App extends React.Component {
     if(validLength(this.state.diceInputValue,1,24)) {
       const diceResult = rollDice(this.state.diceInputValue);
       const rollResult = cancelResults(diceResult);
-      var suc = (this.state.diceInputValue.match(/s/g) || []).length;
+      const positiveDice = getDiceSplit(this.state.diceInputValue, 'positive');
+      const negativeDice = getDiceSplit(this.state.diceInputValue, 'negtative');
+
+      /*var suc = (this.state.diceInputValue.match(/s/g) || []).length;
       var adv = (this.state.diceInputValue.match(/a/g) || []).length;
       var tri = (this.state.diceInputValue.match(/t/g) || []).length;
       var fai = (this.state.diceInputValue.match(/f/g) || []).length;
@@ -70,8 +74,17 @@ class App extends React.Component {
         permutations(this.state.diceInputValue),
         rollProbabilities(combinations(this.state.diceInputValue,'positive')),
         rollProbabilities(combinations(this.state.diceInputValue,'negative')),
-        diceResult,suc,adv,tri,fai,thr,des,lsp,dsp);
-    
+        diceResult,suc,adv,tri,fai,thr,des,lsp,dsp);*/
+      
+      useEffect(() => {
+        Axios.get('http://localhost3001/api/get', {
+          positiveDice: positiveDice, 
+          negativeDice: negativeDice
+        }).then((response) => {
+          rollOdds = response.data;
+        });
+      }, []);
+
       this.setState({
         diceResult: diceResult,
         rollResult: rollResult,
