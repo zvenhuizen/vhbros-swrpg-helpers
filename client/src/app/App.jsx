@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Header from './Header';
 import RollResults from '../probability/RollResults';
 import DiceResults from '../probability/DiceResults';
@@ -7,13 +7,9 @@ import cancelResults from '../helpers/cancelResults';
 import rollDice from '../helpers/rollDice';
 import calculateSuccessProb from '../helpers/calculateSuccessProbability';
 import successOdds from '../probability/SuccessOdds';
+import OddsResults from '../probability/OddsResults';
 import {validLength} from '../helpers/validateInput';
-import dbOdds from '../helpers/dbProbability';
-import { 
-  fullProbability,
-  rollProbabilities,
-  permutations,
-  combinations } from '../helpers/calculateFullProbability';
+import getDiceSplit from '../helpers/diceSplit';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,6 +19,8 @@ class App extends React.Component {
       diceResult: [],
       rollResult: [],
       rolledDice: '',
+      positiveDice: '',
+      negativeDice: '',
       rollOdds: '--.--',
       successOdds: '--.--',
       errors: []
@@ -46,6 +44,8 @@ class App extends React.Component {
       rollResult: [],
       errors: [],
       rolledDice: '',
+      positiveDice: '',
+      negativeDice: '',
       rollOdds: '--.--',
       successOdds: sucPct
     });
@@ -59,7 +59,8 @@ class App extends React.Component {
     if(validLength(this.state.diceInputValue,1,24)) {
       const diceResult = rollDice(this.state.diceInputValue);
       const rollResult = cancelResults(diceResult);
-      rollOdds = dbOdds(this.props)
+      const positiveDice = getDiceSplit(this.state.diceInputValue, 'positive')
+      const negativeDice = getDiceSplit(this.state.diceInputValue, 'negative')
 
       /*var suc = (this.state.diceInputValue.match(/s/g) || []).length;
       var adv = (this.state.diceInputValue.match(/a/g) || []).length;
@@ -80,6 +81,8 @@ class App extends React.Component {
         diceResult: diceResult,
         rollResult: rollResult,
         rolledDice: this.state.diceInputValue,
+        positiveDice: positiveDice,
+        negativeDice: negativeDice,
         rollOdds: rollOdds,
         diceInputValue: '',
       })
@@ -91,6 +94,8 @@ class App extends React.Component {
         diceResult: [],
         rollResult: [],
         rolledDice: '',
+        positiveDice: '',
+        negativeDice: '',
         sucOdds: '--.--',
         advOdds: '--.--',
         rollOdds: '--.--',
@@ -111,6 +116,7 @@ class App extends React.Component {
         <div className='results-container'>
           <DiceResults results={this.state.diceResult} rolledDice={this.state.rolledDice} dice={this.state.diceInputValue} successChance={this.state.successOdds} />
           <RollResults results={this.state.rollResult} rolledDice={this.state.rolledDice} oddsChance={this.state.rollOdds}/>
+          <OddsResults positiveDice={this.state.positiveDice} negativeDice={this.state.negativeDice}/>
         </div>
       </div>
     );
