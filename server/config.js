@@ -5,10 +5,11 @@ const config = {
     database: 'swrpg',
     options: {
         trustServerCertificate: true,
-        trustedConnection: false,
-        enableArithAbort: true
+        enableArithAbort: true,
+        rowCollectionOnRequestCompletion: false
     },
-    port: 1433
+    port: 1433,
+    instanceName: 'SQLEXPRESS'
 }
 
 module.exports = config;
