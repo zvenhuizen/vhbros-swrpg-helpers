@@ -2,12 +2,16 @@
   "name": "vhbros-swrpg-helpers",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.23.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "node-sass": "^4.14.1",
+    "nodemon": "^2.0.14",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
@@ -15,6 +19,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "nodemon server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

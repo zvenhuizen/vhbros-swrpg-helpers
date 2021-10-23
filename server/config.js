@@ -1,13 +1,12 @@
 const config = {
-    user: 'admin',
-    password: 'password',
+    user: 'vhbros',
+    password: 'lukecage2',
     server: 'ARLO-521',
     database: 'swrpg',
     options: {
         trustServerCertificate: true,
         trustedConnection: false,
-        enableArithAbort: true,
-        instanceName: 'sqlexpress'
+        enableArithAbort: true
     },
     port: 1433
 }
