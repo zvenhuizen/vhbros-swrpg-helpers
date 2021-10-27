@@ -61,8 +61,8 @@ const combine = ([head, ...[headTail, ...tailTail]]) => {
     return combine([combined, ...tailTail])
 }
 
-export function fullProbability(perms,posProbs,negProbs,roll,suc,adv,tri,fai,thr,des,ls,ds) {
-    console.log(perms,posProbs, negProbs,roll)
+export function getResultArrays(roll,suc,adv,tri,fai,thr,des,ls,ds) {
+
     let success = 0 - (suc + tri);
     let failure = 0 - (fai + des);
     let advantage = 0 - adv;
@@ -114,9 +114,20 @@ export function fullProbability(perms,posProbs,negProbs,roll,suc,adv,tri,fai,thr
 
     let positiveArray = [success,advantage,triumph];
     let negativeArray = [failure,threat,despair];
+
+    return [positiveArray, negativeArray, lsp, dsp];
+};
+
+export function fullProbability(perms,posProbs,negProbs,resultsArray) {
+    
+    let positiveArray = resultsArray[0];
+    let negativeArray = resultsArray[1];
+    let lsp = resultsArray[2];
+    let dsp = resultsArray[3];
     let posResult = 1;
     let negResult = 1;
     console.log(positiveArray,negativeArray)
+
     for(var a = 0; a < netRoll.length; a++) {
 
         if(posProbs.length > 0) {

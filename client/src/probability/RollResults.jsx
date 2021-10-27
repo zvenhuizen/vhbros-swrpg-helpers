@@ -1,4 +1,5 @@
 import Result from './Result';
+import GetData from './getData';
 
 const RollResults = (props) => {
 
@@ -6,7 +7,16 @@ const RollResults = (props) => {
     return (
         <div className='roll-results' id='roll-results'>
 
-            <p className='result-header'>RESULTS <span className='successChance'>{props.oddsChance}% CHANCE OF THIS RESULT</span></p>
+            <p className='result-header'>RESULTS 
+                <span>
+                    <GetData 
+                      positiveDice={props.positiveDice}
+                      negativeDice={props.negativeDice}
+                      positiveRes={props.positiveRes}
+                      negativeRes={props.negativeRes}
+                    />
+                </span>
+            </p>
             <div className='result'>{(props.rolledDice !== '' && results.length === 0) ? <span className='cancelled-result'>All Dice Have Cancelled</span> : results}</div>
 
         </div>

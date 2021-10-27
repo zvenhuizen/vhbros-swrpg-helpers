@@ -13,7 +13,7 @@ const rollDice = (dice) => {
 
         return result.face;
     })
-    
+    console.log(results)
     return results;
 
 }
