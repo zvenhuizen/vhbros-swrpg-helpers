@@ -19,7 +19,7 @@ app.post('/api/roll', async(req,res) => {
     res.send(result.recordset);
 });
 
-app.post('/api/result', function (req,res) {
+app.post('/api/result', async(req,res) => {
     console.log('called');
 
     const result = await dbOperation.getResult(req.body.posResult, req.body.negResult);

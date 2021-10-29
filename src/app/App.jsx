@@ -2,7 +2,6 @@ import React from 'react';
 import Header from './Header';
 import RollResults from '../probability/RollResults';
 import DiceResults from '../probability/DiceResults';
-import OddsResults from '../probability/OddsResults';
 import DiceInput from '../probability/DiceInput';
 import cancelResults from '../helpers/cancelResults';
 import rollDice from '../helpers/rollDice';
@@ -12,6 +11,8 @@ import rollOdds from '../probability/rollOdds';
 import {validLength} from '../helpers/validateInput'
 import calculateAdvantageProb from '../helpers/calculateAdvantageProbability';
 import { getResultArrays } from '../helpers/calculateFullProbability';
+import getDiceSplit from '../helpers/diceSplit';
+import GetData from '../probability/getData';
 
 class App extends React.Component {
   constructor(props) {

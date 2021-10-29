@@ -128,15 +128,15 @@ export function fullProbability(perms,posProbs,negProbs,resultsArray) {
     let negResult = 1;
     console.log(positiveArray,negativeArray)
 
-    for(var a = 0; a < netRoll.length; a++) {
+    for(var a = 0; a < netResults.length; a++) {
 
         if(posProbs.length > 0) {
-            if(positiveArray.toString() === netRoll[a].toString()) {
+            if(positiveArray.toString() === netResults[a].toString()) {
                 posResult = posProbs[a];
             }
         }
         if(negProbs.length > 0) {
-            if(negativeArray.toString() === netRoll[a].toString()) {
+            if(negativeArray.toString() === netResults[a].toString()) {
                 negResult = negProbs[a];
             }
         }
