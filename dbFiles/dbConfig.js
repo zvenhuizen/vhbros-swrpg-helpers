@@ -1,6 +1,8 @@
+import { myPassword } from "./configPword";
+
 const   config = {
     user: 'vhbros',
-    password: 'lukecage2',
+    password: myPassword,
     server: 'ARLO-521',
     database: 'swrpg',
     options: {
