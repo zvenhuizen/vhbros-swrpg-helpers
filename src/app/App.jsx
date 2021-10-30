@@ -10,7 +10,7 @@ import calculateSuccessProb from '../helpers/calculateSuccessProbability';
 import successOdds from '../probability/SuccessOdds';
 import rollOdds from '../probability/rollOdds';
 import {validLength} from '../helpers/validateInput'
-import calculateAdvantageProb from '../helpers/calculateAdvantageProbability';
+import getDiceSplit from '../helpers/diceSplit';
 
 class App extends React.Component {
   constructor(props) {
@@ -62,9 +62,8 @@ class App extends React.Component {
     if(validLength(this.state.diceInputValue,1,24)) {
       const diceResult = rollDice(this.state.diceInputValue);
       const rollResult = cancelResults(diceResult);
-      sucPct = (rollOdds(calculateSuccessProb(this.state.diceInputValue), cancelResults(diceResult), 'success')*100).toFixed(2);
-      advPct = (rollOdds(calculateAdvantageProb(this.state.diceInputValue), cancelResults(diceResult), 'advantage')*100).toFixed(2);
-      oddsPct = ((sucPct/100) * (advPct/100) * 100).toFixed(2);
+      const posDice = getDiceSplit(this.state.diceInputValue,'positive');
+      const negDice = getDiceSplit(this.state.diceInputValue,'negative');
     
       this.setState({
         diceResult: diceResult,
@@ -102,8 +101,12 @@ class App extends React.Component {
         
         <div className='results-container'>
           <DiceResults results={this.state.diceResult} rolledDice={this.state.rolledDice} dice={this.state.diceInputValue} successChance={this.state.successOdds} />
-          <RollResults results={this.state.rollResult} rolledDice={this.state.rolledDice}/>
-          <OddsResults successChance={this.state.sucOdds} advantageChance={this.state.advOdds} oddsChance={this.state.rollOdds}/>
+          <RollResults
+            results={this.state.rollResult}
+            rolledDice={this.state.rolledDice}
+            posDice={this.state.posDice}
+            negDice={this.state.negDice}
+          />
         </div>
       </div>
     );

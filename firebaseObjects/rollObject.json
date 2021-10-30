@@ -1,0 +1,1550 @@
+[
+  {
+    "Roll": "g",
+    "RollType": "positive",
+    "Combinations": 8,
+    "Result": ""
+  },
+  {
+    "Roll": "y",
+    "RollType": "positive",
+    "Combinations": 12,
+    "Result": ""
+  },
+  {
+    "Roll": "gb",
+    "RollType": "positive",
+    "Combinations": 48,
+    "Result": ""
+  },
+  {
+    "Roll": "gg",
+    "RollType": "positive",
+    "Combinations": 64,
+    "Result": ""
+  },
+  {
+    "Roll": "yb",
+    "RollType": "positive",
+    "Combinations": 72,
+    "Result": ""
+  },
+  {
+    "Roll": "yg",
+    "RollType": "positive",
+    "Combinations": 96,
+    "Result": ""
+  },
+  {
+    "Roll": "yy",
+    "RollType": "positive",
+    "Combinations": 144,
+    "Result": ""
+  },
+  {
+    "Roll": "gbb",
+    "RollType": "positive",
+    "Combinations": 288,
+    "Result": ""
+  },
+  {
+    "Roll": "ggb",
+    "RollType": "positive",
+    "Combinations": 384,
+    "Result": ""
+  },
+  {
+    "Roll": "ggg",
+    "RollType": "positive",
+    "Combinations": 512,
+    "Result": ""
+  },
+  {
+    "Roll": "ybb",
+    "RollType": "positive",
+    "Combinations": 432,
+    "Result": ""
+  },
+  {
+    "Roll": "ygb",
+    "RollType": "positive",
+    "Combinations": 576,
+    "Result": ""
+  },
+  {
+    "Roll": "ygg",
+    "RollType": "positive",
+    "Combinations": 768,
+    "Result": ""
+  },
+  {
+    "Roll": "yyb",
+    "RollType": "positive",
+    "Combinations": 864,
+    "Result": ""
+  },
+  {
+    "Roll": "yyg",
+    "RollType": "positive",
+    "Combinations": 1152,
+    "Result": ""
+  },
+  {
+    "Roll": "yyy",
+    "RollType": "positive",
+    "Combinations": 1728,
+    "Result": ""
+  },
+  {
+    "Roll": "gbbb",
+    "RollType": "positive",
+    "Combinations": 1728,
+    "Result": ""
+  },
+  {
+    "Roll": "ggbb",
+    "RollType": "positive",
+    "Combinations": 2304,
+    "Result": ""
+  },
+  {
+    "Roll": "gggb",
+    "RollType": "positive",
+    "Combinations": 3072,
+    "Result": ""
+  },
+  {
+    "Roll": "gggg",
+    "RollType": "positive",
+    "Combinations": 4096,
+    "Result": ""
+  },
+  {
+    "Roll": "ybbb",
+    "RollType": "positive",
+    "Combinations": 2592,
+    "Result": ""
+  },
+  {
+    "Roll": "ygbb",
+    "RollType": "positive",
+    "Combinations": 3456,
+    "Result": ""
+  },
+  {
+    "Roll": "yggb",
+    "RollType": "positive",
+    "Combinations": 4608,
+    "Result": ""
+  },
+  {
+    "Roll": "yggg",
+    "RollType": "positive",
+    "Combinations": 6144,
+    "Result": ""
+  },
+  {
+    "Roll": "yybb",
+    "RollType": "positive",
+    "Combinations": 5184,
+    "Result": ""
+  },
+  {
+    "Roll": "yygb",
+    "RollType": "positive",
+    "Combinations": 6912,
+    "Result": ""
+  },
+  {
+    "Roll": "yygg",
+    "RollType": "positive",
+    "Combinations": 9216,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyb",
+    "RollType": "positive",
+    "Combinations": 10368,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyg",
+    "RollType": "positive",
+    "Combinations": 13824,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyy",
+    "RollType": "positive",
+    "Combinations": 20736,
+    "Result": ""
+  },
+  {
+    "Roll": "gbbbb",
+    "RollType": "positive",
+    "Combinations": 10368,
+    "Result": ""
+  },
+  {
+    "Roll": "ggbbb",
+    "RollType": "positive",
+    "Combinations": 13824,
+    "Result": ""
+  },
+  {
+    "Roll": "gggbb",
+    "RollType": "positive",
+    "Combinations": 18432,
+    "Result": ""
+  },
+  {
+    "Roll": "ggggb",
+    "RollType": "positive",
+    "Combinations": 24576,
+    "Result": ""
+  },
+  {
+    "Roll": "ggggg",
+    "RollType": "positive",
+    "Combinations": 32768,
+    "Result": ""
+  },
+  {
+    "Roll": "ybbbb",
+    "RollType": "positive",
+    "Combinations": 15552,
+    "Result": ""
+  },
+  {
+    "Roll": "ygbbb",
+    "RollType": "positive",
+    "Combinations": 20736,
+    "Result": ""
+  },
+  {
+    "Roll": "yggbb",
+    "RollType": "positive",
+    "Combinations": 27648,
+    "Result": ""
+  },
+  {
+    "Roll": "ygggb",
+    "RollType": "positive",
+    "Combinations": 36864,
+    "Result": ""
+  },
+  {
+    "Roll": "ygggg",
+    "RollType": "positive",
+    "Combinations": 49152,
+    "Result": ""
+  },
+  {
+    "Roll": "yybbb",
+    "RollType": "positive",
+    "Combinations": 31104,
+    "Result": ""
+  },
+  {
+    "Roll": "yygbb",
+    "RollType": "positive",
+    "Combinations": 41472,
+    "Result": ""
+  },
+  {
+    "Roll": "yyggb",
+    "RollType": "positive",
+    "Combinations": 55296,
+    "Result": ""
+  },
+  {
+    "Roll": "yyggg",
+    "RollType": "positive",
+    "Combinations": 73728,
+    "Result": ""
+  },
+  {
+    "Roll": "yyybb",
+    "RollType": "positive",
+    "Combinations": 62208,
+    "Result": ""
+  },
+  {
+    "Roll": "yyygb",
+    "RollType": "positive",
+    "Combinations": 82944,
+    "Result": ""
+  },
+  {
+    "Roll": "yyygg",
+    "RollType": "positive",
+    "Combinations": 110592,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyyb",
+    "RollType": "positive",
+    "Combinations": 124416,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyyg",
+    "RollType": "positive",
+    "Combinations": 165888,
+    "Result": ""
+  },
+  {
+    "Roll": "gbbbbb",
+    "RollType": "positive",
+    "Combinations": 62208,
+    "Result": ""
+  },
+  {
+    "Roll": "ggbbbb",
+    "RollType": "positive",
+    "Combinations": 82944,
+    "Result": ""
+  },
+  {
+    "Roll": "gggbbb",
+    "RollType": "positive",
+    "Combinations": 110592,
+    "Result": ""
+  },
+  {
+    "Roll": "ggggbb",
+    "RollType": "positive",
+    "Combinations": 147456,
+    "Result": ""
+  },
+  {
+    "Roll": "gggggb",
+    "RollType": "positive",
+    "Combinations": 196608,
+    "Result": ""
+  },
+  {
+    "Roll": "gggggg",
+    "RollType": "positive",
+    "Combinations": 262144,
+    "Result": ""
+  },
+  {
+    "Roll": "ybbbbb",
+    "RollType": "positive",
+    "Combinations": 93312,
+    "Result": ""
+  },
+  {
+    "Roll": "ygbbbb",
+    "RollType": "positive",
+    "Combinations": 124416,
+    "Result": ""
+  },
+  {
+    "Roll": "yggbbb",
+    "RollType": "positive",
+    "Combinations": 165888,
+    "Result": ""
+  },
+  {
+    "Roll": "ygggbb",
+    "RollType": "positive",
+    "Combinations": 221184,
+    "Result": ""
+  },
+  {
+    "Roll": "yggggb",
+    "RollType": "positive",
+    "Combinations": 294912,
+    "Result": ""
+  },
+  {
+    "Roll": "yggggg",
+    "RollType": "positive",
+    "Combinations": 393216,
+    "Result": ""
+  },
+  {
+    "Roll": "yybbbb",
+    "RollType": "positive",
+    "Combinations": 186624,
+    "Result": ""
+  },
+  {
+    "Roll": "yygbbb",
+    "RollType": "positive",
+    "Combinations": 248832,
+    "Result": ""
+  },
+  {
+    "Roll": "yyggbb",
+    "RollType": "positive",
+    "Combinations": 331776,
+    "Result": ""
+  },
+  {
+    "Roll": "yygggb",
+    "RollType": "positive",
+    "Combinations": 442368,
+    "Result": ""
+  },
+  {
+    "Roll": "yygggg",
+    "RollType": "positive",
+    "Combinations": 589824,
+    "Result": ""
+  },
+  {
+    "Roll": "yyybbb",
+    "RollType": "positive",
+    "Combinations": 373248,
+    "Result": ""
+  },
+  {
+    "Roll": "yyygbb",
+    "RollType": "positive",
+    "Combinations": 497664,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyggb",
+    "RollType": "positive",
+    "Combinations": 663552,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyggg",
+    "RollType": "positive",
+    "Combinations": 884736,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyybb",
+    "RollType": "positive",
+    "Combinations": 746496,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyygb",
+    "RollType": "positive",
+    "Combinations": 995328,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyygg",
+    "RollType": "positive",
+    "Combinations": 1327104,
+    "Result": ""
+  },
+  {
+    "Roll": "ggbbbbb",
+    "RollType": "positive",
+    "Combinations": 497664,
+    "Result": ""
+  },
+  {
+    "Roll": "gggbbbb",
+    "RollType": "positive",
+    "Combinations": 663552,
+    "Result": ""
+  },
+  {
+    "Roll": "ggggbbb",
+    "RollType": "positive",
+    "Combinations": 884736,
+    "Result": ""
+  },
+  {
+    "Roll": "gggggbb",
+    "RollType": "positive",
+    "Combinations": 1179648,
+    "Result": ""
+  },
+  {
+    "Roll": "ggggggb",
+    "RollType": "positive",
+    "Combinations": 1572864,
+    "Result": ""
+  },
+  {
+    "Roll": "ygbbbbb",
+    "RollType": "positive",
+    "Combinations": 746496,
+    "Result": ""
+  },
+  {
+    "Roll": "yggbbbb",
+    "RollType": "positive",
+    "Combinations": 995328,
+    "Result": ""
+  },
+  {
+    "Roll": "ygggbbb",
+    "RollType": "positive",
+    "Combinations": 1327104,
+    "Result": ""
+  },
+  {
+    "Roll": "yggggbb",
+    "RollType": "positive",
+    "Combinations": 1769472,
+    "Result": ""
+  },
+  {
+    "Roll": "ygggggb",
+    "RollType": "positive",
+    "Combinations": 2359296,
+    "Result": ""
+  },
+  {
+    "Roll": "yybbbbb",
+    "RollType": "positive",
+    "Combinations": 1119744,
+    "Result": ""
+  },
+  {
+    "Roll": "yygbbbb",
+    "RollType": "positive",
+    "Combinations": 1492992,
+    "Result": ""
+  },
+  {
+    "Roll": "yyggbbb",
+    "RollType": "positive",
+    "Combinations": 1990656,
+    "Result": ""
+  },
+  {
+    "Roll": "yygggbb",
+    "RollType": "positive",
+    "Combinations": 2654208,
+    "Result": ""
+  },
+  {
+    "Roll": "yyggggb",
+    "RollType": "positive",
+    "Combinations": 3538944,
+    "Result": ""
+  },
+  {
+    "Roll": "yyybbbb",
+    "RollType": "positive",
+    "Combinations": 2239488,
+    "Result": ""
+  },
+  {
+    "Roll": "yyygbbb",
+    "RollType": "positive",
+    "Combinations": 2985984,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyggbb",
+    "RollType": "positive",
+    "Combinations": 3981312,
+    "Result": ""
+  },
+  {
+    "Roll": "yyygggb",
+    "RollType": "positive",
+    "Combinations": 5308416,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyybbb",
+    "RollType": "positive",
+    "Combinations": 4478976,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyygbb",
+    "RollType": "positive",
+    "Combinations": 5971968,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyyggb",
+    "RollType": "positive",
+    "Combinations": 7962624,
+    "Result": ""
+  },
+  {
+    "Roll": "gggbbbbb",
+    "RollType": "positive",
+    "Combinations": 3981312,
+    "Result": ""
+  },
+  {
+    "Roll": "ggggbbbb",
+    "RollType": "positive",
+    "Combinations": 5308416,
+    "Result": ""
+  },
+  {
+    "Roll": "gggggbbb",
+    "RollType": "positive",
+    "Combinations": 7077888,
+    "Result": ""
+  },
+  {
+    "Roll": "ggggggbb",
+    "RollType": "positive",
+    "Combinations": 9437184,
+    "Result": ""
+  },
+  {
+    "Roll": "yggbbbbb",
+    "RollType": "positive",
+    "Combinations": 5971968,
+    "Result": ""
+  },
+  {
+    "Roll": "ygggbbbb",
+    "RollType": "positive",
+    "Combinations": 7962624,
+    "Result": ""
+  },
+  {
+    "Roll": "yggggbbb",
+    "RollType": "positive",
+    "Combinations": 10616832,
+    "Result": ""
+  },
+  {
+    "Roll": "ygggggbb",
+    "RollType": "positive",
+    "Combinations": 14155776,
+    "Result": ""
+  },
+  {
+    "Roll": "yygbbbbb",
+    "RollType": "positive",
+    "Combinations": 8957952,
+    "Result": ""
+  },
+  {
+    "Roll": "yyggbbbb",
+    "RollType": "positive",
+    "Combinations": 11943936,
+    "Result": ""
+  },
+  {
+    "Roll": "yygggbbb",
+    "RollType": "positive",
+    "Combinations": 15925248,
+    "Result": ""
+  },
+  {
+    "Roll": "yyggggbb",
+    "RollType": "positive",
+    "Combinations": 21233664,
+    "Result": ""
+  },
+  {
+    "Roll": "yyybbbbb",
+    "RollType": "positive",
+    "Combinations": 13436928,
+    "Result": ""
+  },
+  {
+    "Roll": "yyygbbbb",
+    "RollType": "positive",
+    "Combinations": 17915904,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyggbbb",
+    "RollType": "positive",
+    "Combinations": 23887872,
+    "Result": ""
+  },
+  {
+    "Roll": "yyygggbb",
+    "RollType": "positive",
+    "Combinations": 31850496,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyybbbb",
+    "RollType": "positive",
+    "Combinations": 26873856,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyygbbb",
+    "RollType": "positive",
+    "Combinations": 35831808,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyyggbb",
+    "RollType": "positive",
+    "Combinations": 47775744,
+    "Result": ""
+  },
+  {
+    "Roll": "ggggbbbbb",
+    "RollType": "positive",
+    "Combinations": 31850496,
+    "Result": ""
+  },
+  {
+    "Roll": "gggggbbbb",
+    "RollType": "positive",
+    "Combinations": 42467328,
+    "Result": ""
+  },
+  {
+    "Roll": "ggggggbbb",
+    "RollType": "positive",
+    "Combinations": 56623104,
+    "Result": ""
+  },
+  {
+    "Roll": "ygggbbbbb",
+    "RollType": "positive",
+    "Combinations": 47775744,
+    "Result": ""
+  },
+  {
+    "Roll": "yggggbbbb",
+    "RollType": "positive",
+    "Combinations": 63700992,
+    "Result": ""
+  },
+  {
+    "Roll": "ygggggbbb",
+    "RollType": "positive",
+    "Combinations": 84934656,
+    "Result": ""
+  },
+  {
+    "Roll": "yyggbbbbb",
+    "RollType": "positive",
+    "Combinations": 71663616,
+    "Result": ""
+  },
+  {
+    "Roll": "yygggbbbb",
+    "RollType": "positive",
+    "Combinations": 95551488,
+    "Result": ""
+  },
+  {
+    "Roll": "yyggggbbb",
+    "RollType": "positive",
+    "Combinations": 127401984,
+    "Result": ""
+  },
+  {
+    "Roll": "yyygbbbbb",
+    "RollType": "positive",
+    "Combinations": 107495424,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyggbbbb",
+    "RollType": "positive",
+    "Combinations": 143327232,
+    "Result": ""
+  },
+  {
+    "Roll": "yyygggbbb",
+    "RollType": "positive",
+    "Combinations": 191102976,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyybbbbb",
+    "RollType": "positive",
+    "Combinations": 161243136,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyygbbbb",
+    "RollType": "positive",
+    "Combinations": 214990848,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyyggbbb",
+    "RollType": "positive",
+    "Combinations": 286654464,
+    "Result": ""
+  },
+  {
+    "Roll": "gggggbbbbb",
+    "RollType": "positive",
+    "Combinations": 254803968,
+    "Result": ""
+  },
+  {
+    "Roll": "ggggggbbbb",
+    "RollType": "positive",
+    "Combinations": 339738624,
+    "Result": ""
+  },
+  {
+    "Roll": "yggggbbbbb",
+    "RollType": "positive",
+    "Combinations": 382205952,
+    "Result": ""
+  },
+  {
+    "Roll": "ygggggbbbb",
+    "RollType": "positive",
+    "Combinations": 509607936,
+    "Result": ""
+  },
+  {
+    "Roll": "yygggbbbbb",
+    "RollType": "positive",
+    "Combinations": 573308928,
+    "Result": ""
+  },
+  {
+    "Roll": "yyggggbbbb",
+    "RollType": "positive",
+    "Combinations": 764411904,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyggbbbbb",
+    "RollType": "positive",
+    "Combinations": 859963392,
+    "Result": ""
+  },
+  {
+    "Roll": "yyygggbbbb",
+    "RollType": "positive",
+    "Combinations": 1146617856,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyygbbbbb",
+    "RollType": "positive",
+    "Combinations": 1289945088,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyyggbbbb",
+    "RollType": "positive",
+    "Combinations": 1719926784,
+    "Result": ""
+  },
+  {
+    "Roll": "ggggggbbbbb",
+    "RollType": "positive",
+    "Combinations": 2038431744,
+    "Result": ""
+  },
+  {
+    "Roll": "ygggggbbbbb",
+    "RollType": "positive",
+    "Combinations": 3057647616,
+    "Result": ""
+  },
+  {
+    "Roll": "yyggggbbbbb",
+    "RollType": "positive",
+    "Combinations": 4586471424,
+    "Result": ""
+  },
+  {
+    "Roll": "yyygggbbbbb",
+    "RollType": "positive",
+    "Combinations": 6879707136,
+    "Result": ""
+  },
+  {
+    "Roll": "yyyyggbbbbb",
+    "RollType": "positive",
+    "Combinations": 10319560704,
+    "Result": ""
+  },
+  {
+    "Roll": "p",
+    "RollType": "negative",
+    "Combinations": 8,
+    "Result": ""
+  },
+  {
+    "Roll": "r",
+    "RollType": "negative",
+    "Combinations": 12,
+    "Result": ""
+  },
+  {
+    "Roll": "pk",
+    "RollType": "negative",
+    "Combinations": 48,
+    "Result": ""
+  },
+  {
+    "Roll": "pp",
+    "RollType": "negative",
+    "Combinations": 64,
+    "Result": ""
+  },
+  {
+    "Roll": "rk",
+    "RollType": "negative",
+    "Combinations": 72,
+    "Result": ""
+  },
+  {
+    "Roll": "rp",
+    "RollType": "negative",
+    "Combinations": 96,
+    "Result": ""
+  },
+  {
+    "Roll": "rr",
+    "RollType": "negative",
+    "Combinations": 144,
+    "Result": ""
+  },
+  {
+    "Roll": "pkk",
+    "RollType": "negative",
+    "Combinations": 288,
+    "Result": ""
+  },
+  {
+    "Roll": "ppk",
+    "RollType": "negative",
+    "Combinations": 384,
+    "Result": ""
+  },
+  {
+    "Roll": "ppp",
+    "RollType": "negative",
+    "Combinations": 512,
+    "Result": ""
+  },
+  {
+    "Roll": "rkk",
+    "RollType": "negative",
+    "Combinations": 432,
+    "Result": ""
+  },
+  {
+    "Roll": "rpk",
+    "RollType": "negative",
+    "Combinations": 576,
+    "Result": ""
+  },
+  {
+    "Roll": "rpp",
+    "RollType": "negative",
+    "Combinations": 768,
+    "Result": ""
+  },
+  {
+    "Roll": "rrk",
+    "RollType": "negative",
+    "Combinations": 864,
+    "Result": ""
+  },
+  {
+    "Roll": "rrp",
+    "RollType": "negative",
+    "Combinations": 1152,
+    "Result": ""
+  },
+  {
+    "Roll": "rrr",
+    "RollType": "negative",
+    "Combinations": 1728,
+    "Result": ""
+  },
+  {
+    "Roll": "pkkk",
+    "RollType": "negative",
+    "Combinations": 1728,
+    "Result": ""
+  },
+  {
+    "Roll": "ppkk",
+    "RollType": "negative",
+    "Combinations": 2304,
+    "Result": ""
+  },
+  {
+    "Roll": "pppk",
+    "RollType": "negative",
+    "Combinations": 3072,
+    "Result": ""
+  },
+  {
+    "Roll": "pppp",
+    "RollType": "negative",
+    "Combinations": 4096,
+    "Result": ""
+  },
+  {
+    "Roll": "rkkk",
+    "RollType": "negative",
+    "Combinations": 2592,
+    "Result": ""
+  },
+  {
+    "Roll": "rpkk",
+    "RollType": "negative",
+    "Combinations": 3456,
+    "Result": ""
+  },
+  {
+    "Roll": "rppk",
+    "RollType": "negative",
+    "Combinations": 4608,
+    "Result": ""
+  },
+  {
+    "Roll": "rppp",
+    "RollType": "negative",
+    "Combinations": 6144,
+    "Result": ""
+  },
+  {
+    "Roll": "rrkk",
+    "RollType": "negative",
+    "Combinations": 5184,
+    "Result": ""
+  },
+  {
+    "Roll": "rrpk",
+    "RollType": "negative",
+    "Combinations": 6912,
+    "Result": ""
+  },
+  {
+    "Roll": "rrpp",
+    "RollType": "negative",
+    "Combinations": 9216,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrk",
+    "RollType": "negative",
+    "Combinations": 10368,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrp",
+    "RollType": "negative",
+    "Combinations": 13824,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrr",
+    "RollType": "negative",
+    "Combinations": 20736,
+    "Result": ""
+  },
+  {
+    "Roll": "pkkkk",
+    "RollType": "negative",
+    "Combinations": 10368,
+    "Result": ""
+  },
+  {
+    "Roll": "ppkkk",
+    "RollType": "negative",
+    "Combinations": 13824,
+    "Result": ""
+  },
+  {
+    "Roll": "pppkk",
+    "RollType": "negative",
+    "Combinations": 18432,
+    "Result": ""
+  },
+  {
+    "Roll": "ppppk",
+    "RollType": "negative",
+    "Combinations": 24576,
+    "Result": ""
+  },
+  {
+    "Roll": "ppppp",
+    "RollType": "negative",
+    "Combinations": 32768,
+    "Result": ""
+  },
+  {
+    "Roll": "rkkkk",
+    "RollType": "negative",
+    "Combinations": 15552,
+    "Result": ""
+  },
+  {
+    "Roll": "rpkkk",
+    "RollType": "negative",
+    "Combinations": 20736,
+    "Result": ""
+  },
+  {
+    "Roll": "rppkk",
+    "RollType": "negative",
+    "Combinations": 27648,
+    "Result": ""
+  },
+  {
+    "Roll": "rpppk",
+    "RollType": "negative",
+    "Combinations": 36864,
+    "Result": ""
+  },
+  {
+    "Roll": "rpppp",
+    "RollType": "negative",
+    "Combinations": 49152,
+    "Result": ""
+  },
+  {
+    "Roll": "rrkkk",
+    "RollType": "negative",
+    "Combinations": 31104,
+    "Result": ""
+  },
+  {
+    "Roll": "rrpkk",
+    "RollType": "negative",
+    "Combinations": 41472,
+    "Result": ""
+  },
+  {
+    "Roll": "rrppk",
+    "RollType": "negative",
+    "Combinations": 55296,
+    "Result": ""
+  },
+  {
+    "Roll": "rrppp",
+    "RollType": "negative",
+    "Combinations": 73728,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrkk",
+    "RollType": "negative",
+    "Combinations": 62208,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrpk",
+    "RollType": "negative",
+    "Combinations": 82944,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrpp",
+    "RollType": "negative",
+    "Combinations": 110592,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrrk",
+    "RollType": "negative",
+    "Combinations": 124416,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrrp",
+    "RollType": "negative",
+    "Combinations": 165888,
+    "Result": ""
+  },
+  {
+    "Roll": "pkkkkk",
+    "RollType": "negative",
+    "Combinations": 62208,
+    "Result": ""
+  },
+  {
+    "Roll": "ppkkkk",
+    "RollType": "negative",
+    "Combinations": 82944,
+    "Result": ""
+  },
+  {
+    "Roll": "pppkkk",
+    "RollType": "negative",
+    "Combinations": 110592,
+    "Result": ""
+  },
+  {
+    "Roll": "ppppkk",
+    "RollType": "negative",
+    "Combinations": 147456,
+    "Result": ""
+  },
+  {
+    "Roll": "pppppk",
+    "RollType": "negative",
+    "Combinations": 196608,
+    "Result": ""
+  },
+  {
+    "Roll": "rkkkkk",
+    "RollType": "negative",
+    "Combinations": 93312,
+    "Result": ""
+  },
+  {
+    "Roll": "rpkkkk",
+    "RollType": "negative",
+    "Combinations": 124416,
+    "Result": ""
+  },
+  {
+    "Roll": "rppkkk",
+    "RollType": "negative",
+    "Combinations": 165888,
+    "Result": ""
+  },
+  {
+    "Roll": "rpppkk",
+    "RollType": "negative",
+    "Combinations": 221184,
+    "Result": ""
+  },
+  {
+    "Roll": "rppppk",
+    "RollType": "negative",
+    "Combinations": 294912,
+    "Result": ""
+  },
+  {
+    "Roll": "rrkkkk",
+    "RollType": "negative",
+    "Combinations": 186624,
+    "Result": ""
+  },
+  {
+    "Roll": "rrpkkk",
+    "RollType": "negative",
+    "Combinations": 248832,
+    "Result": ""
+  },
+  {
+    "Roll": "rrppkk",
+    "RollType": "negative",
+    "Combinations": 331776,
+    "Result": ""
+  },
+  {
+    "Roll": "rrpppk",
+    "RollType": "negative",
+    "Combinations": 442368,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrkkk",
+    "RollType": "negative",
+    "Combinations": 373248,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrpkk",
+    "RollType": "negative",
+    "Combinations": 497664,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrppk",
+    "RollType": "negative",
+    "Combinations": 663552,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrrkk",
+    "RollType": "negative",
+    "Combinations": 746496,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrrpk",
+    "RollType": "negative",
+    "Combinations": 995328,
+    "Result": ""
+  },
+  {
+    "Roll": "ppkkkkk",
+    "RollType": "negative",
+    "Combinations": 497664,
+    "Result": ""
+  },
+  {
+    "Roll": "pppkkkk",
+    "RollType": "negative",
+    "Combinations": 663552,
+    "Result": ""
+  },
+  {
+    "Roll": "ppppkkk",
+    "RollType": "negative",
+    "Combinations": 884736,
+    "Result": ""
+  },
+  {
+    "Roll": "pppppkk",
+    "RollType": "negative",
+    "Combinations": 1179648,
+    "Result": ""
+  },
+  {
+    "Roll": "rpkkkkk",
+    "RollType": "negative",
+    "Combinations": 746496,
+    "Result": ""
+  },
+  {
+    "Roll": "rppkkkk",
+    "RollType": "negative",
+    "Combinations": 995328,
+    "Result": ""
+  },
+  {
+    "Roll": "rpppkkk",
+    "RollType": "negative",
+    "Combinations": 1327104,
+    "Result": ""
+  },
+  {
+    "Roll": "rppppkk",
+    "RollType": "negative",
+    "Combinations": 1769472,
+    "Result": ""
+  },
+  {
+    "Roll": "rrkkkkk",
+    "RollType": "negative",
+    "Combinations": 1119744,
+    "Result": ""
+  },
+  {
+    "Roll": "rrpkkkk",
+    "RollType": "negative",
+    "Combinations": 1492992,
+    "Result": ""
+  },
+  {
+    "Roll": "rrppkkk",
+    "RollType": "negative",
+    "Combinations": 1990656,
+    "Result": ""
+  },
+  {
+    "Roll": "rrpppkk",
+    "RollType": "negative",
+    "Combinations": 2654208,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrkkkk",
+    "RollType": "negative",
+    "Combinations": 2239488,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrpkkk",
+    "RollType": "negative",
+    "Combinations": 2985984,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrppkk",
+    "RollType": "negative",
+    "Combinations": 3981312,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrrkkk",
+    "RollType": "negative",
+    "Combinations": 4478976,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrrpkk",
+    "RollType": "negative",
+    "Combinations": 5971968,
+    "Result": ""
+  },
+  {
+    "Roll": "pppkkkkk",
+    "RollType": "negative",
+    "Combinations": 3981312,
+    "Result": ""
+  },
+  {
+    "Roll": "ppppkkkk",
+    "RollType": "negative",
+    "Combinations": 5308416,
+    "Result": ""
+  },
+  {
+    "Roll": "pppppkkk",
+    "RollType": "negative",
+    "Combinations": 7077888,
+    "Result": ""
+  },
+  {
+    "Roll": "rppkkkkk",
+    "RollType": "negative",
+    "Combinations": 5971968,
+    "Result": ""
+  },
+  {
+    "Roll": "rpppkkkk",
+    "RollType": "negative",
+    "Combinations": 7962624,
+    "Result": ""
+  },
+  {
+    "Roll": "rppppkkk",
+    "RollType": "negative",
+    "Combinations": 10616832,
+    "Result": ""
+  },
+  {
+    "Roll": "rrpkkkkk",
+    "RollType": "negative",
+    "Combinations": 8957952,
+    "Result": ""
+  },
+  {
+    "Roll": "rrppkkkk",
+    "RollType": "negative",
+    "Combinations": 11943936,
+    "Result": ""
+  },
+  {
+    "Roll": "rrpppkkk",
+    "RollType": "negative",
+    "Combinations": 15925248,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrkkkkk",
+    "RollType": "negative",
+    "Combinations": 13436928,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrpkkkk",
+    "RollType": "negative",
+    "Combinations": 17915904,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrppkkk",
+    "RollType": "negative",
+    "Combinations": 23887872,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrrkkkk",
+    "RollType": "negative",
+    "Combinations": 26873856,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrrpkkk",
+    "RollType": "negative",
+    "Combinations": 35831808,
+    "Result": ""
+  },
+  {
+    "Roll": "ppppkkkkk",
+    "RollType": "negative",
+    "Combinations": 31850496,
+    "Result": ""
+  },
+  {
+    "Roll": "pppppkkkk",
+    "RollType": "negative",
+    "Combinations": 42467328,
+    "Result": ""
+  },
+  {
+    "Roll": "rpppkkkkk",
+    "RollType": "negative",
+    "Combinations": 47775744,
+    "Result": ""
+  },
+  {
+    "Roll": "rppppkkkk",
+    "RollType": "negative",
+    "Combinations": 63700992,
+    "Result": ""
+  },
+  {
+    "Roll": "rrppkkkkk",
+    "RollType": "negative",
+    "Combinations": 71663616,
+    "Result": ""
+  },
+  {
+    "Roll": "rrpppkkkk",
+    "RollType": "negative",
+    "Combinations": 95551488,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrpkkkkk",
+    "RollType": "negative",
+    "Combinations": 107495424,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrppkkkk",
+    "RollType": "negative",
+    "Combinations": 143327232,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrrkkkkk",
+    "RollType": "negative",
+    "Combinations": 161243136,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrrpkkkk",
+    "RollType": "negative",
+    "Combinations": 214990848,
+    "Result": ""
+  },
+  {
+    "Roll": "pppppkkkkk",
+    "RollType": "negative",
+    "Combinations": 254803968,
+    "Result": ""
+  },
+  {
+    "Roll": "rppppkkkkk",
+    "RollType": "negative",
+    "Combinations": 382205952,
+    "Result": ""
+  },
+  {
+    "Roll": "rrpppkkkkk",
+    "RollType": "negative",
+    "Combinations": 573308928,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrppkkkkk",
+    "RollType": "negative",
+    "Combinations": 859963392,
+    "Result": ""
+  },
+  {
+    "Roll": "rrrrpkkkkk",
+    "RollType": "negative",
+    "Combinations": 1289945088,
+    "Result": ""
+  }
+]
