@@ -22,6 +22,7 @@ class App extends React.Component {
       rolledDice: '',
       posDice: '',
       negDice: '',
+      forceDice: '',
       posRes: [],
       negRes: [],
       forceArray: [],
@@ -49,6 +50,7 @@ class App extends React.Component {
       rolledDice: '',
       posDice: '',
       negDice: '',
+      forceDice: '',
       posRes: [],
       negRes: [],
       forceArray: [],
@@ -56,11 +58,8 @@ class App extends React.Component {
     });
   }
 
-  handleRollClick(event) {
+  handleRollClick() {
     // Validate length to ensure there is at least 1 die to roll
-    let sucPct = '--.--';
-    let advPct = '--.--';
-    let oddsPct = '--.--';
     let errors = [];
 
     if(validLength(this.state.diceInputValue,1,24)) {
@@ -90,6 +89,7 @@ class App extends React.Component {
         rolledDice: this.state.diceInputValue,
         posDice: posDice,
         negDice: negDice,
+        forceDice: forceDice,
         posRes: posRes,
         negRes: negRes,
         forceArray: forceArray,
@@ -105,6 +105,7 @@ class App extends React.Component {
         rolledDice: '',
         posDice: '',
         negDice: '',
+        forceDice: '',
         posRes: [],
         negRes: [],
         forceArray: [],
@@ -119,9 +120,7 @@ class App extends React.Component {
       <div className="App">
 
         <Header style={this.state.style} />
-
         <p className='input-errors'>{this.state.errors.map((error,index) => (<span key={index} className="alert alert-danger">{error}</span>))}</p>
-
         <DiceInput
           value={this.state.diceInputValue}
           diceInputChange={this.handleDiceInput}
@@ -140,12 +139,12 @@ class App extends React.Component {
             rolledDice={this.state.rolledDice}
             posDice={this.state.posDice}
             negDice={this.state.negDice}
+            forceDice={this.state.forceDice}
             posRes={this.state.posRes}
             negRes={this.state.negRes}
             forceArray={this.state.forceArray} />
 
         </div>
-        
       </div>
     );
   }
