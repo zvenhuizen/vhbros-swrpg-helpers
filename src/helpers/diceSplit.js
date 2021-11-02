@@ -43,5 +43,14 @@ export default function getDiceSplit(dice,typeOf) {
         };
     };
 
+    //iterate through force next in order to get ordering correct
+    for (i = 0; i < diceArray.length; i++) {
+        if(typeOf === 'force') {
+            if(diceArray[i] === 'w') {
+                result.push(diceArray[i]);
+            };
+        };
+    };
+
     return result
 };
