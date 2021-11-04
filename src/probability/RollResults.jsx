@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Result from './Result';
-import firebaseDB from '../firebase';
-import { forceCombos } from './Combos';
+import firebaseDB from '../firebase.js';
+import { forceCombos } from '../helpers/Combos';
 
 const RollResults = (props) => {
 

@@ -2,13 +2,11 @@ import React from 'react';
 import Header from './Header';
 import RollResults from '../probability/RollResults';
 import DiceResults from '../probability/DiceResults';
-import OddsResults from '../probability/OddsResults';
 import DiceInput from '../probability/DiceInput';
 import cancelResults from '../helpers/cancelResults';
 import rollDice from '../helpers/rollDice';
 import calculateSuccessProb from '../helpers/calculateSuccessProbability';
 import successOdds from '../probability/SuccessOdds';
-import rollOdds from '../probability/rollOdds';
 import {validLength} from '../helpers/validateInput'
 import getDiceSplit from '../helpers/diceSplit';
 
