@@ -8,7 +8,7 @@ import rollDice from '../helpers/rollDice';
 import calculateSuccessProb from '../helpers/calculateSuccessProbability';
 import successOdds from '../probability/SuccessOdds';
 import {validLength} from '../helpers/validateInput'
-import getDiceSplit from '../helpers/diceSplit';
+import GetOdds from '../probability/getOdds';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,13 +18,8 @@ class App extends React.Component {
       diceResult: [],
       rollResult: [],
       rolledDice: '',
-      posDice: '',
-      negDice: '',
-      forceDice: '',
-      posRes: [],
-      negRes: [],
-      forceArray: [],
       successOdds: '--.--',
+      finalOdds: '--.--',
       errors: []
     }
 
@@ -46,13 +41,8 @@ class App extends React.Component {
       rollResult: [],
       errors: [],
       rolledDice: '',
-      posDice: '',
-      negDice: '',
-      forceDice: '',
-      posRes: [],
-      negRes: [],
-      forceArray: [],
-      successOdds: sucPct
+      successOdds: sucPct,
+      finalOdds: '--.--'
     });
   }
 
@@ -63,34 +53,12 @@ class App extends React.Component {
     if(validLength(this.state.diceInputValue,1,24)) {
       const diceResult = rollDice(this.state.diceInputValue);
       const rollResult = cancelResults(diceResult);
-      const posDice = getDiceSplit(this.state.diceInputValue,'positive');
-      const negDice = getDiceSplit(this.state.diceInputValue,'negative');
-      const forceDice = getDiceSplit(this.state.diceInputValue,'force');
+      const finalOdds = GetOdds(this.state.diceInputValue,diceResult)
 
-      var suc = (this.state.diceInputValue.match(/s/g) || []).length;
-      var adv = (this.state.diceInputValue.match(/a/g) || []).length;
-      var tri = (this.state.diceInputValue.match(/t/g) || []).length;
-      var fai = (this.state.diceInputValue.match(/f/g) || []).length;
-      var thr = (this.state.diceInputValue.match(/o/g) || []).length;
-      var des = (this.state.diceInputValue.match(/d/g) || []).length;
-      var lsp = (this.state.diceInputValue.match(/l/g) || []).length;
-      var dsp = (this.state.diceInputValue.match(/n/g) || []).length;
-
-      const queryResults = getResultArrays(diceResult,suc,adv,tri,fai,thr,des,lsp,dsp);
-      const posRes = queryResults[0];
-      const negRes = queryResults[2];
-      const forceArray = [lsp,dsp];
-    
       this.setState({
         diceResult: diceResult,
         rollResult: rollResult,
-        rolledDice: this.state.diceInputValue,
-        posDice: posDice,
-        negDice: negDice,
-        forceDice: forceDice,
-        posRes: posRes,
-        negRes: negRes,
-        forceArray: forceArray,
+        finalOdds: finalOdds,
         diceInputValue: '',
       })
     } else {
@@ -98,15 +66,11 @@ class App extends React.Component {
       
       this.setState({
         successOdds: '--.--',
+        finalOdds: '--.--',
         diceResult: [],
         rollResult: [],
         rolledDice: '',
-        posDice: '',
-        negDice: '',
-        forceDice: '',
-        posRes: [],
-        negRes: [],
-        forceArray: [],
+        diceInputValue: '',
         errors: errors
       })
     }
@@ -133,14 +97,9 @@ class App extends React.Component {
             dice={this.state.diceInputValue}
             successChance={this.state.successOdds} />
           <RollResults
+            finalOdds={this.state.finalOdds}
             results={this.state.rollResult}
-            rolledDice={this.state.rolledDice}
-            posDice={this.state.posDice}
-            negDice={this.state.negDice}
-            forceDice={this.state.forceDice}
-            posRes={this.state.posRes}
-            negRes={this.state.negRes}
-            forceArray={this.state.forceArray} />
+            rolledDice={this.state.rolledDice} />
 
         </div>
       </div>
