@@ -1,13 +1,14 @@
-import {useState} from 'react';
-import { getResultArrays } from "../helpers/calculateFullProbability";
-import getDiceSplit from "../helpers/diceSplit";
-import firebaseDb from '../firebase.js';
-import {ref,
-    get,
-    query} from 'firebase/database';
-import { forceCombos } from '../helpers/Combos';
+import { getResultArrays }  from "../helpers/calculateFullProbability";
+import getDiceSplit         from "../helpers/diceSplit";
+import firebaseDb           from '../firebase.js';
+import { ref,
+        get,
+        query,
+        equalTo,
+        orderByChild }      from 'firebase/database';
+import { forceCombos }      from '../helpers/Combos';
 
-const GetOdds = (roll, result) => {
+export default function GetOdds(roll, result) {
 
     let rolledDice = roll
     let diceResult = result
@@ -27,33 +28,57 @@ const GetOdds = (roll, result) => {
 
     const resultArray = getResultArrays(diceResult,suc,adv,tri,fai,thr,des,lsp,dsp);
     const posResult = resultArray[0];
-    const negResult = resultArray[2];
+    const negResult = resultArray[1];
     const forceArray = [lsp,dsp];
 
-    //setting state for my roll & results objects
-    var [rollObjects,setRollObjects] = useState({
+    /*setting state for my roll & results objects
+    const [rollObjects,setRollObjects] = useState({
         Roll: '',
-        Type: '',
+        RollType: '',
         Combinations: null,
         Result: null
     })
-    var [resultsObjects,setResultsObjects] = useState({
+    const [resultsObjects,setResultsObjects] = useState({
         Result: []
-    })
-
+    })*/
     //query firebase =>returning roll & results objects and storing them in the state objects above
-    get(query(ref(firebaseDb,'rolls')), (snapshot) => {
-        setRollObjects({
-            ...snapshot.exportVal()
-        })
+    const rolls = get(query(ref(firebaseDb,'rolls'), orderByChild('Roll'), equalTo(posRoll.toString())), snapshot => {
+        const queryResult = snapshot.Val().Result
+        console.log(queryResult)
     })
-    get(query(ref(firebaseDb,'results')), (snapshot) => {
-        setResultsObjects({
-            ...snapshot.exportVal()
-        })
+    
+    const results = get(query(ref(firebaseDb,'results'), equalTo(posResult.toString())), (snapshot) => {
+        return{
+            ...snapshot.Val()
+        }
     })
 
-    //convert objects to arrays
+    console.log(resultArray)
+    console.log(posResult, negResult)
+    console.log(forceArray)
+    console.log(rolls)
+    console.log(results)
+
+    let posArray = [];
+    let negArray = [];
+    let posCombos = 1;
+    let negCombos = 1;
+
+    const filteredPosRoll = rolls.filter(roll => roll.Roll === posRoll)
+    const filteredNegRoll = rolls.filter(roll => roll.Roll === negRoll)
+    let posRes  = filteredPosRoll.Result
+    posArray    = posRes.split(',');
+    posCombos   = filteredPosRoll.Combinations
+    let negRes  = filteredNegRoll.Result
+    negArray    = negRes.split(',');
+    negCombos   = filteredNegRoll.Combinations
+
+    const filteredPosResult = results.filter(result => result.Result === posResult)
+    const filteredNegResult = results.filter(result => result.Result === negResult)
+    let posIndex = filteredPosResult.index
+    let negIndex = filteredNegResult.index
+
+    /*convert objects to arrays
     const rollArray = Object.keys(rollObjects).map((key, index) => {
         const roll = rollObjects[key];
         return roll;
@@ -64,11 +89,6 @@ const GetOdds = (roll, result) => {
     });
     
     //iterate over array to find the current data for the positive and negative dice rolled
-    let posCombos = 1;
-    let negCombos = 1;
-    let posRes, negRes;
-    let posArray = [];
-    let negArray = [];
     for(var i; i < rollArray.length; i++) {
 
         //get positive dice info
@@ -97,7 +117,7 @@ const GetOdds = (roll, result) => {
         if(resultsArray[i].Roll === negResult) {
             negIndex = resultsArray[i].Result;
         };
-    }
+    }*/
 
     //get # of times the results rolled for pos and neg dice was possible
     let posProb, negProb;
@@ -128,5 +148,3 @@ const GetOdds = (roll, result) => {
 
     return finalResults
 }
-
-export default GetOdds
