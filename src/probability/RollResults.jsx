@@ -7,8 +7,16 @@ const RollResults = (props) => {
     return (
         <div className='roll-results' id='roll-results'>
 
-            <p className='result-header'>RESULTS <span className='successChance'>{props.finalOdds}% ODDS OF RESULT</span></p>
-            <div className='result'>{(props.rolledDice !== '' && results.length === 0) ? <span className='cancelled-result'>All Dice Have Cancelled</span> : results}</div>
+            <p className='result-header'>
+                RESULTS
+                <span className='successChance'>{props.finalOdds}% ODDS OF RESULT</span>
+            </p>
+            <div className='result'> {
+                (props.rolledDice !== '' && results.length === 0)
+                    ? <span className='cancelled-result'>All Dice Have Cancelled</span>
+                    : results
+                }
+            </div>
 
         </div>
     )
