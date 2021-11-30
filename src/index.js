@@ -3,22 +3,12 @@ import ReactDOM from 'react-dom';
 import './assets/styles/main.scss';
 import App from './app/App';
 import reportWebVitals from './helpers/reportWebVitals';
+import { getFirebaseConfig } from './firebase-config';
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore/lite';
+import { getFirestore } from 'firebase/firestore';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAIrETYx861kemsmmYGBNc_q8yamLZe8rw",
-  authDomain: "vhbros-swrpg-helpers.firebaseapp.com",
-  databaseURL: "https://vhbros-swrpg-helpers-default-rtdb.firebaseio.com",
-  projectId: "vhbros-swrpg-helpers",
-  storageBucket: "vhbros-swrpg-helpers.appspot.com",
-  messagingSenderId: "523300652788",
-  appId: "1:523300652788:web:1ee68b04304bb2eda600a1",
-  measurementId: "G-WMP88F67XW"
-};
-
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+const firebaseAppConfig = getFirebaseConfig();
+initializeApp(firebaseAppConfig);
 
 ReactDOM.render(
   <React.StrictMode>
