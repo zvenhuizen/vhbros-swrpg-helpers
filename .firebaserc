@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "vhbros-swrpg-helpers"
-  }
+    "default": "vhbros-swrpg-helpers",
+    "swrpg-helers": "vhbros-swrpg-helpers"
+  },
+  "targets": {}
 }
