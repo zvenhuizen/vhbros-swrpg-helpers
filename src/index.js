@@ -34,7 +34,7 @@ initializeApp(firebaseAppConfig);
 
 // THIS CODE MUST COME AFTER initializeApp IN ORDER TO WORK
 
-function loadRolls() { // loadRolls is an arbitrary name
+export function loadRolls() { // loadRolls is an arbitrary name
 
   // using imported functions from firestore
   // doc accesses a document (in our case a specific roll) and takes 3 parameters, the database (i.e. getFirestore() - could be replaced with a variable like db); the collection (i.e. rolls, but we could split it into posRolls and negRolls); and the document (in our case the dice)
