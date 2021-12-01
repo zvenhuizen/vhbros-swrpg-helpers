@@ -2,7 +2,7 @@ import React from 'react';
 import Result from './Result';
 
 const RollResults = (props) => {
-
+    console.log(props.results)
     const results = props.results.map((result,index) => <Result key={index} resultType='symbol' result={result} />)
     return (
         <div className='roll-results' id='roll-results'>
