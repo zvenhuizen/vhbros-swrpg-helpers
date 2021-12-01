@@ -52,7 +52,7 @@ class App extends React.Component {
 
     if(validLength(this.state.diceInputValue,1,24)) {
       const diceResult = rollDice(this.state.diceInputValue); //returns full, uncancelled result string (i.e. ssatf)
-      const rollResult = cancelResults(diceResult); //returns net results nested array (i.e. [ [1, s], [1, a] ] )
+      const rollResult = cancelResults(diceResult); //returns net results nested array (i.e. [[1, s], [1, a]] )
       const finalOdds = GetOdds(this.state.diceInputValue,diceResult)
     
       this.setState({
