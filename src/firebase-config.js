@@ -1,12 +1,12 @@
 const config = {
-    apiKey: "AIzaSyAIrETYx861kemsmmYGBNc_q8yamLZe8rw",
-    authDomain: "vhbros-swrpg-helpers.firebaseapp.com",
-    databaseURL: "https://vhbros-swrpg-helpers-default-rtdb.firebaseio.com",
-    projectId: "vhbros-swrpg-helpers",
-    storageBucket: "vhbros-swrpg-helpers.appspot.com",
-    messagingSenderId: "523300652788",
-    appId: "1:523300652788:web:1ee68b04304bb2eda600a1",
-    measurementId: "G-WMP88F6S7XW"
+    apiKey: process.env.REACT_APP_apiKey,
+    authDomain: process.env.REACT_APP_authDomain,
+    databaseURL: process.env.REACT_APP_databaseURL,
+    projectId: process.env.REACT_APP_projectId,
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId,
+    measurementId: process.env.REACT_APP_measurementId
 };
 
 export function getFirebaseConfig() {
