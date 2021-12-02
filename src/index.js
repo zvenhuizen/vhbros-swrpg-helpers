@@ -83,7 +83,7 @@ function getAllResults(dice) {
       if (!headTail) return head
     
       const combined = headTail.reduce((acc, x) => {
-        return acc.concat(head.map(h => `${h},${x}`))
+        return acc.concat(head.map(h => `${h};${x}`))
       }, [])
     
       return combine([combined, ...tailTail])
