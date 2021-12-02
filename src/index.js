@@ -69,6 +69,25 @@ let posDiceArray = [[[0,0,0,0],[1,0,0,0],[1,0,0,0],[0,1,0,0],[1,1,0,0],[1,1,0,0]
 let diceRolled = 0;
 let permutations = 1;
 
+let outputs = [];
+
+function permute(allDice, die=0, output=[0,0,0,0]){
+
+    allDice[die].forEach((result)=>{
+        if( die == allDice.length - 1 ){            
+            // Base case...
+            outputs.push( result.map((r,i) => r + output[i]) );
+            console.log(outputs);
+        }
+        else{
+            // Recursive case...
+            permute(allDice, die+1, result.map((r,i) => r + output[i]) );
+        }
+    });/*  forEach() */
+}
+
+permute(posDiceArray)
+
 function getAllResults(dice) {
 
     // calculate total permutations
