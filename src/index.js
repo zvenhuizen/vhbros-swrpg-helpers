@@ -131,11 +131,47 @@ function getAllResults(dice) {
       })
     })
 
+    //I'm sure this could be turned into a recursive solution
+    let summedArray = []
+    for(var i = 0; i < intArray.length; i++) {
+
+      let sumResult = [];
+      let tempArray = intArray[i];
+      if(intArray.length > 1) {
+        sumResult = tempArray.reduce((r, a) => a.map((b, y) => (r[y] || 0) + b), []) 
+      } else {
+        sumResult = intArray[0]; //if only one element in intArray, then result is that element
+      }
+      summedArray.push(sumResult)
+    }
+    
+    //sets an array of unique values in the summedArray.
+    let uniqueArray = summedArray.filter((val, ind, arr) => arr.indexOf(val) === ind);
+    console.log(uniqueArray)
+
+    //create roll object
+    let finalObject = {}
+
+    let perms = intArray.length
+    for(i = 0; i < uniqueArray.length; i++) {
+
+      //get values needed to create the Result object
+      let result = uniqueArray[i];
+      let count = summedArray.filter((v) => (v === uniqueArray[i])).length;
+      let odds = count / perms;
+
+      let obj = {'Result': result, 'Odds': odds}
+      finalObject[i] = obj
+    }
+
     console.log(result);
     console.log(resultArray);
     console.log(sumArray);
     console.log(intArray);
+    console.log(finalObject);
     console.log("In getAllResults");
+
+    return finalObject
 }
 
 getAllResults(posDiceArray);
