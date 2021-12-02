@@ -62,6 +62,43 @@ loadRolls();
 
 // ======================================== ACCESSING FIRESTORE! ====================================== //
 
+// ============================= RECURSIVE PRACTICE ============================= //
+let posDiceArray = [[[0,0,0,0],[1,0,0,0],[1,0,0,0],[0,1,0,0],[1,1,0,0],[1,1,0,0],[1,1,0,0],[2,0,0,0],[2,0,0,0],[0,2,0,0],[0,2,0,0],[1,0,1,0]], 
+[[0,0,0,0],[1,0,0,0],[1,0,0,0],[0,1,0,0],[0,1,0,0],[1,1,0,0],[2,0,0,0],[0,2,0,0]],
+[[0,0,0,0],[0,0,0,0],[1,0,0,0],[0,1,0,0],[1,1,0,0],[0,2,0,0]]];
+let diceRolled = 0;
+let permutations = 1;
+
+function getAllResults(dice) {
+
+    // calculate total permutations
+    for (let i = 0; i < dice.length; i++) {
+      permutations *= dice[i].length;
+    }
+    console.log(permutations);
+
+    let resultsArray = [];
+
+    const combine = ([head, ...[headTail, ...tailTail]]) => {
+      if (!headTail) return head
+    
+      const combined = headTail.reduce((acc, x) => {
+        return acc.concat(head.map(h => `${h},${x}`))
+      }, [])
+    
+      return combine([combined, ...tailTail])
+    }
+  
+    let result = combine(dice);
+
+    console.log(result);
+    console.log("In getAllResults");
+}
+
+getAllResults(posDiceArray);
+
+// ============================= RECURSIVE PRACTICE ============================= //
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
