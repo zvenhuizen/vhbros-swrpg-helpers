@@ -163,6 +163,33 @@ function getAllResults(dice) {
       }
       summedArray.push(sumResult)
     }
+
+    console.log(summedArray);
+
+    var dataSet = summedArray,
+    grouping = [],
+    counts,
+    keys,
+    current;
+
+counts = dataSet.reduce(function(acc, elem) {
+    var key = elem[0] + ":" + elem[1] + ":" + elem[2] + ":" + elem[3];
+    if (!acc.hasOwnProperty(key)) {
+        acc[key] = {elem: elem, count: 0}
+    }
+    acc[key].count += 1;
+    console.log(acc);
+    return acc;
+}, {});
+
+keys = Object.keys(counts);
+for (var i = 0, l = keys.length; i < l; i++) {
+    current = counts[keys[i]];
+    current.elem.push(current.count);
+    grouping.push(current.elem);
+}
+
+console.log(grouping);
     
     //sets an array of unique values in the summedArray.
     let uniqueArray = summedArray.filter((val, ind, arr) => arr.indexOf(val) === ind);
