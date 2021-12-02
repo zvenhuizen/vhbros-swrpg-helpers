@@ -42,14 +42,14 @@ export function loadRolls() { // loadRolls is an arbitrary name
 
   // I don't fully understand onSnapshot or the function(snapshot), but I think its basically saying figure out what the db looks like when this runs and just use that instead of reading any live changes of the db...
   onSnapshot(sampleRollQuery, function(snapshot) {
-    console.log(`TOTAL OUTCOMES FOR A BLUE DIE: ${Object.keys(snapshot.data()).length}`) // I just wanted to make sure I was reading the full object of the blue die that had the five possible results.
+    //console.log(`TOTAL OUTCOMES FOR A BLUE DIE: ${Object.keys(snapshot.data()).length}`) // I just wanted to make sure I was reading the full object of the blue die that had the five possible results.
     // just using count for display purposes
     let count = 1;
 
     // this is how you loop over an object result is the name of the keys of your object, but could just as well be named anything, and snapshot.data() is how you actually access the data on the document and is the full object -> should be stored in a variable typically
     for (const result in snapshot.data()) {
       // here I am just operating on the Object, accessing the information stored at the specific key we are mapping.
-      console.log(`RESULT ${count}: ${snapshot.data()[result].result} | ODDS: ${snapshot.data()[result].odds * 100}%`);
+      //console.log(`RESULT ${count}: ${snapshot.data()[result].result} | ODDS: ${snapshot.data()[result].odds * 100}%`);
       // incrementing count for display purposes.
       count += 1;
     }
@@ -81,17 +81,60 @@ function getAllResults(dice) {
 
     const combine = ([head, ...[headTail, ...tailTail]]) => {
       if (!headTail) return head
-    
+      
+      // const combined = headTail.reduce((pv, cv) => {
+      //   console.log(pv);
+      //   console.log(cv);
+      //   return pv.map((x,i) => x + cv[i]);
+      // })
       const combined = headTail.reduce((acc, x) => {
         return acc.concat(head.map(h => `${h};${x}`))
       }, [])
+
+      // const combined = headTail.map((x) => {
+      //   return x.map((y,i) => {
+      //     return head.map((h) => {
+      //       console.log(`Y: ${y}`);
+      //       console.log(`H: ${h}`);
+      //       return y + h[1];
+      //     });
+      //   });
+        // console.log(`HEADTAIL: ${x}`)
+        // console.log(`HEAD: ${head}`)
+        // console.log(x);
+        // head.map((h) => {
+        //   console.log(h);
+        //   console.log(x);
+        // });
+      //});
     
       return combine([combined, ...tailTail])
     }
   
     let result = combine(dice);
+    
+    let resultArray = [];
+    result.forEach(res => resultArray.push(res.split(';')));
+
+    let sumArray = [];
+    resultArray.map(res => {
+      let tempArray = []
+      res.forEach(num => tempArray.push(num.split(',')));
+      sumArray.push(tempArray);
+    })
+
+    let intArray = sumArray.map(r => {
+      return r.map(s => {
+        return s.map(n => {
+          return parseInt(n,10);
+        })
+      })
+    })
 
     console.log(result);
+    console.log(resultArray);
+    console.log(sumArray);
+    console.log(intArray);
     console.log("In getAllResults");
 }
 
