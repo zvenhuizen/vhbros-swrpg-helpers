@@ -8,7 +8,7 @@ import rollDice from '../helpers/rollDice';
 import calculateSuccessProb from '../helpers/calculateSuccessProbability';
 import successOdds from '../probability/SuccessOdds';
 import {validLength} from '../helpers/validateInput'
-import GetOdds from '../probability/getOdds';
+import getOdds from '../probability/getOdds';
 import getDiceSplit from '../helpers/diceSplit';
 
 class App extends React.Component {
@@ -55,7 +55,7 @@ class App extends React.Component {
       const diceResult = rollDice(this.state.diceInputValue); //returns full, uncancelled result string (i.e. ssatf)
       const rollResult = cancelResults(diceResult); //returns net results nested array (i.e. [[1, s], [1, a]] )
       const splitDice = getDiceSplit(this.state.diceInputValue); //returns array of diceSplit by type ([posDice, negDice, forceDice, nonDice])
-      const finalOdds = GetOdds(this.state.diceInputValue,diceResult)
+      const finalOdds = getOdds(this.state.diceInputValue,diceResult)
     
       this.setState({
         diceResult: diceResult,
