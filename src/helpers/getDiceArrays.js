@@ -1,4 +1,4 @@
-import { diceCombos } from './Combos';
+import { diceCombos } from './combos';
 import getDiceSplit from './diceSplit'
 
 export default function DiceArrays(dice) {

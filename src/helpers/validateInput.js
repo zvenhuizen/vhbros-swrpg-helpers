@@ -1,4 +1,3 @@
-
 export function validInput(string) {
     let valid = false
     switch (string.toLowerCase().slice(-1)) {
