@@ -12,7 +12,6 @@ export default function getDiceSplit(dice) {
   splitDice[2].push(diceArray.filter(d => d === 'w').join(''));
   splitDice[3].push(diceArray.filter(d => d === 's').join(''));
   splitDice[3].push(diceArray.filter(d => d === 'a').join(''));
-  console.log(splitDice);
 
   return {
     posDice: splitDice[0].join(''),

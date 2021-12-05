@@ -2,17 +2,14 @@ import getDiceSplit from "../helpers/diceSplit";
 import { forceCombos } from '../helpers/Combos';
 import { getResults, 
          netResults } from "../helpers/getResults";
-import { rollExists,
+import { //rollExists,
          getRoll } from "../helpers/firebaseFunctions";
-import { loadRolls } from "..";
 
 export default function getOdds(roll, result) {
 
     let netRes = netResults(result) //returns net [s/f, a/thr, tri, des, lsp, dsp] where s, a, tri, des are positive #s and f & thr are negative #s
     let diceSplit = getDiceSplit(roll);
     console.log(diceSplit)
-    let posDice = diceSplit.posDice
-    console.log(posDice)
 
     //get number of static values rolled (i.e. rolling an advantage at the end of a roll)
     let suc = (roll.match(/s/g) || []).length;
@@ -37,10 +34,17 @@ export default function getOdds(roll, result) {
     let forceArray = [lsp, dsp];
 
     //query firestore and return the positive and negative roll objects
-    let posRollData = getRoll(diceSplit.posDice)
-    let negRollData = getRoll(diceSplit.negDice)
-    console.log(posRollData)
-    console.log(negRollData)
+    let posRollData,
+        negRollData
+    if(diceSplit.posDice) {
+        posRollData = getRoll(diceSplit.posDice) //still returns a promise, need to return object from promise
+        console.log("Return from getRoll():")
+        console.log(posRollData)
+    }
+    if(diceSplit.negDice) {
+        negRollData = getRoll(diceSplit.negDice)
+        console.log("Return from getRoll():" + negRollData)
+    }
 
     //create code to get the appropriate map of the positive and negative objects that is associated with the net desired result.
     //This will likely be a separate function(s) we create to do this work, because we have to take net results and figure out how

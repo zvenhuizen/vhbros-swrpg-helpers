@@ -1,4 +1,21 @@
-export function getResults(object1, object2, result) {
+export function getResults(posObject, negObject, result) {
+
+  console.log("Result of Roll:")
+  console.log(result)
+
+  if(posObject) {
+    Object.keys(posObject).forEach(key => {
+      console.log(posObject[key].Result)
+    })
+  };
+
+  if(negObject) {
+    Object.keys(negObject).forEach(key => {
+      console.log(negObject[key].Result)
+    })
+  };
+
+
   
 }
 

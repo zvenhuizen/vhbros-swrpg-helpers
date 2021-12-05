@@ -1,15 +1,15 @@
 //import { setDoc }           from "firebase/firestore";
 import { getFirestore,
-        collection,
-        where,
-        getDocs,
+        //collection,
+        //where,
+        //getDocs,
         getDoc,
-        getDocFromCache,
+        //getDocFromCache,
         //addDoc,
-        query,
+        //query,
         //orderBy,
         //limit,
-        onSnapshot,
+        //onSnapshot,
         //setDoc,
         //updateDoc,
         doc,
@@ -27,20 +27,36 @@ export function rollExists() {
 
 }
 
-export function getRoll(roll) {
+export async function getRoll(roll) {
+  console.log("Passed Dice:" + roll)
+  let db = getFirestore()
+
   if(!roll) {
     console.log("No dice rolled")
-    return
+    return //return early
   }
-  
+
   // query the 'rolls' collection in the firestore db and get the document named "roll variable"
-  let db = getFirestore()
-  const rollsRef = getDoc(doc(db, 'rolls', roll)).then(docSnap => {
-    if(docSnap.exists()) {
-      console.log(docSnap.data());
-    } else {
-      console.log("No Doc");
-    }
-  });
-  return rollsRef
+  try {
+    const rollRef = await getDoc(doc(db, 'rolls', roll)); //returns a promise
+    console.log(rollRef.data());
+  }
+  catch(e) {
+    console.log(e);
+  }
+
+  /*// handle the promise fulfmillment or rejection
+  rollRef
+    .then(docSnap => {
+      if(docSnap.exists()) {
+        return docSnap.data()
+      } else {
+        console.log("No Doc");
+      }
+    })
+  docSnap
+    .then(result => result)
+    .catch((e) => {
+      console.log(e);
+    });*/
 }
