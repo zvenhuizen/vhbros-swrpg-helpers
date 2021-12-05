@@ -42,6 +42,11 @@ export async function getRoll(roll) {
     const rollRef = await getDoc(doc(db, 'rolls', roll)); //returns a promise
     console.log('Document Data:')
     console.log(rollRef.data());
+    const rollData = rollRef.data();
+    console.log(rollData);
+    for (let result in rollData) {
+      console.log(rollData[result]);
+    }
   }
   catch(e) {
     console.log(e);
