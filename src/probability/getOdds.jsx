@@ -9,21 +9,10 @@ import { loadRolls } from "..";
 export default function getOdds(roll, result) {
 
     let netRes = netResults(result) //returns net [s/f, a/thr, tri, des, lsp, dsp] where s, a, tri, des are positive #s and f & thr are negative #s
-
-    // =============== PROBLEM LINES =============== //
-    // posDice and negDice are still using the old format, assuming a string and a second argument
-    // looking at diceSplit line 1, getDiceSplit now takes a single string and intelligently splits it into pos, neg, force and non
-    // thus, we need to access the result of getDiceSplit and ask for the one we actually want
     let diceSplit = getDiceSplit(roll);
-    // rolled ygbrpk
-    console.log(diceSplit.posDice); // returns ygb
-    console.log(diceSplit.negDice); // returns rpk
-    // only question here is do we assign posDice here, or just pass diceSplit.posDice on lines 58-59
-    let posDice = getDiceSplit(roll,'positive');
-    let negDice = getDiceSplit(roll,'negative');
-    let forceDice = getDiceSplit(roll,'force');
-    // =============== PROBLEM LINES =============== //
-
+    console.log(diceSplit)
+    let posDice = diceSplit.posDice
+    console.log(posDice)
 
     //get number of static values rolled (i.e. rolling an advantage at the end of a roll)
     let suc = (roll.match(/s/g) || []).length;
@@ -48,16 +37,10 @@ export default function getOdds(roll, result) {
     let forceArray = [lsp, dsp];
 
     //query firestore and return the positive and negative roll objects
-
-    // =============== PROBLEM CODE =============== //
-    // I found the call here, and noticed that posDice and negDice are being passed to getRoll
-    // I wanted to know what they were assigned as:
-    console.log(posDice); // return {posDice: 'ygb', negDice: '', forceDice: '', nonDice: ''}
-    console.log(negDice); // return {posDice: 'ygb', negDice: '', forceDice: '', nonDice: ''}
-    // I then scanned for where the variables were being assigned and found them on lines 22-23
-    let posRollData = getRoll(posDice)
-    let negRollData = getRoll(negDice)
-    // =============== PROBLEM CODE =============== //
+    let posRollData = getRoll(diceSplit.posDice)
+    let negRollData = getRoll(diceSplit.negDice)
+    console.log(posRollData)
+    console.log(negRollData)
 
     //create code to get the appropriate map of the positive and negative objects that is associated with the net desired result.
     //This will likely be a separate function(s) we create to do this work, because we have to take net results and figure out how
@@ -65,6 +48,7 @@ export default function getOdds(roll, result) {
     let diceOdds = getResults(posRollData, negRollData, finalRes)
 
     //calculate force dice info
+    let forceDice = diceSplit.forceDice
     let forcePerms = (12 ^ forceDice.length)
     let forceRes = 1;
 
