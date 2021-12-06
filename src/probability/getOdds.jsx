@@ -37,12 +37,19 @@ export default function getOdds(roll, result) {
     let posRollData,
         negRollData
     if(diceSplit.posDice) {
-        posRollData = getRoll(diceSplit.posDice) //still returns a promise, need to return object from promise
+        getRoll(diceSplit.posDice).then(result => { // Calling then on the function that is running async
+            console.log(`INSIDE THEN RESULT ${result}`) // proof that the object is being found
+            posRollData = result; // try assigning result to posRollData
+            console.log(posRollData); // further proof that the object is being found and is assigned to posRollData
+            //w whatever function you need the rollData for should be called from inside here?
+        }); //still returns a promise, need to return object from promise
         console.log("Return from getRoll():")
-        console.log(posRollData)
+        console.log(posRollData); // see whether we have the result object in posRollData
+        // The issue here seems to be that the line above is begin called before .then() finishes, thus posRollData is still undefined.
+        // We likely need to run whatever function you need to use the rollData in inside the .then() function
     }
     if(diceSplit.negDice) {
-        negRollData = getRoll(diceSplit.negDice)
+        negRollData = getRoll(diceSplit.negDice).then(response => console.log(`inside then ${response}`))
         console.log("Return from getRoll():" + negRollData)
     }
 

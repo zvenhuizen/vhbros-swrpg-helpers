@@ -38,20 +38,25 @@ export async function getRoll(roll) {
 
   // query the 'rolls' collection in the firestore db and get the document named "roll variable"
   
-  try {
+  let rollData;
+
+    try {
     const rollRef = await getDoc(doc(db, 'rolls', roll)); //returns a promise
     console.log('Document Data:')
     console.log(rollRef.data());
-    const rollData = rollRef.data();
+    rollData = rollRef.data();
     console.log(rollData);
     for (let result in rollData) {
       console.log(rollData[result]);
     }
+    return rollData;
   }
   catch(e) {
     console.log(e);
   }
 
+
+  return rollData;
   /*// handle the promise fulfmillment or rejection
   rollRef
     .then(docSnap => {
