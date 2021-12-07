@@ -33,25 +33,19 @@ export default function getOdds(roll, result) {
     let finalRes = [sucfai, advthr, tri, des]
     let forceArray = [lsp, dsp];
 
-    //query firestore and return the positive and negative roll objects
-    let posRollData,
-        negRollData
-    if(diceSplit.posDice) {
-        getRoll(diceSplit.posDice).then(result => { // Calling then on the function that is running async
-            console.log(`INSIDE THEN RESULT ${result}`) // proof that the object is being found
-            posRollData = result; // try assigning result to posRollData
-            console.log(posRollData); // further proof that the object is being found and is assigned to posRollData
-            //w whatever function you need the rollData for should be called from inside here?
-        }); //still returns a promise, need to return object from promise
-        console.log("Return from getRoll():")
-        console.log(posRollData); // see whether we have the result object in posRollData
-        // The issue here seems to be that the line above is begin called before .then() finishes, thus posRollData is still undefined.
-        // We likely need to run whatever function you need to use the rollData in inside the .then() function
-    }
-    if(diceSplit.negDice) {
-        negRollData = getRoll(diceSplit.negDice).then(response => console.log(`inside then ${response}`))
-        console.log("Return from getRoll():" + negRollData)
-    }
+    //send diceSplit to getRoll and wait for Promis to resolve
+    getRoll(diceSplit).then(result => {
+
+        console.log("INSIDE THEN RESULT") // will resolve after asynchronously
+
+        console.log(`POSITIVE DICE RESULTS: ${result.posDice}`); // database data is available
+        console.log(`NEGATIVE DICE RESULTS: ${result.negDice}`); // database data is available
+
+        // THIS IS WHERE WE WANT TO CALL FUNCTION TO MANUPULATE OUR ROLL RESULTS INTO ACTUAL ODDS
+
+    });
+
+    console.log("Synchronous code written after getRoll()"); // will resolve synchronously
 
     //create code to get the appropriate map of the positive and negative objects that is associated with the net desired result.
     //This will likely be a separate function(s) we create to do this work, because we have to take net results and figure out how

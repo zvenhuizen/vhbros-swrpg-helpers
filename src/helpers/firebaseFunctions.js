@@ -1,4 +1,3 @@
-//import { setDoc }           from "firebase/firestore";
 import { getFirestore,
         //collection,
         //where,
@@ -28,11 +27,11 @@ export function rollExists() {
 }
 
 export async function getRoll(roll) {
-  console.log("Passed Dice:" + roll)
-  let db = getFirestore()
+  console.log("Passed Dice: " + roll); // roll is equal to the diceSplit object
+  let db = getFirestore();
 
   if(!roll) {
-    console.log("No dice rolled")
+    console.log("No dice rolled");
     return //return early
   }
 
@@ -40,35 +39,15 @@ export async function getRoll(roll) {
   
   let rollData;
 
-    try {
-    const rollRef = await getDoc(doc(db, 'rolls', roll)); //returns a promise
-    console.log('Document Data:')
-    console.log(rollRef.data());
-    rollData = rollRef.data();
-    console.log(rollData);
-    for (let result in rollData) {
-      console.log(rollData[result]);
-    }
-    return rollData;
+  try {
+    // access posRes and negRes asynchronously, but wait until both are finished to continue (can be expanded to include force and nonDice if necessary)
+    let [posRes, negRes] = await Promise.all([getDoc(doc(db, 'rolls', roll.posDice)), getDoc(doc(db, 'rolls', roll.negDice))]);
+    rollData = {posDice: posRes.data(), negDice: negRes.data(), forceDice: '', nonDice: ''};
   }
   catch(e) {
     console.log(e);
   }
 
-
   return rollData;
-  /*// handle the promise fulfmillment or rejection
-  rollRef
-    .then(docSnap => {
-      if(docSnap.exists()) {
-        return docSnap.data()
-      } else {
-        console.log("No Doc");
-      }
-    })
-  docSnap
-    .then(result => result)
-    .catch((e) => {
-      console.log(e);
-    });*/
+
 }
