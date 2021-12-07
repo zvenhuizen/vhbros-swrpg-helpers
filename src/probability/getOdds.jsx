@@ -50,6 +50,7 @@ export default function getOdds(roll, result) {
     //create code to get the appropriate map of the positive and negative objects that is associated with the net desired result.
     //This will likely be a separate function(s) we create to do this work, because we have to take net results and figure out how
     //many positive results could have been netted against how many negative results to get the final net result.
+    let posRollData, negRollData
     let diceOdds = getResults(posRollData, negRollData, finalRes)
 
     //calculate force dice info
