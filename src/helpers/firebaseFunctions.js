@@ -22,7 +22,16 @@ import { //getStorage,
 //import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 //import { getPerformance } from 'firebase/performance';
 
-export function rollExists() {
+export function rollExists(roll) {
+
+  if (roll.exists()) {
+    console.log("roll exists");
+    return roll.data();
+  } else {
+    console.log("Roll Does Not Exist");
+    // here is where we create the roll in the database
+    return [];
+  }
 
 }
 
@@ -42,7 +51,10 @@ export async function getRoll(roll) {
   try {
     // access posRes and negRes asynchronously, but wait until both are finished to continue (can be expanded to include force and nonDice if necessary)
     let [posRes, negRes] = await Promise.all([getDoc(doc(db, 'rolls', roll.posDice)), getDoc(doc(db, 'rolls', roll.negDice))]);
-    rollData = {posDice: posRes.data(), negDice: negRes.data(), forceDice: '', nonDice: ''};
+
+    posRes = rollExists(posRes);
+    negRes = rollExists(negRes);
+    rollData = {posDice: posRes, negDice: negRes, forceDice: '', nonDice: ''};
   }
   catch(e) {
     console.log(e);

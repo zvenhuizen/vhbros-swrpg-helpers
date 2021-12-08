@@ -5,12 +5,9 @@ import { getResults,
 import { //rollExists,
          getRoll } from "./firebaseFunctions";
 
-export default function getOdds(roll, result) {
+function removeStaticDice(roll, result) {
 
-    let netRes = netResults(result) //returns net [s/f, a/thr, tri, des, lsp, dsp] where s, a, tri, des are positive #s and f & thr are negative #s
-    let diceSplit = getDiceSplit(roll);
-    console.log(diceSplit)
-
+    let netRes = netResults(result)
     //get number of static values rolled (i.e. rolling an advantage at the end of a roll)
     let suc = (roll.match(/s/g) || []).length;
     let adv = (roll.match(/a/g) || []).length;
@@ -28,10 +25,17 @@ export default function getOdds(roll, result) {
         des     = netRes[3] - des
         lsp     = netRes[4] - lsp
         dsp     = netRes[5] - dsp
+    
+    return [[sucfai, advthr, tri, des], [lsp, dsp]]
+}
 
-    //this is the final array to use to check database objects against
-    let finalRes = [sucfai, advthr, tri, des]
-    let forceArray = [lsp, dsp];
+export default function getOdds(roll, result) {
+
+    //returns net [s/f, a/thr, tri, des, lsp, dsp] where s, a, tri, des are positive #s and f & thr are negative #s
+    let diceSplit = getDiceSplit(roll);
+
+    // this is the final array to use to check database objects against
+    let [finalRes, forceArray] = removeStaticDice(roll, result);
 
     //send diceSplit to getRoll and wait for Promis to resolve
     getRoll(diceSplit).then(result => {
