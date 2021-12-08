@@ -1,31 +1,24 @@
 export function validInput(string) {
     let valid = false
     switch (string.toLowerCase().slice(-1)) {
-        case 'y':
-        case 'g':
-        case 'r':
-        case 'p':
-        case 'b':
-        case 'k':
-        case 'w':
-        case '':
-        case 'a':
-        case 's':
-        case 't':
-        case 'f':
-        case 'o':
-        case 'd':
-        case 'l':
-        case 'n':
+        case '':  // No Dice (Blank)
+        case 'a': // Advantage
+        case 'b': // Boost Dice (Blue)
+        case 'd': // Despair
+        case 'f': // Failure
+        case 'g': // Ability Dice (Green)
+        case 'k': // Setback Dice (Black)
+        case 'l': // Light Side Pip
+        case 'n': // Dark Side Pip
+        case 'o': // Threat
+        case 'p': // Difficulty Dice (Purple)
+        case 'r': // Challenge Dice (Red)
+        case 's': // Success
+        case 't': // Triumph
+        case 'w': // Force Dice (White)
+        case 'y': // Proficiency Dice (Yellow)
           valid = true;
           break;
-//        case 't':
-//        case 's':
-//        case 'v':
-//        case '!':
-//        case '$':
-//        case '*':
-//        case '-':
         default:
             valid = false
             break;

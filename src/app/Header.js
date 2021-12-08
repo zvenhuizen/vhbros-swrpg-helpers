@@ -4,7 +4,7 @@ import Navbar from './Navbar.js';
 const Header = (props) => {
 
     return (
-        <header className="header" style={props.style} onClick={props.headerClick}>
+        <header className="header">
             <Logo />
             <Navbar />
         </header>

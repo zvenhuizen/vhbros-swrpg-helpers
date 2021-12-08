@@ -9,7 +9,7 @@ const RollResults = (props) => {
 
             <p className='result-header'>
                 RESULTS
-                <span className='successChance'>{props.finalOdds}% ODDS OF RESULT</span>
+                <span className='successChance'>{props.finalOdds}% CHANCE OF RESULT</span>
             </p>
             <div className='result'> {
                 (props.rolledDice !== '' && results.length === 0)

@@ -12,7 +12,7 @@ const rollDice = (dice) => {
         const result = die[keys[roll]] // Access result of roll for die
 
         return result.face;
-    })
+    });
     
     return results;
 

@@ -14,5 +14,5 @@ const forceCombos = {
   four: {result: [0,2], qty: 1}
 }
 
-exports.forceCombos = forceCombos
+exports.forceCombos = forceCombos;
 exports.diceCombos = diceCombos;

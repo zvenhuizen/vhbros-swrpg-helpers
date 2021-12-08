@@ -6,10 +6,9 @@ import DiceInput from '../probability/DiceInput';
 import cancelResults from '../helpers/cancelResults';
 import rollDice from '../helpers/rollDice';
 import calculateSuccessProb from '../helpers/calculateSuccessProbability';
-import successOdds from '../probability/SuccessOdds';
+import successOdds from '../helpers/successOdds';
 import {validLength} from '../helpers/validateInput'
-import getOdds from '../probability/getOdds';
-import getDiceSplit from '../helpers/diceSplit';
+import getOdds from '../helpers/getOdds';
 
 class App extends React.Component {
   constructor(props) {
@@ -54,7 +53,6 @@ class App extends React.Component {
     if(validLength(this.state.diceInputValue,1,24)) {
       const diceResult = rollDice(this.state.diceInputValue); //returns full, uncancelled result string (i.e. ssatf)
       const rollResult = cancelResults(diceResult); //returns net results nested array (i.e. [[1, s], [1, a]] )
-      const splitDice = getDiceSplit(this.state.diceInputValue); //returns array of diceSplit by type ([posDice, negDice, forceDice, nonDice])
       const finalOdds = getOdds(this.state.diceInputValue,diceResult)
     
       this.setState({
@@ -83,13 +81,14 @@ class App extends React.Component {
     return(
       <div className="App">
 
-        <Header style={this.state.style} />
+        <Header />
         <p className='input-errors'>{this.state.errors.map((error,index) => (<span key={index} className="alert alert-danger">{error}</span>))}</p>
         <DiceInput
           value={this.state.diceInputValue}
           diceInputChange={this.handleDiceInput}
           rollDiceClick={this.handleRollClick}
-          autofocus />
+          autofocus
+        />
         
         <div className='results-container'>
 
@@ -98,6 +97,7 @@ class App extends React.Component {
             rolledDice={this.state.rolledDice}
             dice={this.state.diceInputValue}
             successChance={this.state.successOdds} />
+
           <RollResults
             finalOdds={this.state.finalOdds}
             results={this.state.rollResult}

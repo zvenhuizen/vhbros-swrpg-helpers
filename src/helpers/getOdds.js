@@ -1,9 +1,9 @@
-import getDiceSplit from "../helpers/diceSplit";
-import { forceCombos } from '../helpers/Combos';
+import getDiceSplit from "./diceSplit";
+import { forceCombos } from './Combos';
 import { getResults, 
-         netResults } from "../helpers/getResults";
+         netResults } from "./getResults";
 import { //rollExists,
-         getRoll } from "../helpers/firebaseFunctions";
+         getRoll } from "./firebaseFunctions";
 
 export default function getOdds(roll, result) {
 
