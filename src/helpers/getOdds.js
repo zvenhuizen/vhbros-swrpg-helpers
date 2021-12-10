@@ -40,16 +40,11 @@ export default function getOdds(roll, result) {
     //send diceSplit to getRoll and wait for Promis to resolve
     getRoll(diceSplit).then(result => {
 
-        console.log("INSIDE THEN RESULT") // will resolve after asynchronously
-
-        console.log(`POSITIVE DICE RESULTS: ${result.posDice}`); // database data is available
-        console.log(`NEGATIVE DICE RESULTS: ${result.negDice}`); // database data is available
+        console.log(result);
 
         // THIS IS WHERE WE WANT TO CALL FUNCTION TO MANUPULATE OUR ROLL RESULTS INTO ACTUAL ODDS
 
     });
-
-    console.log("Synchronous code written after getRoll()"); // will resolve synchronously
 
     //create code to get the appropriate map of the positive and negative objects that is associated with the net desired result.
     //This will likely be a separate function(s) we create to do this work, because we have to take net results and figure out how

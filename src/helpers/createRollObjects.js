@@ -71,7 +71,7 @@ export default function getAllResults(dice) {
   //create roll object
   
   for (let key in finalObject) {
-    finalObject[key].odds = (finalObject[key].count / permutations).toFixed(6);
+    finalObject[key].odds = (finalObject[key].count / permutations);
   }
 
   // for(i = 0; i < uniqueArray.length; i++) {
@@ -87,7 +87,5 @@ export default function getAllResults(dice) {
   //   finalObject[i] = obj;
   // }
 
-  console.log("FINAL OBJECT: ");
-  console.log(finalObject);
   return finalObject;
 }
