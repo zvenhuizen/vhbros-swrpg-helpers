@@ -1,10 +1,9 @@
-import { diceCombos } from './combos';
-import getDiceSplit from './diceSplit'
+import { diceCombos } from './Combos';
 
 export default function DiceArrays(dice) {
 
-  let posDice = getDiceSplit(dice).posDice.split('')
-  let negDice = getDiceSplit(dice).negDice.split('')
+  let posDice = dice.posDice.split('');
+  let negDice = dice.negDice.split('');
 
   let posDiceArray = posDice.map(sides => {
     switch(sides) {
@@ -35,5 +34,5 @@ export default function DiceArrays(dice) {
   posDiceArray = posDiceArray.filter(e => e != null);
   negDiceArray = negDiceArray.filter(e => e != null);
 
-  return [posDiceArray, negDiceArray];
+  return {posDice: posDiceArray, negDice: negDiceArray};
 }

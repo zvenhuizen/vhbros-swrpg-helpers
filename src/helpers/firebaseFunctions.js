@@ -21,14 +21,18 @@ import { //getStorage,
         }                   from 'firebase/storage';
 //import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 //import { getPerformance } from 'firebase/performance';
+import getAllResults from './createRollObjects';
+import DiceArrays from './getDiceArrays';
 
-export function rollExists(roll) {
+export function docExists(doc, roll) {
 
-  if (roll.exists()) {
-    console.log("roll exists");
-    return roll.data();
+  if (doc.exists()) {
+    console.log("Document exists");
+    return doc.data();
   } else {
-    console.log("Roll Does Not Exist");
+    console.log("Document Does Not Exist");
+    let rollObject = getAllResults(DiceArrays(roll).posDice);
+    
     // here is where we create the roll in the database
     return [];
   }
@@ -36,7 +40,7 @@ export function rollExists(roll) {
 }
 
 export async function getRoll(roll) {
-  console.log("Passed Dice: " + roll); // roll is equal to the diceSplit object
+
   let db = getFirestore();
 
   if(!roll) {
@@ -52,8 +56,8 @@ export async function getRoll(roll) {
     // access posRes and negRes asynchronously, but wait until both are finished to continue (can be expanded to include force and nonDice if necessary)
     let [posRes, negRes] = await Promise.all([getDoc(doc(db, 'rolls', roll.posDice)), getDoc(doc(db, 'rolls', roll.negDice))]);
 
-    posRes = rollExists(posRes);
-    negRes = rollExists(negRes);
+    posRes = docExists(posRes, roll);
+    negRes = docExists(negRes, roll);
     rollData = {posDice: posRes, negDice: negRes, forceDice: '', nonDice: ''};
   }
   catch(e) {
