@@ -43,7 +43,7 @@ function getMaxResults(dicePool) {
 
 export function getResults(dicePool, posObject, negObject, result) {
   console.log(result)
-  
+
   let maxArray = getMaxResults(dicePool);
   let maxSuccess = maxArray[0]
   let maxFailure = maxArray[1]
@@ -54,10 +54,10 @@ export function getResults(dicePool, posObject, negObject, result) {
   if(posObject) {
     console.log(posObject)
     Object.keys(posObject).forEach(key => {
-      if(posObject[key].elem[2] !== result[2] || posObject[key].elem[0] > (result[0] - maxFailure) || posObject[key].elem[1] > (result[1] > maxThreat)) {
+      if(posObject[key]['elem'][2] !== result[2] || posObject[key]['elem'][0] > (result[0] - maxFailure) || posObject[key]['elem'][1] > (result[1] > maxThreat)) {
         delete posObject[key]
       }
-      if(result[0] > 0 && (posObject[key].elem[0] < result[0] || posObject[key].elem[1] < result[1])) {
+      if(result[0] > 0 && (posObject[key]['elem'][0] < result[0] || posObject[key]['elem'][1] < result[1])) {
         delete posObject[key]
       }
     })
@@ -67,10 +67,10 @@ export function getResults(dicePool, posObject, negObject, result) {
   if(negObject) {
     console.log(negObject)
     Object.keys(negObject).forEach(key => {
-      if(negObject[key].elem[3] !== result[3] || negObject[key].elem[0] < (result[0] - maxSuccess) || negObject[key].elem[1] < (result[1] - maxAdvantage)) {
+      if(negObject[key]['elem'][3] !== result[3] || negObject[key]['elem'][0] < (result[0] - maxSuccess) || negObject[key]['elem'][1] < (result[1] - maxAdvantage)) {
         delete negObject[key]
       }
-      if(result[0] < 0 && (negObject[key].elem[0] > result[0] || negObject[key].elem[1] > result[1])) {
+      if(result[0] < 0 && (negObject[key]['elem'][0] > result[0] || negObject[key]['elem'][1] > result[1])) {
         delete negObject[key]
       }
     })
@@ -82,20 +82,21 @@ export function getResults(dicePool, posObject, negObject, result) {
 
   if(posObject && negObject) {
     Object.keys(posObject).forEach(key => {
-      let negKeySearch = []
-      negKeySearch.push(result[0] -  posObject[key].elem[0]);
-      negKeySearch.push(result[1] - posObject[key].elem[1]);
-      negKeySearch.push(result[2]);
-      negKeySearch.push(result[3]);
+      let negKeySearch = ''
+      negKeySearch += result[0] -  posObject[key]['elem'][0] + ':';
+      negKeySearch += result[1] - posObject[key]['elem'][1] + ':';
+      negKeySearch += result[2] + ':';
+      negKeySearch += result[3];
 
-      finalOdds += posObject[key].odds * negObject[negKeySearch].odds
+      console.log(negKeySearch)
+      finalOdds += posObject[key]['odds'] * negObject[negKeySearch]['odds']
     })
   } else if(posObject) {
-    let posKey = toString(result[0]) & ':' & toString(result[1]) & ':' & toString(result[2]) & ':' & toString(result[3])
-    finalOdds = posObject[posKey].odds;
+    let posKey = toString(result[0]) + ':' + toString(result[1]) + ':' + toString(result[2]) & ':' + toString(result[3])
+    finalOdds = posObject[posKey]['odds'];
   } else if(negObject) {
-    let negKey = toString(result[0]) & ':' & toString(result[1]) & ':' & toString(result[2]) & ':' & toString(result[3])
-    finalOdds = negObject[negKey].odds;
+    let negKey = toString(result[0]) + ':' & toString(result[1]) + ':' & toString(result[2]) + ':' + toString(result[3])
+    finalOdds = negObject[negKey]['odds'];
   }
 
   console.log(finalOdds)

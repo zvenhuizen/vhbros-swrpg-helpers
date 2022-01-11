@@ -36,12 +36,15 @@ export default function getOdds(dicePool, result) {
 
     // this is the final array to use to check database objects against
     let [finalRes, forceArray] = removeStaticDice(dicePool, result);
+    console.log(finalRes)
 
     //send diceSplit to getRoll and wait for Promise to resolve
     getRoll(diceSplit).then(result => {
-
+        console.log(finalRes)
         // THIS IS WHERE WE WANT TO CALL FUNCTION TO MANUPULATE OUR ROLL RESULTS INTO ACTUAL ODDS
-        getResults(dicePool, result.posDice, result.negDice, finalRes)
+        if(finalRes) {
+            getResults(dicePool, result.posDice, result.negDice, finalRes)
+        }
 
         console.log(result);
 
