@@ -29,20 +29,21 @@ function removeStaticDice(roll, result) {
     return [[sucfai, advthr, tri, des], [lsp, dsp]]
 }
 
-export default function getOdds(roll, result) {
-
+export default function getOdds(dicePool, result) {
+    console.log(dicePool)
     //returns net [s/f, a/thr, tri, des, lsp, dsp] where s, a, tri, des are positive #s and f & thr are negative #s
-    let diceSplit = getDiceSplit(roll);
+    let diceSplit = getDiceSplit(dicePool);
 
     // this is the final array to use to check database objects against
-    let [finalRes, forceArray] = removeStaticDice(roll, result);
+    let [finalRes, forceArray] = removeStaticDice(dicePool, result);
 
-    //send diceSplit to getRoll and wait for Promis to resolve
+    //send diceSplit to getRoll and wait for Promise to resolve
     getRoll(diceSplit).then(result => {
 
-        console.log(result);
-
         // THIS IS WHERE WE WANT TO CALL FUNCTION TO MANUPULATE OUR ROLL RESULTS INTO ACTUAL ODDS
+        getResults(dicePool, result.posDice, result.negDice, finalRes)
+
+        console.log(result);
 
     });
 
