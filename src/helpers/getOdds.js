@@ -30,51 +30,44 @@ function removeStaticDice(roll, result) {
 }
 
 export default function getOdds(dicePool, result) {
-    console.log(dicePool)
+    console.log('Dice Pool:', dicePool)
+
     //returns net [s/f, a/thr, tri, des, lsp, dsp] where s, a, tri, des are positive #s and f & thr are negative #s
     let diceSplit = getDiceSplit(dicePool);
 
     // this is the final array to use to check database objects against
     let [finalRes, forceArray] = removeStaticDice(dicePool, result);
-    console.log(finalRes)
+    console.log('Final Results:', finalRes)
 
+    
     //send diceSplit to getRoll and wait for Promise to resolve
     getRoll(diceSplit).then(result => {
-        console.log(finalRes)
-        // THIS IS WHERE WE WANT TO CALL FUNCTION TO MANUPULATE OUR ROLL RESULTS INTO ACTUAL ODDS
-        if(finalRes) {
-            getResults(dicePool, result.posDice, result.negDice, finalRes)
-        }
 
-        console.log(result);
+        //manipulate DB objects to calculate posDicePool and negDicePool odds
+        let finalOdds = getResults(dicePool, result.posDice, result.negDice, finalRes)
 
+        //calculate force dice info
+        let forceDice = diceSplit.forceDice
+        let forcePerms = (12 ^ forceDice.length)
+        let forceRes = 1;
+
+        if(forceArray.toString() === forceCombos.one.result.toString()) {
+            forceRes = forceCombos.one.qty;
+        } else if(forceArray.toString() === forceCombos.two.result.toString()) {
+            forceRes = forceCombos.two.qty;
+        } else if(forceArray.toString() === forceCombos.three.result.toString()) {
+            forceRes = forceCombos.three.qty;
+        } else if(forceArray.toString() === forceCombos.four.result.toString()) {
+            forceRes = forceCombos.four.qty;
+        };
+
+        let forceOdds = (forceRes / forcePerms)
+
+        //Calculate final odds
+        let resultsDec = finalOdds * forceOdds //decimal value of odds
+        let finalResults = (resultsDec * 100).toFixed(2)
+
+        console.log(finalResults)
+        return finalResults
     });
-
-    //create code to get the appropriate map of the positive and negative objects that is associated with the net desired result.
-    //This will likely be a separate function(s) we create to do this work, because we have to take net results and figure out how
-    //many positive results could have been netted against how many negative results to get the final net result.
-    let posRollData, negRollData
-    let diceOdds = getResults(posRollData, negRollData, finalRes)
-
-    //calculate force dice info
-    let forceDice = diceSplit.forceDice
-    let forcePerms = (12 ^ forceDice.length)
-    let forceRes = 1;
-
-    if(forceArray.toString() === forceCombos.one.result.toString()) {
-        forceRes = forceCombos.one.qty;
-    } else if(forceArray.toString() === forceCombos.two.result.toString()) {
-        forceRes = forceCombos.two.qty;
-    } else if(forceArray.toString() === forceCombos.three.result.toString()) {
-        forceRes = forceCombos.three.qty;
-    } else if(forceArray.toString() === forceCombos.four.result.toString()) {
-        forceRes = forceCombos.four.qty;
-    };
-
-    let forceOdds = (forceRes / forcePerms)
-
-    let resultsDec = diceOdds * forceOdds //decimal value of odds
-    let finalResults = (resultsDec * 100).toFixed(2)
-
-    return finalResults
 }

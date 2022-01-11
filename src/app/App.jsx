@@ -53,14 +53,16 @@ class App extends React.Component {
     if(validLength(this.state.diceInputValue,1,24)) {
       const diceResult = rollDice(this.state.diceInputValue); //returns full, uncancelled result string (i.e. ssatf)
       const rollResult = cancelResults(diceResult); //returns net results nested array (i.e. [[1, s], [1, a]] )
+
+      //HOW DO I GET getOdds() TO RETURN THE RESULT???
       const finalOdds = getOdds(this.state.diceInputValue,diceResult)
-    
+      
       this.setState({
-        diceResult: diceResult,
-        rollResult: rollResult,
-        finalOdds: finalOdds,
-        diceInputValue: ''
-      })
+          diceResult: diceResult,
+          rollResult: rollResult,
+          finalOdds: finalOdds,
+          diceInputValue: ''
+        })
     } else {
       errors.push("Cannot roll 0 dice");
       

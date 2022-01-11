@@ -1,12 +1,11 @@
 function getMaxResults(dicePool) {
-  console.log(dicePool)
+
   let suc = 0
   let fai = 0;
   let adv = 0
   let thr = 0;
   if(dicePool) {
     const dicePoolArray = dicePool.split(''); //split the result into an array of single letters
-    console.log(dicePoolArray)
 
     // add all results together
     for(var j = 0; j < dicePoolArray.length; j++) {
@@ -42,7 +41,13 @@ function getMaxResults(dicePool) {
 }
 
 export function getResults(dicePool, posObject, negObject, result) {
-  console.log(result)
+  
+  if(!result) {
+    console.log('Returned Early, Result:', result)
+    return //return early
+  }
+
+  console.log('Result:', result)
 
   let maxArray = getMaxResults(dicePool);
   let maxSuccess = maxArray[0]
@@ -52,30 +57,36 @@ export function getResults(dicePool, posObject, negObject, result) {
 
   //Eliminate elements from the objects that cannot produce the outcome of the roll
   if(posObject) {
-    console.log(posObject)
+    console.log('Positive Object:', posObject)
     Object.keys(posObject).forEach(key => {
       if(posObject[key]['elem'][2] !== result[2] || posObject[key]['elem'][0] > (result[0] - maxFailure) || posObject[key]['elem'][1] > (result[1] > maxThreat)) {
         delete posObject[key]
       }
-      if(result[0] > 0 && (posObject[key]['elem'][0] < result[0] || posObject[key]['elem'][1] < result[1])) {
-        delete posObject[key]
+      console.log('Positive Object[', key, ']:', posObject[key]);
+      if(posObject[key]) { //since keys may have been deleted in prior step, current iteration of a key may return undefined
+        if(result[0] > 0 && (posObject[key]['elem'][0] < result[0] || posObject[key]['elem'][1] < result[1])) {
+          delete posObject[key]
+        }
       }
     })
   };
-  console.log(posObject)
+  console.log('Final Positive Object:', posObject)
 
   if(negObject) {
-    console.log(negObject)
+    console.log('Negative Object:', negObject)
     Object.keys(negObject).forEach(key => {
       if(negObject[key]['elem'][3] !== result[3] || negObject[key]['elem'][0] < (result[0] - maxSuccess) || negObject[key]['elem'][1] < (result[1] - maxAdvantage)) {
         delete negObject[key]
       }
-      if(result[0] < 0 && (negObject[key]['elem'][0] > result[0] || negObject[key]['elem'][1] > result[1])) {
-        delete negObject[key]
+      console.log('Negative Object[', key, ']:', negObject[key])
+      if(negObject[key]) { //since keys may have been deleted in prior step, current iteration of a key may return undefined
+        if(result[0] < 0 && (negObject[key]['elem'][0] > result[0] || negObject[key]['elem'][1] > result[1])) {
+          delete negObject[key]
+        }
       }
     })
   };
-  console.log(negObject)
+  console.log('Final Negative Object:', negObject)
 
   //Calculate the odds that the outcome could have been produced.
   let finalOdds = 0
@@ -88,8 +99,12 @@ export function getResults(dicePool, posObject, negObject, result) {
       negKeySearch += result[2] + ':';
       negKeySearch += result[3];
 
-      console.log(negKeySearch)
-      finalOdds += posObject[key]['odds'] * negObject[negKeySearch]['odds']
+      console.log('Negative Key Search:', negKeySearch)
+      console.log('Positive Odds:', posObject[key]['odds'])
+      console.log('Negative Object[', negKeySearch, ']:', negObject[negKeySearch])
+      if(negObject[negKeySearch]) {
+        finalOdds += posObject[key]['odds'] * negObject[negKeySearch]['odds']
+      };
     })
   } else if(posObject) {
     let posKey = toString(result[0]) + ':' + toString(result[1]) + ':' + toString(result[2]) & ':' + toString(result[3])
@@ -99,7 +114,7 @@ export function getResults(dicePool, posObject, negObject, result) {
     finalOdds = negObject[negKey]['odds'];
   }
 
-  console.log(finalOdds)
+  console.log('Final Odds:', finalOdds)
   return finalOdds
 }
 
