@@ -44,12 +44,12 @@ export async function getOdds(dicePool, result) {
     let finalResults = await getRoll(diceSplit).then(result => {
 
         //manipulate DB objects to calculate posDicePool and negDicePool odds
-        let finalOdds = getResults(dicePool, result.posDice, result.negDice, finalRes)
+        let finalOdds = getResults(result.posDice, result.negDice, finalRes)
 
         //calculate force dice info
         let forceDice = diceSplit.forceDice
-        let forcePerms = (12 ^ forceDice.length)
-        let forceRes = 0;
+        let forcePerms = (12 ** forceDice.length)
+        let forceRes = 1;
 
         if(forceArray.toString() === forceCombos.one.result.toString()) {
             forceRes = forceCombos.one.qty;
@@ -65,10 +65,8 @@ export async function getOdds(dicePool, result) {
 
         //Calculate final odds
         let resultsDec = finalOdds * forceOdds //decimal value of odds
-        let finalResults = (resultsDec * 100).toFixed(2)
 
-        console.log(finalResults)
-        return finalOdds
+        return resultsDec
     });
 
     return finalResults;
