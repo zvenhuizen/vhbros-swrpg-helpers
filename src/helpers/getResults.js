@@ -59,12 +59,12 @@ export function getResults(dicePool, posObject, negObject, result) {
   if(posObject) {
     console.log('Positive Object:', posObject)
     Object.keys(posObject).forEach(key => {
-      if(posObject[key]['elem'][2] !== result[2] || posObject[key]['elem'][0] > (result[0] - maxFailure) || posObject[key]['elem'][1] > (result[1] > maxThreat)) {
+      if(posObject[key]['result'][2] !== result[2] || posObject[key]['result'][0] > (result[0] - maxFailure) || posObject[key]['result'][1] > (result[1] > maxThreat)) {
         delete posObject[key]
       }
       console.log('Positive Object[', key, ']:', posObject[key]);
       if(posObject[key]) { //since keys may have been deleted in prior step, current iteration of a key may return undefined
-        if(result[0] > 0 && (posObject[key]['elem'][0] < result[0] || posObject[key]['elem'][1] < result[1])) {
+        if(result[0] > 0 && (posObject[key]['result'][0] < result[0] || posObject[key]['result'][1] < result[1])) {
           delete posObject[key]
         }
       }
@@ -75,12 +75,12 @@ export function getResults(dicePool, posObject, negObject, result) {
   if(negObject) {
     console.log('Negative Object:', negObject)
     Object.keys(negObject).forEach(key => {
-      if(negObject[key]['elem'][3] !== result[3] || negObject[key]['elem'][0] < (result[0] - maxSuccess) || negObject[key]['elem'][1] < (result[1] - maxAdvantage)) {
+      if(negObject[key]['result'][3] !== result[3] || negObject[key]['result'][0] < (result[0] - maxSuccess) || negObject[key]['result'][1] < (result[1] - maxAdvantage)) {
         delete negObject[key]
       }
       console.log('Negative Object[', key, ']:', negObject[key])
       if(negObject[key]) { //since keys may have been deleted in prior step, current iteration of a key may return undefined
-        if(result[0] < 0 && (negObject[key]['elem'][0] > result[0] || negObject[key]['elem'][1] > result[1])) {
+        if(result[0] < 0 && (negObject[key]['result'][0] > result[0] || negObject[key]['result'][1] > result[1])) {
           delete negObject[key]
         }
       }
@@ -94,8 +94,8 @@ export function getResults(dicePool, posObject, negObject, result) {
   if(posObject && negObject) {
     Object.keys(posObject).forEach(key => {
       let negKeySearch = ''
-      negKeySearch += result[0] -  posObject[key]['elem'][0] + ':';
-      negKeySearch += result[1] - posObject[key]['elem'][1] + ':';
+      negKeySearch += result[0] -  posObject[key]['result'][0] + ':';
+      negKeySearch += result[1] - posObject[key]['result'][1] + ':';
       negKeySearch += result[2] + ':';
       negKeySearch += result[3];
 

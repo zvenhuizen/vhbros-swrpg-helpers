@@ -52,10 +52,10 @@ export default function getAllResults(dice) {
   keys,
   current;
   //get an object of every unique summed array result with the count of times it appeard in summedArray
-  finalObject = result.reduce(function(acc, elem) {
-      var key = elem[0] + ":" + elem[1] + ":" + elem[2] + ":" + elem[3];
+  finalObject = result.reduce(function(acc, result) {
+      var key = result[0] + ":" + result[1] + ":" + result[2] + ":" + result[3];
       if (!acc.hasOwnProperty(key)) {
-          acc[key] = {elem: elem, count: 0}
+          acc[key] = {result: result, count: 0}
       }
       acc[key].count += 1;
       return acc;
@@ -64,8 +64,8 @@ export default function getAllResults(dice) {
   keys = Object.keys(finalObject);
   for (var i = 0, l = keys.length; i < l; i++) {
       current = finalObject[keys[i]];
-      current.elem.push(current.count);
-      uniqueArray.push(current.elem);
+      current.result.push(current.count);
+      uniqueArray.push(current.result);
   }
 
   //create roll object
