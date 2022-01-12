@@ -80,6 +80,7 @@ export async function getRoll(roll) {
     return //return early
   }
   
+  console.log(roll);
   let rollData;
 
   try {

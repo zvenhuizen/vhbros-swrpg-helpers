@@ -8,7 +8,7 @@ import rollDice from '../helpers/rollDice';
 import calculateSuccessProb from '../helpers/calculateSuccessProbability';
 import successOdds from '../helpers/successOdds';
 import {validLength} from '../helpers/validateInput'
-import getOdds from '../helpers/getOdds';
+import { getOdds } from '../helpers/getOdds';
 
 class App extends React.Component {
   constructor(props) {
@@ -54,13 +54,18 @@ class App extends React.Component {
       const diceResult = rollDice(this.state.diceInputValue); //returns full, uncancelled result string (i.e. ssatf)
       const rollResult = cancelResults(diceResult); //returns net results nested array (i.e. [[1, s], [1, a]] )
 
-      //HOW DO I GET getOdds() TO RETURN THE RESULT???
-      const finalOdds = getOdds(this.state.diceInputValue,diceResult)
-      
+      // RUN THEN ON GETOODDS AND SET STATE AFTER THEN COMPLETES
+      // first had to turn getOdds into an async function to get the results to return here.
+      getOdds(this.state.diceInputValue,diceResult).then(res => {
+        console.log(`THIS IS THE GET ODDS IN APP SPEAKING: ${res}`);
+        this.setState({
+          finalOdds: (res*100).toFixed(2)
+        })
+      });
+
       this.setState({
           diceResult: diceResult,
           rollResult: rollResult,
-          finalOdds: finalOdds,
           diceInputValue: ''
         })
     } else {

@@ -29,7 +29,7 @@ function removeStaticDice(roll, result) {
     return [[sucfai, advthr, tri, des], [lsp, dsp]]
 }
 
-export default function getOdds(dicePool, result) {
+export async function getOdds(dicePool, result) {
     console.log('Dice Pool:', dicePool)
 
     //returns net [s/f, a/thr, tri, des, lsp, dsp] where s, a, tri, des are positive #s and f & thr are negative #s
@@ -41,7 +41,7 @@ export default function getOdds(dicePool, result) {
 
     
     //send diceSplit to getRoll and wait for Promise to resolve
-    getRoll(diceSplit).then(result => {
+    let finalResults = await getRoll(diceSplit).then(result => {
 
         //manipulate DB objects to calculate posDicePool and negDicePool odds
         let finalOdds = getResults(dicePool, result.posDice, result.negDice, finalRes)
@@ -49,7 +49,7 @@ export default function getOdds(dicePool, result) {
         //calculate force dice info
         let forceDice = diceSplit.forceDice
         let forcePerms = (12 ^ forceDice.length)
-        let forceRes = 1;
+        let forceRes = 0;
 
         if(forceArray.toString() === forceCombos.one.result.toString()) {
             forceRes = forceCombos.one.qty;
@@ -68,6 +68,8 @@ export default function getOdds(dicePool, result) {
         let finalResults = (resultsDec * 100).toFixed(2)
 
         console.log(finalResults)
-        return finalResults
+        return finalOdds
     });
+
+    return finalResults;
 }
