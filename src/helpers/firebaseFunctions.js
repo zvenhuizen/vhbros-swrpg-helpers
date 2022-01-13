@@ -1,47 +1,44 @@
-import { getFirestore,
-        //collection,
-        //where,
-        //getDocs,
-        getDoc,
-        //getDocFromCache,
-        //addDoc,
-        //query,
-        //orderBy,
-        //limit,
-        //onSnapshot,
-        setDoc,
-        //updateDoc,
-        doc,
-        //serverTimestamp
-      }                     from 'firebase/firestore';
-import { //getStorage,
-        //ref,
-        //uploadBytesResumable,
-        //getDownloadURL,
-        }                   from 'firebase/storage';
+// import { getStorage,ref,uploadBytesResumable,getDownloadURL } from 'firebase/storage';
 //import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 //import { getPerformance } from 'firebase/performance';
-import getAllResults from './createRollObjects';
-import DiceArrays from './getDiceArrays';
+import { //collection,where,getDocs,getDocFromCache,addDoc,query,orderBy,limit,onSnapshot,updateDoc,serverTimestamp
+  getFirestore,
+  getDoc,
+  setDoc,
+  doc
+} from 'firebase/firestore';
+import getAllResults  from './createRollObjects';
+import DiceArrays     from './getDiceArrays';
 
-async function createDocument(id, data) {
+// search database for pos and neg dicePool info
+export async function getRoll(dicePoolObject) {
 
   let db = getFirestore();
-  let result;
-  
-  try {
-    result = await setDoc(doc(db, 'rolls', id), data);
 
+  if(!dicePoolObject) {
+    console.log("No dice rolled");
+    return //return early
+  }
+  
+  console.log(dicePoolObject);
+  let rollData;
+
+  try {
+    // access posRes and negRes asynchronously, but wait until both are finished to continue (can be expanded to include force and nonDice if necessary)
+    let [posDoc, negDoc] = await Promise.all([getDoc(doc(db, 'rolls', dicePoolObject.posDicePool)), getDoc(doc(db, 'rolls', dicePoolObject.negDicePool))]);
+
+    let rollPossibilities = docsExist({posDoc: posDoc, negDoc: negDoc}, dicePoolObject)
+    rollData = {posDicePoolObj: rollPossibilities.posRoll, negDicePoolObj: rollPossibilities.negRoll, forceDice: '', symbols: ''};
   }
   catch(e) {
     console.log(e);
   }
 
-  return result;
-
+  return rollData;
 }
 
-function docsExist(documents, roll) {
+// check if the dicePool exists in the database
+function docsExist(documents, dicePoolObject) {
 
   let rollObject = {}
 
@@ -51,9 +48,9 @@ function docsExist(documents, roll) {
     rollObject.posRoll = documents.posDoc.data();
   } else {
     // create and return the data if it is not
-    rollObject.posRoll = getAllResults(DiceArrays(roll).posDice);
+    rollObject.posRoll = getAllResults(DiceArrays(dicePoolObject).posDicePool, 'positive');
     // then add that data to the database
-    createDocument(roll.posDice, rollObject.posRoll);
+    createDocument(dicePoolObject.posDicePool, rollObject.posRoll);
   }
 
   // Check if negative roll is in the database
@@ -62,38 +59,26 @@ function docsExist(documents, roll) {
     rollObject.negRoll = documents.negDoc.data();
   } else {
     // create and return the data if it is not
-    rollObject.negRoll = getAllResults(DiceArrays(roll).negDice);
+    rollObject.negRoll = getAllResults(DiceArrays(dicePoolObject).negDicePool, 'negative');
     // then add that data to the database
-    createDocument(roll.negDice, rollObject.negRoll)
+    createDocument(dicePoolObject.negDicePool, rollObject.negRoll)
   }
 
   return rollObject;
-
 }
 
-export async function getRoll(roll) {
+// create a new dicePool for a roll that does not yet exist
+async function createDocument(id, data) {
 
   let db = getFirestore();
-
-  if(!roll) {
-    console.log("No dice rolled");
-    return //return early
-  }
+  let result;
   
-  console.log(roll);
-  let rollData;
-
   try {
-    // access posRes and negRes asynchronously, but wait until both are finished to continue (can be expanded to include force and nonDice if necessary)
-    let [posDoc, negDoc] = await Promise.all([getDoc(doc(db, 'rolls', roll.posDice)), getDoc(doc(db, 'rolls', roll.negDice))]);
-
-    let rollPossibilities = docsExist({posDoc: posDoc, negDoc: negDoc}, roll)
-    rollData = {posDice: rollPossibilities.posRoll, negDice: rollPossibilities.negRoll, forceDice: '', nonDice: ''};
+    result = await setDoc(doc(db, 'rolls', id), data);
   }
   catch(e) {
     console.log(e);
   }
 
-  return rollData;
-
+  return result;
 }

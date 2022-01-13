@@ -1,91 +1,53 @@
 import returnPermutations from './permutations';
 
-export default function getAllResults(dice) {
+export default function getAllResults(faceArray, typeOf) {
 
   // calculate total permutations
   let permutations = 1
-  for (let i = 0; i < dice.length; i++) {
-    permutations *= dice[i].length;
+  for (let i = 0; i < faceArray.length; i++) {
+    permutations *= faceArray[i].length;
+  };
+
+  let combinedFaceArray = returnPermutations(faceArray);
+
+  let dicePoolObject, keys;
+
+  //get an object of every unique summed array result with the count of times it appeard in summedArray
+  if(typeOf !== 'force') {
+    dicePoolObject = combinedFaceArray.reduce(function(acc, combinedFaceArray) {
+        var key = combinedFaceArray[0] + ":" + combinedFaceArray[1] + ":" + combinedFaceArray[2] + ":" + combinedFaceArray[3];
+        if (!acc.hasOwnProperty(key)) {
+            acc[key] = {
+              success: combinedFaceArray[0],
+              advantage: combinedFaceArray[1],
+              triumph: combinedFaceArray[2],
+              despair: combinedFaceArray[3],
+              count: 0}
+        }
+        acc[key].count += 1;
+        return acc;
+    }, {});
+  } else {
+    dicePoolObject = combinedFaceArray.reduce(function(acc, combinedFaceArray) {
+        var key = combinedFaceArray[0] + ":" + combinedFaceArray[1];
+        if (!acc.hasOwnProperty(key)) {
+            acc[key] = {
+              lsp: combinedFaceArray[0],
+              dsp: combinedFaceArray[1],
+              count: 0}
+        }
+        acc[key].count += 1;
+        return acc;
+    }, {});
   }
 
-  //get all dice combinations into array as strings
-  // let result = combine(dice); //needs to be replaced with permute(dice)
-  // console.log("RESULT OF COMBINE: " + result);
-  let result = returnPermutations(dice);
-  
-  //convert strings in array into nested arrays
-  // let resultArray = [];
-  // result.forEach(res => resultArray.push(res.split(';')));
-
-  // let sumArray = [];
-  // resultArray.map(res => {
-  //   let tempArray = []
-  //   res.forEach(num => tempArray.push(num.split(',')));
-  //   sumArray.push(tempArray);
-  // })
-
-  // let intArray = sumArray.map(r => {
-  //   return r.map(s => {
-  //     return s.map(n => {
-  //       return parseInt(n,10);
-  //     })
-  //   })
-  // })
-
-  //sum each combination of arrays inside larger array
-  //I'm sure this could be turned into a recursive solution
-  // let summedArray = result;
-  // for(var i = 0; i < intArray.length; i++) {
-
-  //   let sumResult = [];
-  //   let tempArray = intArray[i];
-  //   if(intArray.length > 1) {
-  //     sumResult = tempArray.reduce((r, a) => a.map((b, y) => (r[y] || 0) + b), []) 
-  //   } else {
-  //     sumResult = intArray[0]; //if only one element in intArray, then result is that element
-  //   }
-  //   summedArray.push(sumResult)
-  // }
-
-  let uniqueArray = [],
-  finalObject,
-  keys,
-  current;
-  //get an object of every unique summed array result with the count of times it appeard in summedArray
-  finalObject = result.reduce(function(acc, result) {
-      var key = result[0] + ":" + result[1] + ":" + result[2] + ":" + result[3];
-      if (!acc.hasOwnProperty(key)) {
-          acc[key] = {
-            success: result[0],
-            advantage: result[1],
-            triumph: result[2],
-            despair: result[3],
-            count: 0}
-      }
-      acc[key].count += 1;
-      return acc;
-  }, {});
-
-  keys = Object.keys(finalObject);
+  keys = Object.keys(dicePoolObject);
 
   //create roll object
   
-  for (let key in finalObject) {
-    finalObject[key].prob = (finalObject[key].count / permutations);
+  for (let key in dicePoolObject) {
+    dicePoolObject[key].prob = (dicePoolObject[key].count / permutations);
   }
 
-  // for(i = 0; i < uniqueArray.length; i++) {
-
-  //   //get values needed to create the Result object
-  //   let tempArray = uniqueArray[i];
-  //   let count = tempArray[4];
-  //   uniqueArray[i].splice(4,1);
-  //   let result = uniqueArray[i];
-  //   let odds = (count / permutations).toFixed(6);
-
-  //   let obj = {'Result': result, 'Odds': odds};
-  //   finalObject[i] = obj;
-  // }
-
-  return finalObject;
+  return dicePoolObject;
 }

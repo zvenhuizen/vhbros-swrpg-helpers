@@ -1,4 +1,4 @@
-const cancelResults = (roll) => {
+const cancelDicePoolResult = (dicePoolResultString) => {
 
     let sucfai = 0;
     let advthr = 0;
@@ -7,14 +7,14 @@ const cancelResults = (roll) => {
     let lsp = 0;
     let dsp = 0;
 
-    for(var i = 0; i < roll.length; i++) {
+    for(var i = 0; i < dicePoolResultString.length; i++) {
         
-        const result = roll[i].split(''); //split the result into an array of single letters
+        const dicePoolResultArray = dicePoolResultString[i].split(''); //split the result into an array of single letters
         
         // add all results together
-        for(var j = 0; j < result.length; j++) {
+        for(var j = 0; j < dicePoolResultArray.length; j++) {
 
-            switch(result[j]) {
+            switch(dicePoolResultArray[j]) {
                 case 's':
                     sucfai = sucfai + 1;
                     break;
@@ -49,41 +49,41 @@ const cancelResults = (roll) => {
 
     }
 
-    let results = [];
+    let outcomeArray = [];
 
     if(sucfai > 0) {
-        results.push([sucfai, 's']);
+        outcomeArray.push([sucfai, 's']);
     }
 
     if(sucfai < 0) {
-        results.push([-1 * sucfai, 'f']);
+        outcomeArray.push([-1 * sucfai, 'f']);
     }
 
     if(advthr > 0) {
-        results.push([advthr, 'a']);
+        outcomeArray.push([advthr, 'a']);
     }
 
     if(advthr < 0) {
-        results.push([-1 * advthr, 't']);
+        outcomeArray.push([-1 * advthr, 't']);
     }
 
     if(tri > 0) {
-        results.push([tri, 'r']);
+        outcomeArray.push([tri, 'r']);
     }
 
     if(des > 0) {
-        results.push([des, 'd']);
+        outcomeArray.push([des, 'd']);
     }
 
     if(lsp > 0) {
-        results.push([lsp, 'l']);
+        outcomeArray.push([lsp, 'l']);
     }
 
     if(dsp > 0) {
-        results.push([dsp, 'n']);
+        outcomeArray.push([dsp, 'n']);
     }
 
-    return results;
+    return outcomeArray;
 }
 
-export default cancelResults;
+export default cancelDicePoolResult;

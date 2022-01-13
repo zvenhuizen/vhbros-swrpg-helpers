@@ -1,9 +1,32 @@
-import getDiceSplit from "./diceSplit";
-import { forceCombos } from './Combos';
+import getDiceSplit     from "./diceSplit";
+import { forceCombos }  from './Combos';
 import { getResults, 
-         netResults } from "./getResults";
+         netResults }   from "./getResults";
 import { //rollExists,
-         getRoll } from "./firebaseFunctions";
+         getRoll }      from "./firebaseFunctions";
+
+export async function getOdds(dicePool, dicePoolResult) {
+    console.log('Dice Pool:', dicePool)
+
+    //returns net [s/f, a/thr, tri, des, lsp, dsp] where s, a, tri, des are positive #s and f & thr are negative #s
+    let dicePoolObject = getDiceSplit(dicePool);
+
+    // this is the final array to use to check database objects against
+    let [posNegOutcome, forceOutcome] = removeStaticDice(dicePool, dicePoolResult);
+    console.log('Normal Dice Outcome:', posNegOutcome)
+    console.log('Force Dice Outcome:', forceOutcome)
+    
+    //send diceSplit to getRoll and wait for Promise to resolve
+    let finalOutcomeProb = await getRoll(dicePoolObject).then(result => {
+
+        //manipulate DB objects to calculate posDicePool and negDicePool odds
+        let outcomeProb = getResults(result.posDicePoolObj, result.negDicePoolObj, dicePoolObject.forceDicePool, posNegOutcome, forceOutcome)
+
+        return outcomeProb
+    });
+
+    return finalOutcomeProb;
+}
 
 function removeStaticDice(roll, result) {
 
@@ -27,47 +50,4 @@ function removeStaticDice(roll, result) {
         dsp     = netRes[5] - dsp
     
     return [[sucfai, advthr, tri, des], [lsp, dsp]]
-}
-
-export async function getOdds(dicePool, result) {
-    console.log('Dice Pool:', dicePool)
-
-    //returns net [s/f, a/thr, tri, des, lsp, dsp] where s, a, tri, des are positive #s and f & thr are negative #s
-    let diceSplit = getDiceSplit(dicePool);
-
-    // this is the final array to use to check database objects against
-    let [finalRes, forceArray] = removeStaticDice(dicePool, result);
-    console.log('Final Results:', finalRes)
-
-    
-    //send diceSplit to getRoll and wait for Promise to resolve
-    let finalResults = await getRoll(diceSplit).then(result => {
-
-        //manipulate DB objects to calculate posDicePool and negDicePool odds
-        let finalOdds = getResults(result.posDice, result.negDice, finalRes)
-
-        //calculate force dice info
-        let forceDice = diceSplit.forceDice
-        let forcePerms = (12 ** forceDice.length)
-        let forceRes = 1;
-
-        if(forceArray.toString() === forceCombos.one.result.toString()) {
-            forceRes = forceCombos.one.qty;
-        } else if(forceArray.toString() === forceCombos.two.result.toString()) {
-            forceRes = forceCombos.two.qty;
-        } else if(forceArray.toString() === forceCombos.three.result.toString()) {
-            forceRes = forceCombos.three.qty;
-        } else if(forceArray.toString() === forceCombos.four.result.toString()) {
-            forceRes = forceCombos.four.qty;
-        };
-
-        let forceOdds = (forceRes / forcePerms)
-
-        //Calculate final odds
-        let resultsDec = finalOdds * forceOdds //decimal value of odds
-
-        return resultsDec
-    });
-
-    return finalResults;
 }

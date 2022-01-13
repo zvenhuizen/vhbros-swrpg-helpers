@@ -1,53 +1,69 @@
-export function getResults(posObject, negObject, result) {
+import getAllResults from "./createRollObjects"
+import DiceArrays from "./getDiceArrays"
+
+export function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, posNegOutcome, forceOutcome) {
   
-  if(!result) {
-    console.log('Returned Early, Result:', result)
+  if(!posNegOutcome) {
+    console.log('Returned Early, Result:', posNegOutcome)
     return //return early
   }
 
-  console.log('Positive Object:', posObject)
-  console.log('Negative Object:', negObject)
-  console.log('Result:', result)
+  //Calculate the odds that the regular dice outcome could have been produced.
+  let posNegProb = 0
 
-  //Calculate the odds that the outcome could have been produced.
-  let finalOdds = 0
+  if(posDicePoolObj && negDicePoolObj) {
 
-  if(posObject && negObject) {
     console.log('Found both pos and neg objects.')
-    Object.keys(posObject).forEach(key => {
+
+    Object.keys(posDicePoolObj).forEach(key => {
       
       let negKey = []
-      negKey.push(result[0] -  posObject[key].result[0])
-      negKey.push(result[1] - posObject[key].result[1])
-      negKey.push(result[2])
-      negKey.push(result[3])
+      negKey.push(posNegOutcome[0] -  posDicePoolObj[key].success)
+      negKey.push(posNegOutcome[1] - posDicePoolObj[key].advantage)
+      negKey.push(posNegOutcome[2])
+      negKey.push(posNegOutcome[3])
 
       let negKeySearch = negKey.join(':');
 
-      console.log('Current Positive Key:', posObject[key])
-      console.log('Calculated Current Negative Key:', negKeySearch)
-      console.log('Current Negative Key:', negObject[negKeySearch])
-      if(negObject[negKeySearch]) {
-        finalOdds += posObject[key]['odds'] * negObject[negKeySearch]['odds']
-        console.log('Current Final Odds:', finalOdds)
+      if(negDicePoolObj[negKeySearch]) {
+        posNegProb += posDicePoolObj[key].prob * negDicePoolObj[negKeySearch].prob
       };
     })
-  } else if(posObject) {
+  } else if(posDicePoolObj) {
+
     console.log('Only found pos object.')
+
     let posKey = ''
-    posKey += result[0] + ':' + result[1] + ':' + result[2] + ':' + result[3]
+    posKey += posNegOutcome[0] + ':' + posNegOutcome[1] + ':' + posNegOutcome[2] + ':' + posNegOutcome[3]
 
-    finalOdds = posObject[posKey]['odds'];
-  } else if(negObject) {
+    posNegProb = posDicePoolObj[posKey].prob;
+  } else if(negDicePoolObj) {
+
     console.log('Only found neg object.')
-    let negKey = ''
-    negKey += result[0] + ':' + result[1] + ':' + result[2] + ':' + result[3]
 
-    finalOdds = negObject[negKey]['odds'];
+    let negKey = ''
+    negKey += posNegOutcome[0] + ':' + posNegOutcome[1] + ':' + posNegOutcome[2] + ':' + posNegOutcome[3]
+
+    posNegProb = negDicePoolObj[negKey].prob;
   };
 
-  console.log('Final Odds:', finalOdds)
-  return finalOdds
+  console.log('Regular Dice Odds:', posNegProb)
+
+  //calculate the odds that the force dice outcome could have been produced
+  let forceProb = 1
+  if(forceOutcome) {
+
+    let forceDicePoolObj = getAllResults(DiceArrays(forceDicePool).forceDicePool, 'force')
+
+    let forceKey = ''
+    forceKey += forceOutcome[0] + ':' + forceOutcome[1];
+
+    forceProb = forceDicePoolObj[forceKey].prob
+  }
+
+  let outcomeProb = posNegProb * forceProb
+
+  return outcomeProb;
 }
 
 export function netResults(roll) {

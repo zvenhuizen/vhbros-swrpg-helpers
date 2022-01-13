@@ -1,38 +1,60 @@
-import { diceCombos } from './Combos';
+import { dice } from './Dice.js';
 
-export default function DiceArrays(dice) {
+export default function DiceArrays(dicePoolObject) {
 
-  let posDice = dice.posDice.split('');
-  let negDice = dice.negDice.split('');
+  let posDicePool = dicePoolObject.posDicePool.split('');
+  let negDicePool = dicePoolObject.negDicePool.split('');
+  let forceDicePool = dicePoolObject.forceDicePool.split('');
 
-  let posDiceArray = posDice.map(sides => {
+  let posFaceArray = posDicePool.map(sides => {
     switch(sides) {
       case 'y':
-        return diceCombos.yellow;
+        return nestFaceArrays(dice.yellow);
       case 'g':
-        return diceCombos.green;
+        return nestFaceArrays(dice.green);
       case 'b':
-        return diceCombos.blue;
+        return nestFaceArrays(dice.blue);
       default:
         return null;
     }
   });
 
-  let negDiceArray = negDice.map(sides => {
+  let negFaceArray = negDicePool.map(sides => {
     switch(sides) {
       case 'r':
-        return diceCombos.red;
+        return nestFaceArrays(dice.red);
       case 'p':
-        return diceCombos.purple;
+        return nestFaceArrays(dice.purple);
       case 'k':
-        return diceCombos.black;
+        return nestFaceArrays(dice.black);
       default:
         return null;
     }
   });
 
-  posDiceArray = posDiceArray.filter(e => e != null);
-  negDiceArray = negDiceArray.filter(e => e != null);
+  let forceFaceArray = forceDicePool.map(sides => {
+    switch(sides) {
+      case 'w':
+        return nestFaceArrays(dice.white);
+      default:
+        return null;
+    }
+  });
 
-  return {posDice: posDiceArray, negDice: negDiceArray};
+  posFaceArray = posFaceArray.filter(e => e != null);
+  negFaceArray = negFaceArray.filter(e => e != null);
+  forceFaceArray = forceFaceArray.filter(e => e != null);
+
+  return {posDicePool: posFaceArray, negDicePool: negFaceArray, forceDicePool: forceFaceArray};
+}
+
+function nestFaceArrays(die) {
+
+  let finalFaceArray = []
+
+  Object.keys(die).forEach(key => {
+    finalFaceArray.push(die[key].faceArray)
+  })
+
+  return finalFaceArray
 }
