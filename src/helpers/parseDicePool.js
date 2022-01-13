@@ -1,11 +1,11 @@
 import {dice} from './Dice';
 
-const parseDice = (roll) => {
+const parseDicePool = (roll) => {
 
-    let rollArray = roll.split(''); //split string into an array at every letter
+    let dicePoolArray = roll.split(''); //split string into an array at every letter
     
     // create a new array with an object for each die rolled
-    let diceArray = rollArray.map(die => {
+    let diceObjectsArray = dicePoolArray.map(die => {
 
         switch(die) {
             case 'y':
@@ -43,8 +43,8 @@ const parseDice = (roll) => {
         }
     });
 
-    return diceArray;
+    return diceObjectsArray;
 
 }
 
-export default parseDice;
+export default parseDicePool;

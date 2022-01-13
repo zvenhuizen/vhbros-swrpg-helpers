@@ -1,4 +1,4 @@
-const cancelDicePoolResult = (dicePoolResultString) => {
+const cancelDicePoolResults = (diceFaceResultsArray) => {
 
     let sucfai = 0;
     let advthr = 0;
@@ -7,9 +7,9 @@ const cancelDicePoolResult = (dicePoolResultString) => {
     let lsp = 0;
     let dsp = 0;
 
-    for(var i = 0; i < dicePoolResultString.length; i++) {
+    for(var i = 0; i < diceFaceResultsArray.length; i++) {
         
-        const dicePoolResultArray = dicePoolResultString[i].split(''); //split the result into an array of single letters
+        const dicePoolResultArray = diceFaceResultsArray[i].split(''); //split the result into an array of single letters
         
         // add all results together
         for(var j = 0; j < dicePoolResultArray.length; j++) {
@@ -86,4 +86,4 @@ const cancelDicePoolResult = (dicePoolResultString) => {
     return outcomeArray;
 }
 
-export default cancelDicePoolResult;
+export default cancelDicePoolResults;

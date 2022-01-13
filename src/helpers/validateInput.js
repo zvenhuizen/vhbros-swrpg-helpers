@@ -1,6 +1,14 @@
-export function validInput(string) {
+export function validLength(dicePool,min,max) {
+    let valid = false;
+    if (dicePool.length >= min && dicePool.length <= max) {
+        valid = true;
+    }
+    return valid;
+}
+
+export function validInput(dicePool) {
     let valid = false
-    switch (string.toLowerCase().slice(-1)) {
+    switch (dicePool.toLowerCase().slice(-1)) {
         case '':  // No Dice (Blank)
         case 'a': // Advantage
         case 'b': // Boost Dice (Blue)
@@ -22,14 +30,6 @@ export function validInput(string) {
         default:
             valid = false
             break;
-    }
-    return valid;
-}
-
-export function validLength(string,min,max) {
-    let valid = false;
-    if (string.length >= min && string.length <= max) {
-        valid = true;
     }
     return valid;
 }
