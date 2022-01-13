@@ -1,5 +1,4 @@
 import getDiceSplit     from "./diceSplit";
-import { forceCombos }  from './Combos';
 import { getResults, 
          netResults }   from "./getResults";
 import { //rollExists,
