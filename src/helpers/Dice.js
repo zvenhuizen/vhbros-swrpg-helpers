@@ -60,12 +60,12 @@ const dice = {
 		8: {face: 'ft', faceArray: [-1,-1,0,0], adjacent: ['', 't', 't'],   adjacentposition: [1, 4, 5,]}
 	},
 	black: {
-		1: {face: '',  faceArray: [0,0,0,0], adjacent: ['f', 'f', 't', 't'], adjacentposition: [3, 4, 5, 6]},
-		2: {face: '',  faceArray: [0,0,0,0], adjacent: ['f', 'f', 't', 't'], adjacentposition: [3, 4, 5, 6]},
-		3: {face: 'f', faceArray: [-1,0,0,0], adjacent: ['', '', 't', 't'],  adjacentposition: [1, 2, 5, 6]},
-		4: {face: 'f', faceArray: [-1,0,0,0], adjacent: ['', '', 't', 't'],  adjacentposition: [1, 2, 5, 6]},
-		5: {face: 't', faceArray: [0,-1,0,0], adjacent: ['', '', 'f', 'f'],  adjacentposition: [1, 2, 3, 4]},
-		6: {face: 't', faceArray: [0,-1,0,0], adjacent: ['', '', 'f', 'f'],  adjacentposition: [1, 2, 3, 4]}
+		1: {face: '',  faceArray: [0,0,0,0],  adjacent: ['f', 'f', 't', 't'], adjacentposition: [3, 4, 5, 6]},
+		2: {face: '',  faceArray: [0,0,0,0],  adjacent: ['f', 'f', 't', 't'], adjacentposition: [3, 4, 5, 6]},
+		3: {face: 'f', faceArray: [-1,0,0,0], adjacent: ['', '', 't', 't'],   adjacentposition: [1, 2, 5, 6]},
+		4: {face: 'f', faceArray: [-1,0,0,0], adjacent: ['', '', 't', 't'],   adjacentposition: [1, 2, 5, 6]},
+		5: {face: 't', faceArray: [0,-1,0,0], adjacent: ['', '', 'f', 'f'],   adjacentposition: [1, 2, 3, 4]},
+		6: {face: 't', faceArray: [0,-1,0,0], adjacent: ['', '', 'f', 'f'],   adjacentposition: [1, 2, 3, 4]}
 	},
 	white: {
 		1: {face: 'n',   faceArray: [0,1], adjacent: ['n', 'n', 'l', 'll', 'll'], adjacentposition: [2, 3, 9, 10, 12]},

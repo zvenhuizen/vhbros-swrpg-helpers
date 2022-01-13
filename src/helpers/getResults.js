@@ -1,6 +1,6 @@
 import getAllResults from "./createRollObjects"
 import { nestFaceArrays } from "./getDiceArrays"
-import dice from "./Dice"
+import { dice } from "./Dice"
 
 export function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, posNegOutcome, forceOutcome) {
   
@@ -8,6 +8,7 @@ export function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, posNeg
     console.log('Returned Early, Result:', posNegOutcome)
     return //return early
   }
+  console.log(posNegOutcome)
 
   //Calculate the odds that the regular dice outcome could have been produced.
   let posNegProb = 0
@@ -15,6 +16,7 @@ export function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, posNeg
   if(posDicePoolObj && negDicePoolObj) {
 
     console.log('Found both pos and neg objects.')
+    console.log(posDicePoolObj, negDicePoolObj)
 
     Object.keys(posDicePoolObj).forEach(key => {
       
@@ -25,27 +27,35 @@ export function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, posNeg
       negKey.push(posNegOutcome[3])
 
       let negKeySearch = negKey.join(':');
+      console.log(negKeySearch)
 
       if(negDicePoolObj[negKeySearch]) {
         posNegProb += posDicePoolObj[key].prob * negDicePoolObj[negKeySearch].prob
       };
     })
+    console.log(posNegProb)
   } else if(posDicePoolObj) {
 
     console.log('Only found pos object.')
+    console.log(posDicePoolObj)
 
     let posKey = ''
     posKey += posNegOutcome[0] + ':' + posNegOutcome[1] + ':' + posNegOutcome[2] + ':' + posNegOutcome[3]
+    console.log(posKey)
 
     posNegProb = posDicePoolObj[posKey].prob;
+    console.log(posNegProb)
   } else if(negDicePoolObj) {
 
     console.log('Only found neg object.')
+    console.log(negDicePoolObj)
 
     let negKey = ''
     negKey += posNegOutcome[0] + ':' + posNegOutcome[1] + ':' + posNegOutcome[2] + ':' + posNegOutcome[3]
+    console.log(negKey)
 
     posNegProb = negDicePoolObj[negKey].prob;
+    console.log(posNegProb)
   };
 
   console.log('Regular Dice Odds:', posNegProb)
@@ -66,15 +76,21 @@ export function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, posNeg
     });
 
     forceFaceArray = forceFaceArray.filter(e => e != null);
+    console.log(forceFaceArray)
 
     let forceDicePoolObj = getAllResults(forceFaceArray, 'force')
+    console.log(forceDicePoolObj)
 
     let forceKey = ''
     forceKey += forceOutcome[0] + ':' + forceOutcome[1];
+    console.log(forceKey)
+    console.log(forceDicePoolObj[forceKey])
 
     forceProb = forceDicePoolObj[forceKey].prob
+    console.log(forceProb)
   }
 
+  console.log(posNegProb)
   let outcomeProb = posNegProb * forceProb
 
   return outcomeProb;
