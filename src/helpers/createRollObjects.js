@@ -55,23 +55,23 @@ export default function getAllResults(dice) {
   finalObject = result.reduce(function(acc, result) {
       var key = result[0] + ":" + result[1] + ":" + result[2] + ":" + result[3];
       if (!acc.hasOwnProperty(key)) {
-          acc[key] = {result: result, count: 0}
+          acc[key] = {
+            success: result[0],
+            advantage: result[1],
+            triumph: result[2],
+            despair: result[3],
+            count: 0}
       }
       acc[key].count += 1;
       return acc;
   }, {});
 
   keys = Object.keys(finalObject);
-  for (var i = 0, l = keys.length; i < l; i++) {
-      current = finalObject[keys[i]];
-      current.result.push(current.count);
-      uniqueArray.push(current.result);
-  }
 
   //create roll object
   
   for (let key in finalObject) {
-    finalObject[key].odds = (finalObject[key].count / permutations);
+    finalObject[key].prob = (finalObject[key].count / permutations);
   }
 
   // for(i = 0; i < uniqueArray.length; i++) {
