@@ -1,5 +1,6 @@
 import getAllResults from "./createRollObjects"
-import DiceArrays from "./getDiceArrays"
+import { nestFaceArrays } from "./getDiceArrays"
+import dice from "./Dice"
 
 export function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, posNegOutcome, forceOutcome) {
   
@@ -51,9 +52,22 @@ export function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, posNeg
 
   //calculate the odds that the force dice outcome could have been produced
   let forceProb = 1
-  if(forceOutcome) {
+  if(forceOutcome && forceDicePool) {
 
-    let forceDicePoolObj = getAllResults(DiceArrays(forceDicePool).forceDicePool, 'force')
+    let forceDice = forceDicePool.split('');
+
+    let forceFaceArray = forceDice.map(sides => {
+      switch(sides) {
+        case 'w':
+          return nestFaceArrays(dice.white);
+        default:
+          return null;
+      }
+    });
+
+    forceFaceArray = forceFaceArray.filter(e => e != null);
+
+    let forceDicePoolObj = getAllResults(forceFaceArray, 'force')
 
     let forceKey = ''
     forceKey += forceOutcome[0] + ':' + forceOutcome[1];

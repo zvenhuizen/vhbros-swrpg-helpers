@@ -4,7 +4,6 @@ export default function DiceArrays(dicePoolObject) {
 
   let posDicePool = dicePoolObject.posDicePool.split('');
   let negDicePool = dicePoolObject.negDicePool.split('');
-  let forceDicePool = dicePoolObject.forceDicePool.split('');
 
   let posFaceArray = posDicePool.map(sides => {
     switch(sides) {
@@ -32,23 +31,13 @@ export default function DiceArrays(dicePoolObject) {
     }
   });
 
-  let forceFaceArray = forceDicePool.map(sides => {
-    switch(sides) {
-      case 'w':
-        return nestFaceArrays(dice.white);
-      default:
-        return null;
-    }
-  });
-
   posFaceArray = posFaceArray.filter(e => e != null);
   negFaceArray = negFaceArray.filter(e => e != null);
-  forceFaceArray = forceFaceArray.filter(e => e != null);
 
-  return {posDicePool: posFaceArray, negDicePool: negFaceArray, forceDicePool: forceFaceArray};
+  return {posDicePool: posFaceArray, negDicePool: negFaceArray};
 }
 
-function nestFaceArrays(die) {
+export function nestFaceArrays(die) {
 
   let finalFaceArray = []
 

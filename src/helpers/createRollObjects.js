@@ -8,7 +8,7 @@ export default function getAllResults(faceArray, typeOf) {
     permutations *= faceArray[i].length;
   };
 
-  let combinedFaceArray = returnPermutations(faceArray);
+  let combinedFaceArray = returnPermutations(faceArray, typeOf);
 
   let dicePoolObject, keys;
 

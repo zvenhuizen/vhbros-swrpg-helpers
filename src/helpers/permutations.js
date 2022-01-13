@@ -1,26 +1,42 @@
-export default function returnPermutations(dice) {
+export default function returnPermutations(dice, typeOf) {
 
     let outputs = []
 
-    function permute(allDice, die=0, output=[0,0,0,0]){
-    
+    if(typeOf !== 'force') {
+        function permute(allDice, die=0, output=[0,0,0,0]){
 
-    allDice[die].forEach((result)=>{
-        if( die === allDice.length - 1 ){
-            // Base case...
-            outputs.push( result.map((r,i) => r + output[i]) );
-            // console.log(outputs);
+            allDice[die].forEach((result)=>{
+                if( die === allDice.length - 1 ){
+                    // Base case...
+                    outputs.push( result.map((r,i) => r + output[i]) );
+                    // console.log(outputs);
+                }
+                else{
+                    // Recursive case...
+                    permute(allDice, die+1, result.map((r,i) => r + output[i]) );
+                    // console.log(outputs);
+                }
+            });/*  forEach() */
         }
-        else{
-            // Recursive case...
-            permute(allDice, die+1, result.map((r,i) => r + output[i]) );
-            // console.log(outputs);
-        }
-    });/*  forEach() */
+        permute(dice);
+    } else {
+        function permute(allDice, die=0, output=[0,0]){
 
+            allDice[die].forEach((result)=>{
+                if( die === allDice.length - 1 ){
+                    // Base case...
+                    outputs.push( result.map((r,i) => r + output[i]) );
+                    // console.log(outputs);
+                }
+                else{
+                    // Recursive case...
+                    permute(allDice, die+1, result.map((r,i) => r + output[i]) );
+                    // console.log(outputs);
+                }
+            });/*  forEach() */
+        }
+        permute(dice);
     }
-    
-    permute(dice);
 
     return outputs;
 }
