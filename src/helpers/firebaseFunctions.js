@@ -25,7 +25,7 @@ export async function getRoll(dicePoolObject) {
 
   try {
     // access posRes and negRes asynchronously, but wait until both are finished to continue (can be expanded to include force and nonDice if necessary)
-    let [posDoc, negDoc] = await Promise.all([getDoc(doc(db, 'rolls', dicePoolObject.posDicePool)), getDoc(doc(db, 'rolls', dicePoolObject.negDicePool))]);
+    let [posDoc, negDoc] = await Promise.all([getDoc(doc(db, 'dicePools', dicePoolObject.posDicePool)), getDoc(doc(db, 'dicePools', dicePoolObject.negDicePool))]);
 
     let rollPossibilities = docsExist({posDoc: posDoc, negDoc: negDoc}, dicePoolObject)
     rollData = {posDicePoolObj: rollPossibilities.posRoll, negDicePoolObj: rollPossibilities.negRoll, forceDice: '', symbols: ''};
@@ -74,7 +74,7 @@ async function createDocument(id, data) {
   let result;
   
   try {
-    result = await setDoc(doc(db, 'rolls', id), data);
+    result = await setDoc(doc(db, 'dicePools', id), data);
   }
   catch(e) {
     console.log(e);
