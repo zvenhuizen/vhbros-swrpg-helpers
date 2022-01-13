@@ -6,30 +6,7 @@ import reportWebVitals from './helpers/reportWebVitals';
 import { getFirebaseConfig } from './firebase-config';
 import { initializeApp } from 'firebase/app';
 
-const firebaseAppConfig = getFirebaseConfig();
-initializeApp(firebaseAppConfig);
-
-let posDiceArray = [[[0,0,0,0],[1,0,0,0],[1,0,0,0],[0,1,0,0],[1,1,0,0],[1,1,0,0],[1,1,0,0],[2,0,0,0],[2,0,0,0],[0,2,0,0],[0,2,0,0],[1,0,1,0]], 
-[[0,0,0,0],[1,0,0,0],[1,0,0,0],[0,1,0,0],[0,1,0,0],[1,1,0,0],[2,0,0,0],[0,2,0,0]],
-[[0,0,0,0],[0,0,0,0],[1,0,0,0],[0,1,0,0],[1,1,0,0],[0,2,0,0]]];
-let outputs = [];
-
-function permute(allDice, die=0, output=[0,0,0,0]){
-
-    allDice[die].forEach((result)=>{
-        if( die === allDice.length - 1 ){            
-            // Base case...
-            outputs.push( result.map((r,i) => r + output[i]) );
-            // console.log(outputs);
-        }
-        else{
-            // Recursive case...
-            permute(allDice, die+1, result.map((r,i) => r + output[i]) );
-        }
-    });/*  forEach() */
-}
-
-permute(posDiceArray)
+initializeApp(getFirebaseConfig());
 
 ReactDOM.render(
   <React.StrictMode>

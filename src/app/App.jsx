@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from './Header';
-import RollResults from '../probability/RollResults';
-import DiceResults from '../probability/DiceResults';
+import Outcome from '../probability/Outcome';
+import DiceFaceResults from '../probability/DiceFaceResults';
 import DiceInput from '../probability/DiceInput';
 import cancelResults from '../helpers/cancelResults';
 import rollDice from '../helpers/rollDice';
-import calculateSuccessProb from '../helpers/calculateSuccessProbability';
-import successOdds from '../helpers/successOdds';
+import calculateSuccessProb from '../helpers/calculateSuccessProb';
+import successProb from '../helpers/successProb';
 import {validLength} from '../helpers/validateInput'
 import { getOdds } from '../helpers/getOdds';
 
@@ -14,12 +14,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      diceInputValue: '',
-      diceResult: [],
-      rollResult: [],
-      rolledDice: '',
-      successOdds: '--.--',
-      finalOdds: '--.--',
+      dicePoolInputValue: '',
+      diceFaceResults: [],
+      outcome: [],
+      dicePool: '',
+      successProb: '--.--',
+      outcomeProb: '--.--',
       errors: []
     }
 
@@ -29,20 +29,20 @@ class App extends React.Component {
 
   handleDiceInput(event) {
 
-    let sucPct = '--.--';
+    let successPct = '--.--';
 
     if(event.target.value !== '') {
-      sucPct = successOdds(calculateSuccessProb(event.target.value));
+      successPct = successProb(calculateSuccessProb(event.target.value));
       }
 
     this.setState({
-      diceInputValue: event.target.value,
-      diceResult: [],
-      rollResult: [],
+      dicePoolInputValue: event.target.value,
+      diceFaceResults: [],
+      outcome: [],
       errors: [],
-      rolledDice: '',
-      successOdds: sucPct,
-      finalOdds: '--.--'
+      dicePool: '',
+      successProb: successPct,
+      outcomeProb: '--.--'
     });
   }
 
@@ -50,34 +50,34 @@ class App extends React.Component {
     // Validate length to ensure there is at least 1 die to roll
     let errors = [];
 
-    if(validLength(this.state.diceInputValue,1,24)) {
-      const diceResult = rollDice(this.state.diceInputValue); //returns full, uncancelled result string (i.e. ssatf)
-      const rollResult = cancelResults(diceResult); //returns net results nested array (i.e. [[1, s], [1, a]] )
+    if(validLength(this.state.dicePoolInputValue,1,24)) {
+      const diceFaceResults = rollDice(this.state.dicePoolInputValue); //returns full, uncancelled result string (i.e. ssatf)
+      const outcome = cancelResults(diceFaceResults); //returns net results nested array (i.e. [[1, s], [1, a]] )
 
       // RUN THEN ON GETOODDS AND SET STATE AFTER THEN COMPLETES
       // first had to turn getOdds into an async function to get the results to return here.
-      getOdds(this.state.diceInputValue,diceResult).then(res => {
+      getOdds(this.state.dicePoolInputValue,diceFaceResults).then(res => {
         console.log(`THIS IS THE GET ODDS IN APP SPEAKING: ${res}`);
         this.setState({
-          finalOdds: (res*100).toFixed(2)
+          outcomeProb: (res*100).toFixed(2)
         })
       });
 
       this.setState({
-          diceResult: diceResult,
-          rollResult: rollResult,
-          diceInputValue: ''
+          diceFaceResults: diceFaceResults,
+          outcome: outcome,
+          dicePoolInputValue: ''
         })
     } else {
       errors.push("Cannot roll 0 dice");
       
       this.setState({
-        successOdds: '--.--',
-        finalOdds: '--.--',
-        diceResult: [],
-        rollResult: [],
-        rolledDice: '',
-        diceInputValue: '',
+        successProb: '--.--',
+        outcomeProb: '--.--',
+        diceFaceResults: [],
+        outcome: [],
+        dicePool: '',
+        dicePoolInputValue: '',
         errors: errors
       })
     }
@@ -91,7 +91,7 @@ class App extends React.Component {
         <Header />
         <p className='input-errors'>{this.state.errors.map((error,index) => (<span key={index} className="alert alert-danger">{error}</span>))}</p>
         <DiceInput
-          value={this.state.diceInputValue}
+          value={this.state.dicePoolInputValue}
           diceInputChange={this.handleDiceInput}
           rollDiceClick={this.handleRollClick}
           autofocus
@@ -99,16 +99,16 @@ class App extends React.Component {
         
         <div className='results-container'>
 
-          <DiceResults 
-            results={this.state.diceResult}
-            rolledDice={this.state.rolledDice}
-            dice={this.state.diceInputValue}
-            successChance={this.state.successOdds} />
+          <DiceFaceResults 
+            diceFaceResults={this.state.diceFaceResults}
+            dicePool={this.state.dicePool}
+            dice={this.state.dicePoolInputValue}
+            successProb={this.state.successProb} />
 
-          <RollResults
-            finalOdds={this.state.finalOdds}
-            results={this.state.rollResult}
-            rolledDice={this.state.rolledDice} />
+          <Outcome
+            outcomeProb={this.state.outcomeProb}
+            outcome={this.state.outcome}
+            dicePool={this.state.dicePool} />
 
         </div>
       </div>

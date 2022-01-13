@@ -1,4 +1,4 @@
-export function createDiceMatrix(dice, typeOf, forcePips='all') {
+export function createDiceMatrix(dicePool, typeOf, forcePips='all') {
 
     let white = [0, 8/12, 4/12]; // set forceDice to all Pips
     let lsp = [0,1,0];
@@ -51,14 +51,14 @@ export function createDiceMatrix(dice, typeOf, forcePips='all') {
         }
     }
 
-    let diceArray = dice.split(''); // split dice string into iteratable array
+    let dicePoolArray = dicePool.split(''); // split dice string into iteratable array
 
     let matrices = []
 
-    for(var i = 0; i < diceArray.length; i++) {
+    for(var i = 0; i < dicePoolArray.length; i++) {
 
         if (typeOf === 'success') {
-            switch(diceArray[i]) {
+            switch(dicePoolArray[i]) {
                 case 'y':
                 case 'g':
                 case 'b':
@@ -67,44 +67,44 @@ export function createDiceMatrix(dice, typeOf, forcePips='all') {
                 case 't':
                 case 'l':
                 case 'n':
-                    matrices.push(diceWeights[diceArray[i]]) // add die success odds to matrix array
+                    matrices.push(diceWeights[dicePoolArray[i]]) // add die success odds to matrix array
                     break;
                 default:
                     break;
             }
         }
         else if(typeOf === 'failure') {
-            switch(diceArray[i]) {
+            switch(dicePoolArray[i]) {
                 case 'r':
                 case 'p':
                 case 'k':
                 case 'f':
                 case 'd':
-                    matrices.push(diceWeights[diceArray[i]]) // add die failure odds to matrix array
+                    matrices.push(diceWeights[dicePoolArray[i]]) // add die failure odds to matrix array
                     break;
                 default:
                     break;
             }
         }
         else if(typeOf === 'advantage') {
-            switch(diceArray[i]) {
+            switch(dicePoolArray[i]) {
                 case 'y':
                 case 'g':
                 case 'b':
                 case 'a':
-                    matrices.push(diceWeights[diceArray[i]]) // add die advantage odds to matrix array
+                    matrices.push(diceWeights[dicePoolArray[i]]) // add die advantage odds to matrix array
                     break;
                 default:
                     break;
             }
         }
         else if(typeOf === 'threat') {
-            switch(diceArray[i]) {
+            switch(dicePoolArray[i]) {
                 case 'r':
                 case 'p':
                 case 'k':
                 case 'o':
-                    matrices.push(diceWeights[diceArray[i]]) // add die failure odds to matrix array
+                    matrices.push(diceWeights[dicePoolArray[i]]) // add die failure odds to matrix array
                     break;
                 default:
                     break;

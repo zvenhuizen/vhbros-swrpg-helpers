@@ -1,26 +1,27 @@
-const successOdds = (probMatrix) => {
+const successProb = (probObject) => {
 
+    console.log("PROBABILITY OBJECT")
+    console.log(probObject);
     let sucDec, fOdds;
     let sucPct = '--.--';
     let successMatrix = [];
     let failureMatrix = [];
     let oddsMatrix = [];
 
-    if(probMatrix[0].length === undefined) { 
+    if(probObject.successProb.length === undefined) { 
         //if there are no success-driven dice entered, 0% of success.
 
         sucPct = '00.00';
-    } else if(probMatrix[1].length === undefined) { 
+    } else if(probObject.failureProb.length === undefined) { 
         //if there are no failure-driven dice entered, success is 1 minus % chance of rolling 0 success
         //chance of rolling 0 success is index [0] of the successMatrix
     
-        successMatrix = probMatrix[0];
-        sucPct = ((1 - successMatrix[0]) * 100).toFixed(2);
+        sucPct = ((1 - probObject.successProb) * 100).toFixed(2);
     } else {
         //if there are both success-driven and failure-drive dice entered, calculate odds of success
 
-        successMatrix = probMatrix[0];
-        failureMatrix = probMatrix[1];
+        successMatrix = probObject.successProb;
+        failureMatrix = probObject.failureProb;
 
         let initialLength = successMatrix.length
         for(var s = 1; s < initialLength; s++) {
@@ -50,4 +51,4 @@ const successOdds = (probMatrix) => {
     return sucPct;
 }
 
-export default successOdds
+export default successProb;

@@ -3,11 +3,11 @@ import {
     multiplyMatrices
 } from "./probabilityFunctions";
 
-const calculateSuccessProb = (dice) => {
+const calculateSuccessProb = (dicePool) => {
 
-    let successMatrices = createDiceMatrix(dice, 'success'); // Add All Positive Dice Odds to Matrix Array
+    let successMatrices = createDiceMatrix(dicePool, 'success'); // Add All Positive Dice Odds to Matrix Array
 
-    let failureMatrices = createDiceMatrix(dice, 'failure'); // Add All Negative Dice Odds to Matrix Array
+    let failureMatrices = createDiceMatrix(dicePool, 'failure'); // Add All Negative Dice Odds to Matrix Array
 
     while (successMatrices.length > 1) {
 
@@ -31,7 +31,7 @@ const calculateSuccessProb = (dice) => {
         failureMatrices = [1]
     }
 
-    return [successMatrices[0], failureMatrices[0]]; // Return the only remaining array in matrices as the success/failure odds
+    return {successProb: successMatrices[0], failureProb: failureMatrices[0]} // Return the only remaining array in matrices as the success/failure odds
 }
 
 export default calculateSuccessProb;
