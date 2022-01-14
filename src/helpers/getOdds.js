@@ -5,6 +5,7 @@ import { //rollExists,
          getRoll }      from "./firebaseFunctions";
 
 export async function getOdds(dicePool, dicePoolResult) {
+    
     console.log('Dice Pool:', dicePool)
 
     //returns net [s/f, a/thr, tri, des, lsp, dsp] where s, a, tri, des are positive #s and f & thr are negative #s

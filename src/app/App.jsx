@@ -56,7 +56,7 @@ class App extends React.Component {
 
       // RUN THEN ON GETOODDS AND SET STATE AFTER THEN COMPLETES
       // first had to turn getOdds into an async function to get the results to return here.
-      getOdds(this.state.dicePoolInputValue,diceFaceResultsArray).then(res => {
+      getOdds(this.state.dicePoolInputValue, diceFaceResultsArray).then(res => {
         console.log(`THIS IS THE GET ODDS IN APP SPEAKING: ${res}`);
         this.setState({
           outcomeProb: (res*100).toFixed(2)
@@ -69,6 +69,7 @@ class App extends React.Component {
           dicePoolInputValue: '',
           dicePool: this.state.dicePoolInputValue
         })
+        
     } else {
       errors.push("Cannot roll 0 dice");
       

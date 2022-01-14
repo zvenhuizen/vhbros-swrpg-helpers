@@ -10,7 +10,7 @@ export default function getAllResults(faceArray, typeOf) {
 
   let combinedFaceArray = returnPermutations(faceArray, typeOf);
 
-  let dicePoolObject, keys;
+  let dicePoolObject;
 
   //get an object of every unique summed array result with the count of times it appeard in summedArray
   if(typeOf !== 'force') {
@@ -40,8 +40,6 @@ export default function getAllResults(faceArray, typeOf) {
         return acc;
     }, {});
   }
-
-  keys = Object.keys(dicePoolObject);
 
   //create roll object
   
