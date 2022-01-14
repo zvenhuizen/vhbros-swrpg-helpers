@@ -66,7 +66,8 @@ class App extends React.Component {
       this.setState({
           diceFaceResults: diceFaceResultsArray,
           outcome: outcome,
-          dicePoolInputValue: ''
+          dicePoolInputValue: '',
+          dicePool: this.state.dicePoolInputValue
         })
     } else {
       errors.push("Cannot roll 0 dice");

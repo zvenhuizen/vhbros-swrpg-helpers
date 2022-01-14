@@ -1,6 +1,9 @@
 const Result = (props) => {
 
     let image = null;
+
+    console.log("PROPS IN RESULT");
+    console.log(props);
     
     if (props.resultType === 'symbol') {
         image = require('../assets/images/symbols/' + props.result[1] + '.png').default;
