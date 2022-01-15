@@ -8,7 +8,7 @@ import rollDicePool from '../helpers/rollDicePool';
 import calculateSuccessProb from '../helpers/calculateSuccessProb';
 import successProb from '../helpers/successProb';
 import {validLength} from '../helpers/validateInput'
-import { getOdds } from '../helpers/getOdds';
+import { calculateOutcomeProb } from '../helpers/calculateOutcomeProb';
 
 class App extends React.Component {
   constructor(props) {
@@ -54,21 +54,21 @@ class App extends React.Component {
       const diceFaceResultsArray = rollDicePool(this.state.dicePoolInputValue); //returns full, uncancelled result string (i.e. ssatf)
       const outcome = cancelDicePoolResults(diceFaceResultsArray); //returns net results nested array (i.e. [[1, s], [1, a]] )
 
+      this.setState({
+        diceFaceResults: diceFaceResultsArray,
+        outcome: outcome,
+        dicePoolInputValue: '',
+        dicePool: this.state.dicePoolInputValue
+      })
+
       // RUN THEN ON GETOODDS AND SET STATE AFTER THEN COMPLETES
       // first had to turn getOdds into an async function to get the results to return here.
-      getOdds(this.state.dicePoolInputValue, diceFaceResultsArray).then(res => {
+      calculateOutcomeProb(this.state.dicePoolInputValue, diceFaceResultsArray).then(res => {
         console.log(`THIS IS THE GET ODDS IN APP SPEAKING: ${res}`);
         this.setState({
           outcomeProb: (res*100).toFixed(2)
         })
       });
-
-      this.setState({
-          diceFaceResults: diceFaceResultsArray,
-          outcome: outcome,
-          dicePoolInputValue: '',
-          dicePool: this.state.dicePoolInputValue
-        })
         
     } else {
       errors.push("Cannot roll 0 dice");
