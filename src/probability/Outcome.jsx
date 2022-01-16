@@ -3,7 +3,16 @@ import Result from './Result';
 
 const Outcome = (props) => {
     
-    const outcome = props.outcome.map((result,index) => <Result key={index} resultType='symbol' result={result} />)
+    const outcome = [];
+    if(props.outcome.success > 0) { outcome.push(<Result key='success' resultType='symbol' result={[props.outcome.success, 's']} />) };
+    if(props.outcome.failure > 0) { outcome.push(<Result key='failure' resultType='symbol' result={[props.outcome.failure, 'f']} />) };
+    if(props.outcome.advantage > 0) { outcome.push(<Result key='advantage' resultType='symbol' result={[props.outcome.advantage, 'a']} />) };
+    if(props.outcome.threat > 0) { outcome.push(<Result key='threat' resultType='symbol' result={[props.outcome.threat, 't']} />) };
+    if(props.outcome.triumph > 0) { outcome.push(<Result key='triumph' resultType='symbol' result={[props.outcome.triumph, 'r']} />) };
+    if(props.outcome.despair > 0) { outcome.push(<Result key='despair' resultType='symbol' result={[props.outcome.despair, 'd']} />) };
+    if(props.outcome.lsp > 0) { outcome.push(<Result key='lsp' resultType='symbol' result={[props.outcome.lsp, 'l']} />) };
+    if(props.outcome.dsp > 0) { outcome.push(<Result key='dsp' resultType='symbol' result={[props.outcome.dsp, 'n']} />) };
+    
     return (
         <div className='roll-results' id='roll-results'>
 
