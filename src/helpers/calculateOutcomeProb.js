@@ -4,7 +4,7 @@ import { getResults,
 import { //rollExists,
          getRoll }      from "./firebaseFunctions";
 
-export async function getOdds(dicePool, dicePoolResult) {
+export async function calculateOutcomeProb(dicePool, dicePoolResult) {
     
     console.log('Dice Pool:', dicePool)
 
