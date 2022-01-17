@@ -1,4 +1,4 @@
-import getDiceSplit     from "./diceSplit";
+import getDicePools     from "./getDicePools";
 import getOutcomes   from "./getOutcomes";
 import { //rollExists,
          getRoll }      from "./firebaseFunctions";
@@ -8,14 +8,13 @@ export async function calculateOutcomeProb(dicePool, outcome) {
     console.log('Dice Pool:', dicePool)
     console.log('Dice Pool Result:', outcome)
 
-    //returns net [s/f, a/thr, tri, des, lsp, dsp] where s, a, tri, des are positive #s and f & thr are negative #s
-    let dicePoolObject = getDiceSplit(dicePool);
+    let dicePoolObject = getDicePools(dicePool);
 
-    // this is the final array to use to check database objects against
-    let adjustedOutcome = removeStaticDice(dicePool, outcome);
-    
     //send diceSplit to getRoll and wait for Promise to resolve
     let finalOutcomeProb = await getRoll(dicePoolObject).then(result => {
+
+        // this is the final array to use to check database objects against
+        let adjustedOutcome = removeStaticDice(dicePool, outcome);
 
         //manipulate DB objects to calculate posDicePool and negDicePool odds
         let outcomeProb = getOutcomes(result.posDicePoolObj, result.negDicePoolObj, dicePoolObject.forceDicePool, adjustedOutcome)

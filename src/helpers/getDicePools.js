@@ -1,4 +1,4 @@
-export default function getDiceSplit(dicePool) {
+export default function getDicePools(dicePool) {
     
   let dicePoolArray = dicePool.split('').sort();
   let splitDice = [[],[],[],[]];
