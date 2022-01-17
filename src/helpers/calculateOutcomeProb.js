@@ -1,5 +1,5 @@
 import getDiceSplit     from "./diceSplit";
-import getResults   from "./getResults";
+import getOutcomes   from "./getOutcomes";
 import { //rollExists,
          getRoll }      from "./firebaseFunctions";
 
@@ -18,9 +18,9 @@ export async function calculateOutcomeProb(dicePool, outcome) {
     let finalOutcomeProb = await getRoll(dicePoolObject).then(result => {
 
         //manipulate DB objects to calculate posDicePool and negDicePool odds
-        //let outcomeProb = getResults(result.posDicePoolObj, result.negDicePoolObj, dicePoolObject.forceDicePool, adjustedOutcome)
+        let outcomeProb = getOutcomes(result.posDicePoolObj, result.negDicePoolObj, dicePoolObject.forceDicePool, adjustedOutcome)
 
-        //return outcomeProb
+        return outcomeProb
     });
 
     return finalOutcomeProb;
@@ -39,24 +39,14 @@ function removeStaticDice(dicePool, outcome) {
     let dsp = (dicePool.match(/n/g) || []).length;
 
     //set final results of just the actual dice rolled
-    suc = outcome.success - suc
-    fai = outcome.failure - fai
-    adv = outcome.advantage - adv
-    thr = outcome.threat - thr
-    tri = outcome.triumph - tri
-    des = outcome.despair - des
-    lsp = outcome.lsp - lsp
-    dsp = outcome.dsp - dsp
 
     let adjustedOutcome = {
-        success: suc,
-        failure: fai,
-        advantage: adv,
-        threat: thr,
-        triumph: tri,
-        despair: des,
-        lsp: lsp,
-        dsp: dsp
+        success: outcome.success - suc + fai,
+        advantage: outcome.advantage - adv + thr,
+        triumph: outcome.triumph - tri,
+        despair: outcome.despair - des,
+        lsp: outcome.lsp - lsp,
+        dsp: outcome.dsp - dsp
     }
     
     return adjustedOutcome

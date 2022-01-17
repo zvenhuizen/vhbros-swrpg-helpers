@@ -2,7 +2,7 @@ import getAllResults from "./createRollObjects"
 import { nestFaceArrays } from "./getDiceArrays"
 import { dice } from "./Dice"
 
-export default function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, adjustedOutcome) {
+export default function getOutcomes(posDicePoolObj, negDicePoolObj, forceDicePool, adjustedOutcome) {
   
   if(!adjustedOutcome) {
     console.log('Returned Early, Result:', adjustedOutcome)
@@ -10,8 +10,8 @@ export default function getResults(posDicePoolObj, negDicePoolObj, forceDicePool
   }
   console.log(adjustedOutcome)
 
-  let sucfai = adjustedOutcome.success + adjustedOutcome.failure
-  let advthr = adjustedOutcome.advantage + adjustedOutcome.threat
+  let sucfai = adjustedOutcome.success
+  let advthr = adjustedOutcome.advantage
 
   //Calculate the odds that the regular dice outcome could have been produced.
   let posNegProb = 0

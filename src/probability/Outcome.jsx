@@ -7,7 +7,7 @@ const Outcome = (props) => {
     if(props.outcome.success > 0) { outcome.push(<Result key='success' resultType='symbol' result={[props.outcome.success, 's']} />) };
     if(props.outcome.success < 0) { outcome.push(<Result key='failure' resultType='symbol' result={[props.outcome.success * -1, 'f']} />) };
     if(props.outcome.advantage > 0) { outcome.push(<Result key='advantage' resultType='symbol' result={[props.outcome.advantage, 'a']} />) };
-    if(props.outcome.advabtage < 0) { outcome.push(<Result key='threat' resultType='symbol' result={[props.outcome.advantage * -1, 't']} />) };
+    if(props.outcome.advantage < 0) { outcome.push(<Result key='threat' resultType='symbol' result={[props.outcome.advantage * -1, 't']} />) };
     if(props.outcome.triumph > 0) { outcome.push(<Result key='triumph' resultType='symbol' result={[props.outcome.triumph, 'r']} />) };
     if(props.outcome.despair > 0) { outcome.push(<Result key='despair' resultType='symbol' result={[props.outcome.despair, 'd']} />) };
     if(props.outcome.lsp > 0) { outcome.push(<Result key='lsp' resultType='symbol' result={[props.outcome.lsp, 'l']} />) };
