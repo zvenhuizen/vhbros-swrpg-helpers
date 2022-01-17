@@ -1,12 +1,9 @@
-import getDicePools     from "./getDicePools";
-import getOutcomes   from "./getOutcomes";
+import getDicePools     from "../getDicePools";
+import getOutcomes   from "../getOutcomes";
 import { //rollExists,
-         getRoll }      from "./firebaseFunctions";
+         getRoll }      from "../firebaseFunctions";
 
 export async function calculateOutcomeProb(dicePool, outcome) {
-    
-    console.log('Dice Pool:', dicePool)
-    console.log('Dice Pool Result:', outcome)
 
     let dicePoolObject = getDicePools(dicePool);
 

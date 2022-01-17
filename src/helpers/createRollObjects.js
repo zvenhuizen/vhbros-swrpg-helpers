@@ -1,4 +1,4 @@
-import returnPermutations from './permutations';
+import returnPermutations from './probability/permutations';
 
 export default function getAllResults(faceArray, typeOf) {
 

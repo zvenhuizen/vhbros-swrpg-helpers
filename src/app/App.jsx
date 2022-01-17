@@ -5,10 +5,10 @@ import DiceFaceResults from '../probability/DiceFaceResults';
 import DiceInput from '../probability/DiceInput';
 import cancelDicePoolResults from '../helpers/cancelDicePoolResults';
 import rollDicePool from '../helpers/rollDicePool';
-import calculateSuccessProb from '../helpers/calculateSuccessProb';
-import successProb from '../helpers/successProb';
+import calculateSuccessProb from '../helpers/probability/calculateSuccessProb';
+import successProb from '../helpers/probability/successProb';
 import {validLength} from '../helpers/validateInput'
-import { calculateOutcomeProb } from '../helpers/calculateOutcomeProb';
+import { calculateOutcomeProb } from '../helpers/probability/calculateOutcomeProb';
 
 class App extends React.Component {
   constructor(props) {
