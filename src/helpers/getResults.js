@@ -2,13 +2,16 @@ import getAllResults from "./createRollObjects"
 import { nestFaceArrays } from "./getDiceArrays"
 import { dice } from "./Dice"
 
-export function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, posNegOutcome, forceOutcome) {
+export default function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, adjustedOutcome) {
   
-  if(!posNegOutcome) {
-    console.log('Returned Early, Result:', posNegOutcome)
+  if(!adjustedOutcome) {
+    console.log('Returned Early, Result:', adjustedOutcome)
     return //return early
   }
-  console.log(posNegOutcome)
+  console.log(adjustedOutcome)
+
+  let sucfai = adjustedOutcome.success + adjustedOutcome.failure
+  let advthr = adjustedOutcome.advantage + adjustedOutcome.threat
 
   //Calculate the odds that the regular dice outcome could have been produced.
   let posNegProb = 0
@@ -21,10 +24,10 @@ export function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, posNeg
     Object.keys(posDicePoolObj).forEach(key => {
       
       let negKey = []
-      negKey.push(posNegOutcome[0] -  posDicePoolObj[key].success)
-      negKey.push(posNegOutcome[1] - posDicePoolObj[key].advantage)
-      negKey.push(posNegOutcome[2])
-      negKey.push(posNegOutcome[3])
+      negKey.push(sucfai -  posDicePoolObj[key].success)
+      negKey.push(advthr - posDicePoolObj[key].advantage)
+      negKey.push(adjustedOutcome.triumph)
+      negKey.push(adjustedOutcome.despair)
 
       let negKeySearch = negKey.join(':');
       console.log(negKeySearch)
@@ -40,7 +43,7 @@ export function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, posNeg
     console.log(posDicePoolObj)
 
     let posKey = ''
-    posKey += posNegOutcome[0] + ':' + posNegOutcome[1] + ':' + posNegOutcome[2] + ':' + posNegOutcome[3]
+    posKey += sucfai + ':' + advthr + ':' + adjustedOutcome.triumph + ':' + adjustedOutcome.despair
     console.log(posKey)
 
     posNegProb = posDicePoolObj[posKey].prob;
@@ -51,7 +54,7 @@ export function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, posNeg
     console.log(negDicePoolObj)
 
     let negKey = ''
-    negKey += posNegOutcome[0] + ':' + posNegOutcome[1] + ':' + posNegOutcome[2] + ':' + posNegOutcome[3]
+    negKey += sucfai + ':' + advthr + ':' + adjustedOutcome.triumph + ':' + adjustedOutcome.despair
     console.log(negKey)
 
     posNegProb = negDicePoolObj[negKey].prob;
@@ -62,7 +65,7 @@ export function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, posNeg
 
   //calculate the odds that the force dice outcome could have been produced
   let forceProb = 1
-  if(forceOutcome && forceDicePool) {
+  if(forceDicePool) {
 
     let forceDice = forceDicePool.split('');
 
@@ -82,7 +85,7 @@ export function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, posNeg
     console.log(forceDicePoolObj)
 
     let forceKey = ''
-    forceKey += forceOutcome[0] + ':' + forceOutcome[1];
+    forceKey += adjustedOutcome.lsp + ':' + adjustedOutcome.dsp;
     console.log(forceKey)
     console.log(forceDicePoolObj[forceKey])
 
@@ -94,57 +97,4 @@ export function getResults(posDicePoolObj, negDicePoolObj, forceDicePool, posNeg
   let outcomeProb = posNegProb * forceProb
 
   return outcomeProb;
-}
-
-export function netResults(roll) {
-  let sucfai = 0;
-  let advthr = 0;
-  let tri = 0;
-  let des = 0;
-  let lsp = 0;
-  let dsp = 0;
-
-  for(var i = 0; i < roll.length; i++) {
-
-    const result = roll[i].split(''); //split the result into an array of single letters
-
-    // add all results together
-    for(var j = 0; j < result.length; j++) {
-
-      switch(result[j]) {
-        case 's':
-          sucfai += 1;
-          break;
-        case 'a':
-          advthr += 1;
-          break;
-        case 'r':
-          tri += 1;
-          sucfai += 1;
-          break;
-        case 'f':
-          sucfai -= 1;
-          break;
-        case 't':
-          advthr -= 1;
-          break;
-        case 'd':
-          des += 1;
-          sucfai -= 1;
-          break;
-        case 'n':
-          dsp += 1;
-          break;
-        case 'l':
-          lsp += 1;
-          break;
-        default:
-          return null;
-      }
-    }
-  }
-
-  let results = [sucfai,advthr,tri,des,lsp,dsp];
-
-  return results;
 }

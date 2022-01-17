@@ -63,7 +63,7 @@ class App extends React.Component {
 
       // RUN THEN ON GETOODDS AND SET STATE AFTER THEN COMPLETES
       // first had to turn getOdds into an async function to get the results to return here.
-      calculateOutcomeProb(this.state.dicePoolInputValue, diceFaceResultsArray).then(res => {
+      calculateOutcomeProb(this.state.dicePoolInputValue, outcome).then(res => {
         console.log(`THIS IS THE GET ODDS IN APP SPEAKING: ${res}`);
         this.setState({
           outcomeProb: (res*100).toFixed(2)
