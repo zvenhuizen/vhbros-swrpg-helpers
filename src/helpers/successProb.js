@@ -17,8 +17,7 @@ const successProb = (probObject) => {
     } else if(failureMatrix.length === undefined) { 
         //if there are no failure-driven dice entered, success is 1 minus % chance of rolling 0 success
         //chance of rolling 0 success is index [0] of the successMatrix
-    
-        sucPct = ((1 - probObject.successProb) * 100).toFixed(2);
+        sucPct = ((1 - successMatrix[0]) * 100).toFixed(2);
 
     } else {
         //if there are both success-driven and failure-drive dice entered, calculate odds of success

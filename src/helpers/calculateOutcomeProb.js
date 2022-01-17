@@ -18,9 +18,9 @@ export async function calculateOutcomeProb(dicePool, outcome) {
     let finalOutcomeProb = await getRoll(dicePoolObject).then(result => {
 
         //manipulate DB objects to calculate posDicePool and negDicePool odds
-        let outcomeProb = getResults(result.posDicePoolObj, result.negDicePoolObj, dicePoolObject.forceDicePool, adjustedOutcome)
+        //let outcomeProb = getResults(result.posDicePoolObj, result.negDicePoolObj, dicePoolObject.forceDicePool, adjustedOutcome)
 
-        return outcomeProb
+        //return outcomeProb
     });
 
     return finalOutcomeProb;
