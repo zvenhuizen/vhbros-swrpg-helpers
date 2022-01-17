@@ -50,27 +50,13 @@ const cancelDicePoolResults = (diceFaceResultsArray) => {
     }
 
     let outcomeObject = {
-        success: 0, failure: 0, 
-        advantage: 0, threat: 0, 
-        triumph: tri, despair: des,
-        lsp: lsp, dsp: dsp
+        success: sucfai, 
+        advantage: advthr, 
+        triumph: tri, 
+        despair: des,
+        lsp: lsp, 
+        dsp: dsp
     };
-
-    if(sucfai > 0) {
-        outcomeObject.success = sucfai;
-    }
-
-    if(sucfai < 0) {
-        outcomeObject.failure = sucfai * -1;
-    }
-
-    if(advthr > 0) {
-        outcomeObject.advantage = advthr;
-    }
-
-    if(advthr < 0) {
-        outcomeObject.threat = advthr * -1;
-    }
 
     return outcomeObject;
 }
