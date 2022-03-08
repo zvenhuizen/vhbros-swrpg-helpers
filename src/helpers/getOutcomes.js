@@ -1,7 +1,6 @@
 import getDicePoolObject from "./createDicePoolObjects"
 import { nestFaceArrays } from "./getFaceArrays"
 import { dice } from "./Dice"
-import getDicePoolObject from "./createDicePoolObjects"
 
 export default function getOutcomes(posDicePoolObj, negDicePoolObj, forceDicePool, adjustedOutcome) {
   
@@ -9,7 +8,7 @@ export default function getOutcomes(posDicePoolObj, negDicePoolObj, forceDicePoo
     console.log('Returned Early, Result:', adjustedOutcome)
     return //return early
   }
-  console.log(adjustedOutcome)
+  console.log('Adjusted Outomce:',adjustedOutcome)
 
   let sucfai = adjustedOutcome.success
   let advthr = adjustedOutcome.advantage
@@ -20,7 +19,7 @@ export default function getOutcomes(posDicePoolObj, negDicePoolObj, forceDicePoo
   if(posDicePoolObj && negDicePoolObj) {
 
     console.log('Found both pos and neg objects.')
-    console.log(posDicePoolObj, negDicePoolObj)
+    console.log('PosDicePool:', posDicePoolObj, 'NegDicePool:', negDicePoolObj)
 
     Object.keys(posDicePoolObj).forEach(key => {
       
@@ -80,21 +79,16 @@ export default function getOutcomes(posDicePoolObj, negDicePoolObj, forceDicePoo
     });
 
     forceFaceArray = forceFaceArray.filter(e => e != null);
-    console.log(forceFaceArray)
 
     let forceDicePoolObj = getDicePoolObject(forceFaceArray, 'force')
-    console.log(forceDicePoolObj)
 
     let forceKey = ''
     forceKey += adjustedOutcome.lsp + ':' + adjustedOutcome.dsp;
-    console.log(forceKey)
-    console.log(forceDicePoolObj[forceKey])
 
     forceProb = forceDicePoolObj[forceKey].prob
-    console.log(forceProb)
+    console.log('Force Prob:',forceProb)
   }
 
-  console.log(posNegProb)
   let outcomeProb = posNegProb * forceProb
 
   return outcomeProb;

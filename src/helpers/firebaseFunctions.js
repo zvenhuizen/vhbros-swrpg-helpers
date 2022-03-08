@@ -44,11 +44,13 @@ function dicePoolDataExists(dicePoolData, dicePoolObject) {
 
   // Check if positive roll is in the database
   if (dicePoolData.posDicePoolData.exists()) {
-    // return the data if it is
+    // return the data if it exists
     dicePoolDataObj.posDicePoolData = dicePoolData.posDicePoolData.data();
   } else {
-    // create and return the data if it is not
+    // create and return the data if it does not exist
     dicePoolDataObj.posDicePoolData = getDicePoolObject(getFaceArrays(dicePoolObject).posFaceArray, 'positive');
+    console.log('PosDicePool Not Found')
+    console.log('PosDicePoolData:',dicePoolDataObj.posDicePoolData)
     // then add that data to the database
     createDicePoolDoc(dicePoolObject.posDicePool, dicePoolDataObj.posDicePoolData);
   }
@@ -60,10 +62,12 @@ function dicePoolDataExists(dicePoolData, dicePoolObject) {
   } else {
     // create and return the data if it is not
     dicePoolDataObj.negDicePoolData = getDicePoolObject(getFaceArrays(dicePoolObject).negFaceArray, 'negative');
+    console.log('NegDicePool Not Found')
+    console.log('NegDicePoolData:',dicePoolDataObj.negDicePoolData)
     // then add that data to the database
     createDicePoolDoc(dicePoolObject.negDicePool, dicePoolDataObj.negDicePoolData)
   }
-
+  console.log(dicePoolDataObj)
   return dicePoolDataObj;
 }
 

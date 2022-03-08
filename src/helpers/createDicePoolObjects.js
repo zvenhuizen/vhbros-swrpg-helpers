@@ -47,5 +47,6 @@ export default function getDicePoolObject(faceArray, typeOf) {
     dicePoolObject[key].prob = (dicePoolObject[key].count / permutations);
   }
 
+  console.log(dicePoolObject)
   return dicePoolObject;
 }

@@ -17,6 +17,7 @@ export default function getFaceArrays(dicePoolObject) {
         return null;
     }
   });
+  console.log('PosFaceArray:',posFaceArray)
 
   let negFaceArray = negDicePool.map(sides => {
     switch(sides) {
@@ -30,6 +31,7 @@ export default function getFaceArrays(dicePoolObject) {
         return null;
     }
   });
+  console.log('NegFaceArray:',negFaceArray)
 
   posFaceArray = posFaceArray.filter(e => e != null);
   negFaceArray = negFaceArray.filter(e => e != null);
