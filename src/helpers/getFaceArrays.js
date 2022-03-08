@@ -1,6 +1,6 @@
 import { dice } from './Dice.js';
 
-export default function DiceArrays(dicePoolObject) {
+export default function getFaceArrays(dicePoolObject) {
 
   let posDicePool = dicePoolObject.posDicePool.split('');
   let negDicePool = dicePoolObject.negDicePool.split('');
@@ -34,7 +34,7 @@ export default function DiceArrays(dicePoolObject) {
   posFaceArray = posFaceArray.filter(e => e != null);
   negFaceArray = negFaceArray.filter(e => e != null);
 
-  return {posDicePool: posFaceArray, negDicePool: negFaceArray};
+  return {posFaceArray: posFaceArray, negFaceArray: negFaceArray};
 }
 
 export function nestFaceArrays(die) {

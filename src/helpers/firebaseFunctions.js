@@ -7,11 +7,11 @@ import { //collection,where,getDocs,getDocFromCache,addDoc,query,orderBy,limit,o
   setDoc,
   doc
 } from 'firebase/firestore';
-import getAllResults  from './createRollObjects';
-import DiceArrays     from './getDiceArrays';
+import getDicePoolObject  from './createDicePoolObjects';
+import getFaceArrays     from './getFaceArrays';
 
 // search database for pos and neg dicePool info
-export async function getRoll(dicePoolObject) {
+export async function getDicePoolData(dicePoolObject) {
 
   let db = getFirestore();
 
@@ -21,64 +21,64 @@ export async function getRoll(dicePoolObject) {
   }
   
   console.log(dicePoolObject);
-  let rollData;
+  let dicePoolData;
 
   try {
     // access posRes and negRes asynchronously, but wait until both are finished to continue (can be expanded to include force and nonDice if necessary)
-    let [posDoc, negDoc] = await Promise.all([getDoc(doc(db, 'dicePools', dicePoolObject.posDicePool)), getDoc(doc(db, 'dicePools', dicePoolObject.negDicePool))]);
+    let [posDicePoolData, negDicePoolData] = await Promise.all([getDoc(doc(db, 'dicePools', dicePoolObject.posDicePool)), getDoc(doc(db, 'dicePools', dicePoolObject.negDicePool))]);
 
-    let rollPossibilities = docsExist({posDoc: posDoc, negDoc: negDoc}, dicePoolObject)
-    rollData = {posDicePoolObj: rollPossibilities.posRoll, negDicePoolObj: rollPossibilities.negRoll, forceDice: '', symbols: ''};
+    let rollPossibilities = dicePoolDataExists({posDicePoolData: posDicePoolData, negDicePoolData: negDicePoolData}, dicePoolObject)
+    dicePoolData = {posDicePoolObj: rollPossibilities.posDicePoolData, negDicePoolObj: rollPossibilities.negDicePoolData, forceDice: '', symbols: ''};
   }
   catch(e) {
     console.log(e);
   }
 
-  return rollData;
+  return dicePoolData;
 }
 
 // check if the dicePool exists in the database
-function docsExist(documents, dicePoolObject) {
+function dicePoolDataExists(dicePoolData, dicePoolObject) {
 
-  let rollObject = {}
+  let dicePoolDataObj = {}
 
   // Check if positive roll is in the database
-  if (documents.posDoc.exists()) {
+  if (dicePoolData.posDicePoolData.exists()) {
     // return the data if it is
-    rollObject.posRoll = documents.posDoc.data();
+    dicePoolDataObj.posDicePoolData = dicePoolData.posDicePoolData.data();
   } else {
     // create and return the data if it is not
-    rollObject.posRoll = getAllResults(DiceArrays(dicePoolObject).posDicePool, 'positive');
+    dicePoolDataObj.posDicePoolData = getDicePoolObject(getFaceArrays(dicePoolObject).posFaceArray, 'positive');
     // then add that data to the database
-    createDocument(dicePoolObject.posDicePool, rollObject.posRoll);
+    createDicePoolDoc(dicePoolObject.posDicePool, dicePoolDataObj.posDicePoolData);
   }
 
   // Check if negative roll is in the database
-  if (documents.negDoc.exists()) {
+  if (dicePoolData.negDicePoolData.exists()) {
     // return the data if it is
-    rollObject.negRoll = documents.negDoc.data();
+    dicePoolDataObj.negDicePoolData = dicePoolData.negDicePoolData.data();
   } else {
     // create and return the data if it is not
-    rollObject.negRoll = getAllResults(DiceArrays(dicePoolObject).negDicePool, 'negative');
+    dicePoolDataObj.negDicePoolData = getDicePoolObject(getFaceArrays(dicePoolObject).negFaceArray, 'negative');
     // then add that data to the database
-    createDocument(dicePoolObject.negDicePool, rollObject.negRoll)
+    createDicePoolDoc(dicePoolObject.negDicePool, dicePoolDataObj.negDicePoolData)
   }
 
-  return rollObject;
+  return dicePoolDataObj;
 }
 
 // create a new dicePool for a roll that does not yet exist
-async function createDocument(id, data) {
+async function createDicePoolDoc(dicePoolData, dicePool) {
 
   let db = getFirestore();
-  let result;
+  let dicePoolDoc;
   
   try {
-    result = await setDoc(doc(db, 'dicePools', id), data);
+    dicePoolDoc = await setDoc(doc(db, 'dicePools', dicePoolData), dicePool);
   }
   catch(e) {
     console.log(e);
   }
 
-  return result;
+  return dicePoolDoc;
 }

@@ -1,6 +1,6 @@
-import returnPermutations from './probability/permutations';
+import combineFaceArrays from './probability/combineFaceArrays';
 
-export default function getAllResults(faceArray, typeOf) {
+export default function getDicePoolObject(faceArray, typeOf) {
 
   // calculate total permutations
   let permutations = 1
@@ -8,7 +8,7 @@ export default function getAllResults(faceArray, typeOf) {
     permutations *= faceArray[i].length;
   };
 
-  let combinedFaceArray = returnPermutations(faceArray, typeOf);
+  let combinedFaceArray = combineFaceArrays(faceArray, typeOf);
 
   let dicePoolObject;
 

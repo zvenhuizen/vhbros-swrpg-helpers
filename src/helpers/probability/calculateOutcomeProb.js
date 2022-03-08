@@ -1,20 +1,20 @@
 import getDicePools     from "../getDicePools";
 import getOutcomes   from "../getOutcomes";
 import { //rollExists,
-         getRoll }      from "../firebaseFunctions";
+         getDicePoolData }      from "../firebaseFunctions";
 
 export async function calculateOutcomeProb(dicePool, outcome) {
 
     let dicePoolObject = getDicePools(dicePool);
 
-    //send diceSplit to getRoll and wait for Promise to resolve
-    let finalOutcomeProb = await getRoll(dicePoolObject).then(result => {
+    //send dicePoolObject to getRoll and wait for Promise to resolve
+    let finalOutcomeProb = await getDicePoolData(dicePoolObject).then(result => {
 
         // this is the final array to use to check database objects against
-        let adjustedOutcome = removeStaticDice(dicePool, outcome);
+        let adjustedOutcomeObject = removeSymbols(dicePool, outcome);
 
         //manipulate DB objects to calculate posDicePool and negDicePool odds
-        let outcomeProb = getOutcomes(result.posDicePoolObj, result.negDicePoolObj, dicePoolObject.forceDicePool, adjustedOutcome)
+        let outcomeProb = getOutcomes(result.posDicePoolObj, result.negDicePoolObj, dicePoolObject.forceDicePool, adjustedOutcomeObject)
 
         return outcomeProb
     });
@@ -22,7 +22,7 @@ export async function calculateOutcomeProb(dicePool, outcome) {
     return finalOutcomeProb;
 }
 
-function removeStaticDice(dicePool, outcome) {
+function removeSymbols(dicePool, outcome) {
 
     //get number of static values rolled (i.e. rolling an advantage at the end of a roll)
     let suc = (dicePool.match(/s/g) || []).length;

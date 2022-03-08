@@ -1,6 +1,7 @@
-import getAllResults from "./createRollObjects"
-import { nestFaceArrays } from "./getDiceArrays"
+import getDicePoolObject from "./createDicePoolObjects"
+import { nestFaceArrays } from "./getFaceArrays"
 import { dice } from "./Dice"
+import getDicePoolObject from "./createDicePoolObjects"
 
 export default function getOutcomes(posDicePoolObj, negDicePoolObj, forceDicePool, adjustedOutcome) {
   
@@ -81,7 +82,7 @@ export default function getOutcomes(posDicePoolObj, negDicePoolObj, forceDicePoo
     forceFaceArray = forceFaceArray.filter(e => e != null);
     console.log(forceFaceArray)
 
-    let forceDicePoolObj = getAllResults(forceFaceArray, 'force')
+    let forceDicePoolObj = getDicePoolObject(forceFaceArray, 'force')
     console.log(forceDicePoolObj)
 
     let forceKey = ''
