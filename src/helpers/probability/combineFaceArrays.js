@@ -1,7 +1,7 @@
 export default function combineFaceArrays(faceArray, typeOf) {
 
-    let combinedFaceArray = []
-    console.log(faceArray, typeOf)
+    let combinedFaceArrays = []
+    //console.log(faceArray, typeOf)
 
     if(typeOf !== 'force') {
         function permute(allFaces, face=0, combinedFaceArray=[0,0,0,0]){
@@ -9,27 +9,25 @@ export default function combineFaceArrays(faceArray, typeOf) {
             allFaces[face].forEach((result)=>{
                 if( face === allFaces.length - 1 ){
                     // Base case...
-                    combinedFaceArray.push( result.map((r,i) => r + combinedFaceArray[i]) );
-                    console.log(combinedFaceArray);
+                    combinedFaceArrays.push( result.map((r,i) => r + combinedFaceArray[i]) );
+                    //console.log(combinedFaceArrays);
                 }
                 else{
                     // Recursive case...
                     permute(allFaces, face + 1, result.map((r,i) => r + combinedFaceArray[i]) );
-                    console.log(combinedFaceArray);
+                    //console.log(combinedFaceArrays);
                 }
             });/*  forEach() */
-        console.log(combinedFaceArray)
-        return combinedFaceArray
         }
         permute(faceArray);
-        console.log(combinedFaceArray)
+        //console.log(combinedFaceArrays)
     } else {
         function permute(allFaces, face=0, combinedFaceArray=[0,0]){
 
             allFaces[face].forEach((result)=>{
                 if( face === allFaces.length - 1 ){
                     // Base case...
-                    combinedFaceArray.push( result.map((r,i) => r + combinedFaceArray[i]) );
+                    combinedFaceArrays.push( result.map((r,i) => r + combinedFaceArray[i]) );
                     // console.log(outputs);
                 }
                 else{
@@ -42,6 +40,6 @@ export default function combineFaceArrays(faceArray, typeOf) {
         permute(faceArray);
     }
 
-    console.log(combinedFaceArray)
-    return combinedFaceArray;
+    //console.log(combinedFaceArrays)
+    return combinedFaceArrays;
 }

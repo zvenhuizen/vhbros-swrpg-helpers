@@ -1,0 +1,69 @@
+[debug] [2022-03-08T19:00:25.214Z] ----------------------------------------------------------------------
+[debug] [2022-03-08T19:00:25.217Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\zvenhuizen\Documents\Code\vhbros-repos\vhbros-swrpg-helpers\node_modules\firebase-tools\lib\bin\firebase.js serve --only hosting
+[debug] [2022-03-08T19:00:25.217Z] CLI Version:   9.23.0
+[debug] [2022-03-08T19:00:25.218Z] Platform:      win32
+[debug] [2022-03-08T19:00:25.218Z] Node Version:  v14.17.5
+[debug] [2022-03-08T19:00:25.221Z] Time:          Tue Mar 08 2022 13:00:25 GMT-0600 (Central Standard Time)
+[debug] [2022-03-08T19:00:25.221Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-03-08T19:00:25.338Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-03-08T19:00:25.338Z] > authorizing via signed-in user (zvenhui@gmail.com)
+[debug] [2022-03-08T19:00:25.339Z] [iam] checking project vhbros-swrpg-helpers for permissions ["firebase.projects.get"]
+[debug] [2022-03-08T19:00:25.349Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-03-08T19:00:25.350Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-03-08T19:00:25.610Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Tue, 08 Mar 2022 19:00:25 GMT","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-03-08T19:00:25.639Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/vhbros-swrpg-helpers:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2022-03-08T19:00:25.957Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 08 Mar 2022 19:00:26 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=80","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-03-08T19:00:25.959Z] > refreshing access token with scopes: []
+[debug] [2022-03-08T19:00:25.960Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-03-08T19:00:26.219Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Tue, 08 Mar 2022 19:00:26 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-03-08T19:00:26.244Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers [none]
+[debug] [2022-03-08T19:00:26.565Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers 200
+[debug] [2022-03-08T19:00:26.565Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers {"projectId":"vhbros-swrpg-helpers","projectNumber":"523300652788","displayName":"vhbros-swrpg-helpers","name":"projects/vhbros-swrpg-helpers","resources":{"hostingSite":"vhbros-swrpg-helpers","realtimeDatabaseInstance":"vhbros-swrpg-helpers-default-rtdb","storageBucket":"vhbros-swrpg-helpers.appspot.com","locationId":"us-central"},"state":"ACTIVE"}
+[debug] [2022-03-08T19:00:26.568Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers/sites 
+[debug] [2022-03-08T19:00:26.917Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers/sites 200
+[debug] [2022-03-08T19:00:26.917Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers/sites {"sites":[{"name":"projects/523300652788/sites/vhbros-swrpg-helpers","defaultUrl":"https://vhbros-swrpg-helpers.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2022-03-08T19:00:26.918Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers/webApps/-/config [none]
+[debug] [2022-03-08T19:00:27.374Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers/webApps/-/config 200
+[debug] [2022-03-08T19:00:27.374Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers/webApps/-/config {"projectId":"vhbros-swrpg-helpers","appId":"1:523300652788:web:1ee68b04304bb2eda600a1","databaseURL":"https://vhbros-swrpg-helpers-default-rtdb.firebaseio.com","storageBucket":"vhbros-swrpg-helpers.appspot.com","locationId":"us-central","apiKey":"AIzaSyAIrETYx861kemsmmYGBNc_q8yamLZe8rw","authDomain":"vhbros-swrpg-helpers.firebaseapp.com","messagingSenderId":"523300652788","measurementId":"G-WMP88F67XW"}
+[info] i  hosting: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] +  hosting: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
+[debug] [2022-03-09T19:03:36.036Z] ----------------------------------------------------------------------
+[debug] [2022-03-09T19:03:36.040Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\zvenhuizen\Documents\Code\vhbros-repos\vhbros-swrpg-helpers\node_modules\firebase-tools\lib\bin\firebase.js serve --only hosting
+[debug] [2022-03-09T19:03:36.043Z] CLI Version:   9.23.0
+[debug] [2022-03-09T19:03:36.043Z] Platform:      win32
+[debug] [2022-03-09T19:03:36.044Z] Node Version:  v14.17.5
+[debug] [2022-03-09T19:03:36.053Z] Time:          Wed Mar 09 2022 13:03:36 GMT-0600 (Central Standard Time)
+[debug] [2022-03-09T19:03:36.053Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-03-09T19:03:36.067Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2022-03-09T19:03:36.298Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-03-09T19:03:36.298Z] > authorizing via signed-in user (zvenhui@gmail.com)
+[debug] [2022-03-09T19:03:36.299Z] [iam] checking project vhbros-swrpg-helpers for permissions ["firebase.projects.get"]
+[debug] [2022-03-09T19:03:36.305Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2022-03-09T19:03:36.305Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-03-09T19:03:36.623Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Wed, 09 Mar 2022 19:03:36 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-03-09T19:03:36.650Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/vhbros-swrpg-helpers:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2022-03-09T19:03:36.711Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2022-03-09T19:03:36.711Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2022-03-09T19:03:37.008Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 09 Mar 2022 19:03:37 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=75","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-03-09T19:03:37.010Z] > refreshing access token with scopes: []
+[debug] [2022-03-09T19:03:37.010Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2022-03-09T19:03:37.268Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Wed, 09 Mar 2022 19:03:37 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2022-03-09T19:03:37.294Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers [none]
+[debug] [2022-03-09T19:03:37.665Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers 200
+[debug] [2022-03-09T19:03:37.666Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers {"projectId":"vhbros-swrpg-helpers","projectNumber":"523300652788","displayName":"vhbros-swrpg-helpers","name":"projects/vhbros-swrpg-helpers","resources":{"hostingSite":"vhbros-swrpg-helpers","realtimeDatabaseInstance":"vhbros-swrpg-helpers-default-rtdb","storageBucket":"vhbros-swrpg-helpers.appspot.com","locationId":"us-central"},"state":"ACTIVE"}
+[debug] [2022-03-09T19:03:37.667Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers/sites 
+[debug] [2022-03-09T19:03:38.081Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers/sites 200
+[debug] [2022-03-09T19:03:38.082Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers/sites {"sites":[{"name":"projects/523300652788/sites/vhbros-swrpg-helpers","defaultUrl":"https://vhbros-swrpg-helpers.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2022-03-09T19:03:38.082Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers/webApps/-/config [none]
+[debug] [2022-03-09T19:03:38.484Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers/webApps/-/config 200
+[debug] [2022-03-09T19:03:38.484Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/vhbros-swrpg-helpers/webApps/-/config {"projectId":"vhbros-swrpg-helpers","appId":"1:523300652788:web:1ee68b04304bb2eda600a1","databaseURL":"https://vhbros-swrpg-helpers-default-rtdb.firebaseio.com","storageBucket":"vhbros-swrpg-helpers.appspot.com","locationId":"us-central","apiKey":"AIzaSyAIrETYx861kemsmmYGBNc_q8yamLZe8rw","authDomain":"vhbros-swrpg-helpers.firebaseapp.com","messagingSenderId":"523300652788","measurementId":"G-WMP88F67XW"}
+[info] i  hosting: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] +  hosting: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
